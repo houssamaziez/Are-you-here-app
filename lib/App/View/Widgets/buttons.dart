@@ -30,7 +30,7 @@ class Buttons {
       bool isgoogle = false}) {
     return InkWell(
       onTap: () {
-        functinn;
+        functinn();
       },
       child: Container(
         decoration: BoxDecoration(

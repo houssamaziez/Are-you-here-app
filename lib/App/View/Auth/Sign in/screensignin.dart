@@ -1,5 +1,6 @@
 import 'package:app/App/Controller/Auth/authController.dart';
 import 'package:app/App/Model/user.dart';
+import 'package:app/App/Service/Api/api_operations.dart';
 import 'package:app/App/View/Auth/Register%20Account/screenRegister.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
 import 'package:app/App/View/Widgets/textfild.dart';
@@ -8,6 +9,7 @@ import 'package:app/App/util/Size/dimensions.dart';
 import 'package:app/App/util/Route/go.dart';
 import 'package:app/App/util/theme/Style/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../util/Route/route.dart';
 
@@ -29,8 +31,12 @@ class _ScreenSigninState extends State<ScreenSignin> {
     super.dispose();
   }
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
+    final myData = Provider.of<ApiOperation>(context);
+
     return Scaffold(
       appBar: AppBar(elevation: 0, leading: Buttons.ButtonBack(context)),
       body: Padding(
@@ -64,6 +70,7 @@ class _ScreenSigninState extends State<ScreenSignin> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Form(
+                        key: _formKey,
                         child: Column(
                           children: [
                             Textfildapp.myTextfilde(
@@ -80,28 +87,30 @@ class _ScreenSigninState extends State<ScreenSignin> {
                             const SizedBox(
                               height: 30,
                             ),
-                            MaterialButton(
-                                color: Colors.amber,
-                                onPressed: () async {
-                                  await AuthController()
-                                      .login(
-                                          email: emailController.text,
-                                          password: passwordController.text)
-                                      .then(
-                                          (value) => RouteApp.gotHome(context));
-                                }),
                             Buttons.buttonAll(context,
-                                title: TextApp.signIn,
+                                title: myData.isloadingAuth == false
+                                    ? TextApp.signIn
+                                    : TextApp.loading,
                                 color: Theme.of(context).primaryColor,
-                                functinn: () {}),
+                                functinn: () async {
+                              if (_formKey.currentState!.validate()) {
+                                myData.change(true);
+                                await AuthController()
+                                    .login(
+                                        context: context,
+                                        email: emailController.text,
+                                        password: passwordController.text)
+                                    .then((value) => myData.change(false));
+                              }
+                            }),
                             const SizedBox(
                               height: 25,
                             ),
-                            Buttons.buttonAll(context,
-                                title: TextApp.signInwithGoogle,
-                                isgoogle: true,
-                                color: const Color.fromARGB(255, 235, 235, 235),
-                                functinn: () {}),
+                            // Buttons.buttonAll(context,
+                            //     title: TextApp.signInwithGoogle,
+                            //     isgoogle: true,
+                            //     color: const Color.fromARGB(255, 235, 235, 235),
+                            //     functinn: () {}),
                           ],
                         ),
                       ),

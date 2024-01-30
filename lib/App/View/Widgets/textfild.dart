@@ -23,6 +23,12 @@ class Textfildapp {
           child: TextFormField(
             controller: controller,
             scribbleEnabled: false,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter ${title}';
+              }
+              return null;
+            },
             decoration: InputDecoration(
                 filled: true,
                 fillColor: const Color.fromARGB(

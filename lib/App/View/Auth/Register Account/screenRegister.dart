@@ -8,7 +8,9 @@ import 'package:app/App/util/Route/go.dart';
 import 'package:app/App/util/theme/Style/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
 
+import '../../../Service/Api/api_operations.dart';
 import '../../../util/Route/route.dart';
 
 class ScreenRegister extends StatefulWidget {
@@ -29,15 +31,18 @@ class _ScreenRegisterState extends State<ScreenRegister> {
     super.dispose();
   }
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
+    final ApiOperation _controller = Provider.of<ApiOperation>(context);
+
     return Scaffold(
       appBar: AppBar(elevation: 0, leading: Buttons.ButtonBack(context)),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Container(
-            height: SizeApp.heightmobile(context, size: 1),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -64,6 +69,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Form(
+                        key: _formKey,
                         child: Column(
                           children: [
                             Textfildapp.myTextfilde(
@@ -88,33 +94,35 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                               height: 30,
                             ),
                             Buttons.buttonAll(context,
-                                title: TextApp.signIn,
+                                title: _controller.isloadingAuth == false
+                                    ? TextApp.registerAccount
+                                    : TextApp.loading,
                                 color: Theme.of(context).primaryColor,
-                                functinn: () {}),
+                                functinn: () async {
+                              if (_formKey.currentState!.validate()) {
+                                _controller.change(true);
+
+                                await AuthController()
+                                    .register(
+                                        context: context,
+                                        name: namelController.text,
+                                        email: emailController.text,
+                                        password: passwordController.text)
+                                    .then((value) => _controller.change(false));
+                              }
+                            }),
                             const SizedBox(
                               height: 25,
                             ),
-                            MaterialButton(
-                                color: Colors.amber,
-                                onPressed: () async {
-                                  await AuthController()
-                                      .register(
-                                          name: namelController.text,
-                                          email: emailController.text,
-                                          password: passwordController.text)
-                                      .then(
-                                          (value) => RouteApp.gotHome(context));
-                                }),
-                            Buttons.buttonAll(context,
-                                title: TextApp.signInwithGoogle,
-                                isgoogle: true,
-                                color: const Color.fromARGB(255, 235, 235, 235),
-                                functinn: () {}),
+                            // Buttons.buttonAll(context,
+                            //     title: TextApp.signInwithGoogle,
+                            //     isgoogle: true,
+                            //     color: const Color.fromARGB(255, 235, 235, 235),
+                            //     functinn: () {}),
                           ],
                         ),
                       ),
                     )),
-                const Spacer(),
                 TextButton(
                   onPressed: () {
                     Go.to(context, const ScreenSignin());

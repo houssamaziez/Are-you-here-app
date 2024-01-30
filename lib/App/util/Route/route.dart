@@ -3,6 +3,6 @@ import 'package:app/App/util/Route/go.dart';
 
 class RouteApp {
   static gotHome(context) {
-    Go.pop(context, ScreenHome());
+    Go.to(context, ScreenHome());
   }
 }
