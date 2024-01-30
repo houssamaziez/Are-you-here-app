@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:app/App/Model/utilsModel/message_error.dart';
@@ -42,13 +44,10 @@ class ApiOperation extends ChangeNotifier {
   }
 
   Future<User> getuserData(int userId, {required BuildContext context}) async {
-    isloadingAuth = true;
-    notifyListeners();
     final response =
         await http.get(Uri.parse('${UrlApp.host}users/userdata/$userId'));
+    // ignore: use_build_context_synchronously
     UtilsBdd.statusCode(response, context);
-    isloadingAuth = false;
-    notifyListeners();
     return User.fromJson(json.decode(response.body));
   }
 

@@ -11,11 +11,8 @@ import 'package:app/App/util/theme/Style/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../util/Route/route.dart';
-
 class ScreenSignin extends StatefulWidget {
   const ScreenSignin({super.key});
-
   @override
   State<ScreenSignin> createState() => _ScreenSigninState();
 }
@@ -83,6 +80,7 @@ class _ScreenSigninState extends State<ScreenSignin> {
                             Textfildapp.myTextfilde(
                                 controller: passwordController,
                                 hin: '**********',
+                                obscureText: true,
                                 title: TextApp.password),
                             const SizedBox(
                               height: 30,

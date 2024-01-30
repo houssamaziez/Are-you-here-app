@@ -89,6 +89,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                             Textfildapp.myTextfilde(
                                 controller: passwordController,
                                 hin: '**********',
+                                obscureText: true,
                                 title: TextApp.password),
                             const SizedBox(
                               height: 30,

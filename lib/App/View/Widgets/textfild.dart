@@ -7,6 +7,7 @@ class Textfildapp {
   static Column myTextfilde(
       {required String title,
       required String hin,
+      bool obscureText = false,
       required TextEditingController controller}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,6 +23,7 @@ class Textfildapp {
           height: 55,
           child: TextFormField(
             controller: controller,
+            obscureText: obscureText,
             scribbleEnabled: false,
             validator: (value) {
               if (value == null || value.isEmpty) {

@@ -21,14 +21,12 @@ class UtilsBdd {
         RouteApp.gotHome(context);
       }
       _message = MessageDataBase.fromJson(json.decode(response.body));
-
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(_message.message.toString()),
         backgroundColor: Colors.green,
       ));
     } else {
       _message = MessageDataBase.fromJson(json.decode(response.body));
-
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(_message.message.toString()),
         backgroundColor: Colors.red,
