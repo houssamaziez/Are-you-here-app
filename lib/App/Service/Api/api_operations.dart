@@ -3,9 +3,11 @@
 import 'dart:convert';
 
 import 'package:app/App/Model/utilsModel/message_error.dart';
+import 'package:app/App/Service/Api/Bdd/local/auth.dart';
 import 'package:app/App/Service/Api/Bdd/utilsbdd.dart';
 import 'package:app/App/Model/user.dart';
 import 'package:app/App/View/Auth/Forgot%20Password/screenchange_ps.dart';
+import 'package:app/App/View/Auth/Sign%20in/screensignin.dart';
 import 'package:app/App/View/Home/screenHome.dart';
 import 'package:app/App/util/Const/url.dart';
 import 'package:app/App/util/math.dart';
@@ -35,8 +37,13 @@ class ApiOperation extends ChangeNotifier {
     };
     try {
       var response = await UtilsBdd.post(UrlApp.urlregister, data);
+
       UtilsBdd.statusCode(
           response: response, context: context, screengo: ScreenHome());
+      UserData userdata = UserData.fromJson(json.decode(response.body));
+      userid
+          .write("iduser", userdata.user!.id.toString())
+          .then((value) => null);
       isloadingAuth = false;
       notifyListeners();
       return response;
@@ -47,13 +54,14 @@ class ApiOperation extends ChangeNotifier {
     }
   }
 
-  Future<User> getuserData(int userId, {required BuildContext context}) async {
+  Future<UserData> getuserData(int userId,
+      {required BuildContext context}) async {
     final response =
         await http.get(Uri.parse('${UrlApp.host}users/userdata/$userId'));
     // ignore: use_build_context_synchronously
     UtilsBdd.statusCode(
         response: response, context: context, screengo: ScreenHome());
-    return User.fromJson(json.decode(response.body));
+    return UserData.fromJson(json.decode(response.body));
   }
 
   Future login(
@@ -68,7 +76,10 @@ class ApiOperation extends ChangeNotifier {
     try {
       response = await UtilsBdd.post(UrlApp.urllogin, data);
       print(response.body);
-
+      UserData userdata = UserData.fromJson(json.decode(response.body));
+      userid
+          .write("iduser", userdata.user!.id.toString())
+          .then((value) => null);
       UtilsBdd.statusCode(
           response: response, context: context, screengo: ScreenHome());
 
@@ -125,7 +136,7 @@ class ApiOperation extends ChangeNotifier {
     try {
       var response = await UtilsBdd.post(UrlApp.urleditUserPassword, data);
       UtilsBdd.statusCode(
-          response: response, context: context, screengo: ScreenHome());
+          response: response, context: context, screengo: ScreenSignin());
       return response;
     } catch (e) {
       if (kDebugMode) {

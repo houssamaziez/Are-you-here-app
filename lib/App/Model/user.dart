@@ -1,22 +1,31 @@
-class User {
-  Data? data;
+class UserData {
+  bool? status;
+  String? message;
+  String? token;
+  User? user;
 
-  User({this.data});
+  UserData({this.status, this.message, this.token, this.user});
 
-  User.fromJson(Map<String, dynamic> json) {
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+  UserData.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    message = json['message'];
+    token = json['token'];
+    user = json['user'] != null ? new User.fromJson(json['user']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data!.toJson();
+    data['status'] = this.status;
+    data['message'] = this.message;
+    data['token'] = this.token;
+    if (this.user != null) {
+      data['user'] = this.user!.toJson();
     }
     return data;
   }
 }
 
-class Data {
+class User {
   int? id;
   String? name;
   String? email;
@@ -24,7 +33,7 @@ class Data {
   String? createdAt;
   String? updatedAt;
 
-  Data(
+  User(
       {this.id,
       this.name,
       this.email,
@@ -32,7 +41,7 @@ class Data {
       this.createdAt,
       this.updatedAt});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     email = json['email'];
