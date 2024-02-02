@@ -16,15 +16,12 @@ class UtilsBdd {
   static statusCode(http.Response response, context) {
     MessageDataBase _message;
     if (response.statusCode == 200) {
-      if (kDebugMode) {
-        print(json.decode(response.body)['data']);
-        RouteApp.gotHome(context);
-      }
       _message = MessageDataBase.fromJson(json.decode(response.body));
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(_message.message.toString()),
         backgroundColor: Colors.green,
       ));
+      // RouteApp.gotHome(context);
     } else {
       _message = MessageDataBase.fromJson(json.decode(response.body));
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

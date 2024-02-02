@@ -6,6 +6,7 @@ import 'package:app/App/Model/utilsModel/message_error.dart';
 import 'package:app/App/Service/Api/Bdd/utilsbdd.dart';
 import 'package:app/App/Model/user.dart';
 import 'package:app/App/util/Const/url.dart';
+import 'package:app/App/util/math.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -65,6 +66,33 @@ class ApiOperation extends ChangeNotifier {
       print(response.body);
 
       UtilsBdd.statusCode(response, context);
+
+      return response;
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    isloadingAuth = false;
+    notifyListeners();
+    super.dispose();
+  }
+
+  Future sendEmailConferM(
+      {required String email, required BuildContext context}) async {
+    Map<String, String> data = {
+      'mail': email,
+      'id': LogiqueMath.generateRandomNumber().toString(),
+    };
+    try {
+      var response = await UtilsBdd.post(UrlApp.urlsendmail, data);
+      print(response.body);
+
+      await UtilsBdd.statusCode(response, context);
 
       return response;
     } catch (e) {
