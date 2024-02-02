@@ -99,19 +99,23 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                                     ? TextApp.registerAccount
                                     : TextApp.loading,
                                 color: Theme.of(context).primaryColor,
-                                functinn: () async {
-                              if (_formKey.currentState!.validate()) {
-                                _controller.change(true);
+                                functinn: _controller.isloadingAuth == false
+                                    ? () async {
+                                        if (_formKey.currentState!.validate()) {
+                                          _controller.change(true);
 
-                                await AuthController()
-                                    .register(
-                                        context: context,
-                                        name: namelController.text,
-                                        email: emailController.text,
-                                        password: passwordController.text)
-                                    .then((value) => _controller.change(false));
-                              }
-                            }),
+                                          await AuthController()
+                                              .register(
+                                                  context: context,
+                                                  name: namelController.text,
+                                                  email: emailController.text,
+                                                  password:
+                                                      passwordController.text)
+                                              .then((value) =>
+                                                  _controller.change(false));
+                                        }
+                                      }
+                                    : () {}),
                             const SizedBox(
                               height: 25,
                             ),

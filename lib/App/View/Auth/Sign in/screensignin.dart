@@ -90,17 +90,21 @@ class _ScreenSigninState extends State<ScreenSignin> {
                                     ? TextApp.signIn
                                     : TextApp.loading,
                                 color: Theme.of(context).primaryColor,
-                                functinn: () async {
-                              if (_formKey.currentState!.validate()) {
-                                myData.change(true);
-                                await AuthController()
-                                    .login(
-                                        context: context,
-                                        email: emailController.text,
-                                        password: passwordController.text)
-                                    .then((value) => myData.change(false));
-                              }
-                            }),
+                                functinn: myData.isloadingAuth == false
+                                    ? () async {
+                                        if (_formKey.currentState!.validate()) {
+                                          myData.change(true);
+                                          await AuthController()
+                                              .login(
+                                                  context: context,
+                                                  email: emailController.text,
+                                                  password:
+                                                      passwordController.text)
+                                              .then((value) =>
+                                                  myData.change(false));
+                                        }
+                                      }
+                                    : () {}),
                             const SizedBox(
                               height: 25,
                             ),
