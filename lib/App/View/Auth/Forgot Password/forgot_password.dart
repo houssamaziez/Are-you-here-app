@@ -1,7 +1,5 @@
 import 'package:app/App/Controller/Auth/authController.dart';
-import 'package:app/App/Model/user.dart';
 import 'package:app/App/Service/Api/api_operations.dart';
-import 'package:app/App/View/Auth/Forgot%20Password/forgot_password.dart';
 import 'package:app/App/View/Auth/Register%20Account/screenRegister.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
 import 'package:app/App/View/Widgets/snackBar.dart';
@@ -13,20 +11,22 @@ import 'package:app/App/util/theme/Style/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ScreenChangePassword extends StatefulWidget {
-  final String code, email;
-  const ScreenChangePassword(
-      {super.key, required this.code, required this.email});
+class ScreenConfermpassword extends StatefulWidget {
+  final String email;
+  const ScreenConfermpassword({super.key, required this.email});
   @override
-  State<ScreenChangePassword> createState() => _ScreenSigninState();
+  State<ScreenConfermpassword> createState() => _ScreenSigninState();
 }
 
-class _ScreenSigninState extends State<ScreenChangePassword> {
-  final TextEditingController codecontroller = TextEditingController();
+class _ScreenSigninState extends State<ScreenConfermpassword> {
+  final TextEditingController passwordconfermController =
+      TextEditingController();
 
+  final TextEditingController passwordController = TextEditingController();
   @override
   void dispose() {
-    codecontroller.dispose();
+    passwordconfermController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -50,14 +50,14 @@ class _ScreenSigninState extends State<ScreenChangePassword> {
                   width: double.infinity,
                 ),
                 const Text(
-                  TextApp.securitycode,
+                  TextApp.findYaccount,
                   style: StyleApp.title,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 const Text(
-                  TextApp.pleasecheckemail,
+                  TextApp.enteremail,
                   style: StyleApp.suptitle,
                   textAlign: TextAlign.center,
                 ),
@@ -73,32 +73,50 @@ class _ScreenSigninState extends State<ScreenChangePassword> {
                         child: Column(
                           children: [
                             Textfildapp.myTextfilde(
-                                controller: codecontroller,
-                                keyboardType: TextInputType.number,
-                                hin: TextApp.entercode,
-                                title: TextApp.code),
+                                controller: passwordconfermController,
+                                keyboardType: TextInputType.name,
+                                hin: '********',
+                                obscureText: true,
+                                title: TextApp.password),
                             const SizedBox(
                               height: 20,
                             ),
-
+                            Textfildapp.myTextfilde(
+                                obscureText: true,
+                                controller: passwordController,
+                                keyboardType: TextInputType.name,
+                                hin: '********',
+                                title: TextApp.passwordconfi),
+                            const SizedBox(
+                              height: 20,
+                            ),
                             Buttons.buttonAll(context,
                                 title: myData.isloadingAuth == false
-                                    ? TextApp.next
+                                    ? TextApp.Search
                                     : TextApp.loading,
                                 color: Theme.of(context).primaryColor,
                                 functinn: myData.isloadingAuth == false
                                     ? () async {
                                         if (_formKey.currentState!.validate()) {
-                                          if (widget.code ==
-                                              codecontroller.text) {
-                                            Go.to(
-                                                context,
-                                                ScreenConfermpassword(
+                                          if (passwordconfermController.text ==
+                                              passwordController.text) {
+                                            myData.change(true);
+                                            await AuthController()
+                                                .updatepassword(
+                                                  password:
+                                                      passwordconfermController
+                                                          .text,
+                                                  context: context,
                                                   email: widget.email,
-                                                ));
+                                                )
+                                                .then((value) =>
+                                                    myData.change(false));
                                           } else {
-                                            snackBar(context,
-                                                message: TextApp.errcode);
+                                            snackBar(
+                                              context,
+                                              message:
+                                                  TextApp.passwordsnotmatch,
+                                            );
                                           }
                                         }
                                       }
@@ -106,11 +124,6 @@ class _ScreenSigninState extends State<ScreenChangePassword> {
                             const SizedBox(
                               height: 25,
                             ),
-                            // Buttons.buttonAll(context,
-                            //     title: TextApp.signInwithGoogle,
-                            //     isgoogle: true,
-                            //     color: const Color.fromARGB(255, 235, 235, 235),
-                            //     functinn: () {}),
                           ],
                         ),
                       ),

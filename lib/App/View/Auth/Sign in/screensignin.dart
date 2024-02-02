@@ -1,6 +1,7 @@
 import 'package:app/App/Controller/Auth/authController.dart';
 import 'package:app/App/Model/user.dart';
 import 'package:app/App/Service/Api/api_operations.dart';
+import 'package:app/App/View/Auth/Forgot%20Password/screen_searshEmai.dart';
 import 'package:app/App/View/Auth/Register%20Account/screenRegister.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
 import 'package:app/App/View/Widgets/textfild.dart';
@@ -40,7 +41,6 @@ class _ScreenSigninState extends State<ScreenSignin> {
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: SizedBox(
-            height: SizeApp.heightmobile(context, size: 0.8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -85,29 +85,31 @@ class _ScreenSigninState extends State<ScreenSignin> {
                             const SizedBox(
                               height: 30,
                             ),
-                            Buttons.buttonAll(context,
-                                title: myData.isloadingAuth == false
-                                    ? TextApp.signIn
-                                    : TextApp.loading,
-                                color: Theme.of(context).primaryColor,
-                                functinn: myData.isloadingAuth == false
-                                    ? () async {
-                                        if (_formKey.currentState!.validate()) {
-                                          myData.change(true);
-                                          await AuthController()
-                                              .login(
-                                                  context: context,
-                                                  email: emailController.text,
-                                                  password:
-                                                      passwordController.text)
-                                              .then((value) =>
-                                                  myData.change(false));
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Buttons.buttonAll(context,
+                                  title: myData.isloadingAuth == false
+                                      ? TextApp.signIn
+                                      : TextApp.loading,
+                                  color: Theme.of(context).primaryColor,
+                                  functinn: myData.isloadingAuth == false
+                                      ? () async {
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            myData.change(true);
+                                            await AuthController()
+                                                .login(
+                                                    context: context,
+                                                    email: emailController.text,
+                                                    password:
+                                                        passwordController.text)
+                                                .then((value) =>
+                                                    myData.change(false));
+                                          }
                                         }
-                                      }
-                                    : () {}),
-                            const SizedBox(
-                              height: 25,
+                                      : () {}),
                             ),
+
                             // Buttons.buttonAll(context,
                             //     title: TextApp.signInwithGoogle,
                             //     isgoogle: true,
@@ -117,7 +119,21 @@ class _ScreenSigninState extends State<ScreenSignin> {
                         ),
                       ),
                     )),
-                const Spacer(),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      Go.to(context, ScreenSendemail());
+                    },
+                    child: const Text(
+                      TextApp.forgotpassword,
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 40,
+                ),
                 TextButton(
                   onPressed: () {
                     Go.to(context, ScreenRegister());
@@ -127,7 +143,12 @@ class _ScreenSigninState extends State<ScreenSignin> {
                     style: TextStyle(),
                     textAlign: TextAlign.center,
                   ),
-                )
+                ),
+                // Buttons.buttonAll(context,
+                //     title: TextApp.signInwithGoogle,
+                //     isgoogle: true,
+                //     color: const Color.fromARGB(255, 235, 235, 235),
+                //     functinn: () {}),
               ],
             ),
           ),

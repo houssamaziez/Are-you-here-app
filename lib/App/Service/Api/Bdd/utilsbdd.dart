@@ -1,8 +1,7 @@
 import 'dart:convert';
 import 'package:app/App/Model/utilsModel/message_error.dart';
-import 'package:app/App/util/Const/text_app.dart';
-import 'package:app/App/util/Route/route.dart';
-import 'package:flutter/foundation.dart';
+import 'package:app/App/View/Widgets/snackBar.dart';
+import 'package:app/App/util/Route/go.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -13,21 +12,19 @@ class UtilsBdd {
     return client.post(url, headers: headers, body: jsonEncode(map));
   }
 
-  static statusCode(http.Response response, context) {
+  static statusCode(
+      {required http.Response response,
+      required BuildContext context,
+      required screengo}) {
     MessageDataBase _message;
     if (response.statusCode == 200) {
       _message = MessageDataBase.fromJson(json.decode(response.body));
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(_message.message.toString()),
-        backgroundColor: Colors.green,
-      ));
-      // RouteApp.gotHome(context);
+      snackBar(context,
+          message: _message.message.toString(), color: Colors.green);
+      Go.to(context, screengo);
     } else {
       _message = MessageDataBase.fromJson(json.decode(response.body));
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(_message.message.toString()),
-        backgroundColor: Colors.red,
-      ));
+      snackBar(context, message: _message.message.toString());
     }
   }
 }

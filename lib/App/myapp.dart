@@ -1,4 +1,3 @@
-import 'package:app/App/View/Auth/Forgot%20Password/screenchange_ps.dart';
 import 'package:app/App/View/Auth/Sign%20in/screensignin.dart';
 import 'package:app/App/util/theme/light_theme.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: light,
-      home: ScreenChangePassword(),
+      home: ScreenSignin(),
     );
   }
 }

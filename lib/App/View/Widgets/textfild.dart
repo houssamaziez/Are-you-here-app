@@ -7,6 +7,7 @@ class Textfildapp {
   static Column myTextfilde(
       {required String title,
       required String hin,
+      TextInputType keyboardType = TextInputType.emailAddress,
       bool obscureText = false,
       required TextEditingController controller}) {
     return Column(
@@ -23,6 +24,7 @@ class Textfildapp {
           height: 55,
           child: TextFormField(
             controller: controller,
+            keyboardType: keyboardType,
             obscureText: obscureText,
             scribbleEnabled: false,
             validator: (value) {
