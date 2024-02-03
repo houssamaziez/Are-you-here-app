@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Service/Api/Bdd/inisl/api_operations.dart';
+import '../../../Service/Api/api_operations.dart';
 import '../../../util/Route/route.dart';
 
 class ScreenRegister extends StatefulWidget {

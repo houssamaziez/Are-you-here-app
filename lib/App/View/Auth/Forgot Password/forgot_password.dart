@@ -1,5 +1,5 @@
 import 'package:app/App/Controller/authController.dart';
-import 'package:app/App/Service/Api/Bdd/inisl/api_operations.dart';
+import 'package:app/App/Service/Api/api_operations.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
 import 'package:app/App/View/Widgets/snackBar.dart';
 import 'package:app/App/View/Widgets/textfild.dart';
