@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class StyleApp {
   static const TextStyle title = TextStyle(
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: FontWeight.w600,
   );
   static const TextStyle suptitle = TextStyle(

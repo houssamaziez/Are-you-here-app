@@ -12,6 +12,12 @@ class HomeController extends ChangeNotifier {
     ScreenFavorite(),
     ScreenShopping(),
   ];
+  List<String> titlescreens = const [
+    'Screen Home',
+    'Screen Search',
+    'Screen Favorite',
+    'Screen Shopping',
+  ];
   changeIndex(int value) {
     index = value;
     notifyListeners();

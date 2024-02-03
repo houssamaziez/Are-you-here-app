@@ -19,15 +19,23 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    HomeController _controller = Provider.of<HomeController>(context);
     return Scaffold(
         bottomNavigationBar: const MyBottomBar(),
         key: _scaffoldKey,
-        appBar: myAppBar(context, _scaffoldKey),
+        appBar: myAppBar(
+          context,
+          _scaffoldKey,
+        ),
         drawer: myDrawer(context),
         body: RefreshIndicator(
           onRefresh: _refresh,
-          child: _controller.screens[_controller.index],
+          child: Container(
+            child: Consumer<HomeController>(
+              builder: (context, myNotifier, child) {
+                return myNotifier.screens[myNotifier.index];
+              },
+            ),
+          ),
         ));
   }
 }
