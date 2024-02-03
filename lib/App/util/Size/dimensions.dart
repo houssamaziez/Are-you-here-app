@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class SizeApp {
+  static const SizedBox sizedboxh10 = SizedBox(height: 10.0);
+  static const SizedBox sizedboxh20 = SizedBox(height: 20.0);
+  static const SizedBox sizedboxh25 = SizedBox(height: 25.0);
+  static const SizedBox sizedboxh30 = SizedBox(height: 30.0);
+  static const SizedBox sizedboxh40 = SizedBox(height: 40.0);
+
   static const double fontSizeExtraSmall = 10.0;
   static const double fontSizeSmall = 12.0;
   static const double fontSizeDefault = 14.0;

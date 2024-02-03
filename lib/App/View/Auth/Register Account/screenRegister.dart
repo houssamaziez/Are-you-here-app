@@ -1,4 +1,6 @@
-import 'package:app/App/Controller/Auth/authController.dart';
+import 'package:app/App/Controller/authController.dart';
+import 'package:app/App/Controller/myappcontroller.dart';
+import 'package:app/App/Service/Api/Bdd/local/auth.dart';
 import 'package:app/App/View/Auth/Sign%20in/screensignin.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
 import 'package:app/App/View/Widgets/textfild.dart';
@@ -10,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
-import '../../../Service/Api/api_operations.dart';
+import '../../../Service/Api/Bdd/inisl/api_operations.dart';
 import '../../../util/Route/route.dart';
 
 class ScreenRegister extends StatefulWidget {
@@ -36,6 +38,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
   @override
   Widget build(BuildContext context) {
     final ApiOperation _controller = Provider.of<ApiOperation>(context);
+    final controllerMyAPP = Provider.of<MyAppController>(context);
 
     return Scaffold(
       appBar: AppBar(elevation: 0, leading: Buttons.ButtonBack(context)),
@@ -53,17 +56,13 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                   TextApp.registerAccount,
                   style: StyleApp.title,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                SizeApp.sizedboxh10,
                 const Text(
                   TextApp.helloAgainsup,
                   style: StyleApp.suptitle,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                SizeApp.sizedboxh10,
                 Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -76,16 +75,13 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                                 controller: namelController,
                                 hin: 'name',
                                 title: TextApp.yourName),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            SizeApp.sizedboxh20,
+
                             Textfildapp.myTextfilde(
                                 controller: emailController,
                                 hin: 'xyz@gmail.com',
                                 title: TextApp.yourName),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            SizeApp.sizedboxh20,
                             Textfildapp.myTextfilde(
                                 controller: passwordController,
                                 hin: '**********',
@@ -111,14 +107,19 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                                                   email: emailController.text,
                                                   password:
                                                       passwordController.text)
-                                              .then((value) =>
-                                                  _controller.change(false));
+                                              .then((value) {
+                                            ApiOperation.getuserData(
+                                              int.parse(userid.read('iduser')),
+                                            ).then((value) => controllerMyAPP
+                                                .updateData(value));
+
+                                            return _controller.change(false);
+                                          });
                                         }
                                       }
                                     : () {}),
-                            const SizedBox(
-                              height: 25,
-                            ),
+                            SizeApp.sizedboxh25,
+
                             // Buttons.buttonAll(context,
                             //     title: TextApp.signInwithGoogle,
                             //     isgoogle: true,
@@ -130,7 +131,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                     )),
                 TextButton(
                   onPressed: () {
-                    Go.to(context, const ScreenSignin());
+                    Go.push(const ScreenSignin());
                   },
                   child: const Text(
                     TextApp.alreHaAccount,

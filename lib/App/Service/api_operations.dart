@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 
-import 'package:app/App/Model/utilsModel/message_error.dart';
+import 'package:app/App/Controller/myappcontroller.dart';
 import 'package:app/App/Service/Api/Bdd/local/auth.dart';
 import 'package:app/App/Service/Api/Bdd/utilsbdd.dart';
 import 'package:app/App/Model/user.dart';
@@ -13,7 +13,6 @@ import 'package:app/App/util/Const/url.dart';
 import 'package:app/App/util/math.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ApiOperation extends ChangeNotifier {
@@ -54,13 +53,11 @@ class ApiOperation extends ChangeNotifier {
     }
   }
 
-  Future<UserData> getuserData(int userId,
-      {required BuildContext context}) async {
+  static Future<UserData> getuserData(
+    int userId,
+  ) async {
     final response =
         await http.get(Uri.parse('${UrlApp.host}users/userdata/$userId'));
-    // ignore: use_build_context_synchronously
-    UtilsBdd.statusCode(
-        response: response, context: context, screengo: ScreenHome());
     return UserData.fromJson(json.decode(response.body));
   }
 
@@ -77,18 +74,21 @@ class ApiOperation extends ChangeNotifier {
       response = await UtilsBdd.post(UrlApp.urllogin, data);
       print(response.body);
       UserData userdata = UserData.fromJson(json.decode(response.body));
-      userid
-          .write("iduser", userdata.user!.id.toString())
-          .then((value) => null);
       UtilsBdd.statusCode(
           response: response, context: context, screengo: ScreenHome());
 
+      userid
+          .write("iduser", userdata.user!.id.toString())
+          .then((value) => null);
+      final myData = MyAppController();
+
+      UserData user = await ApiOperation.getuserData(
+        int.parse(userid.read('iduser')),
+      );
+      myData.updateData(user);
+      print(myData.userdata!.user!.name);
       return response;
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-    }
+    } catch (e) {}
   }
 
   @override
@@ -107,7 +107,6 @@ class ApiOperation extends ChangeNotifier {
     };
     try {
       var response = await UtilsBdd.post(UrlApp.urlsendmail, data);
-      print(response.body);
 
       await UtilsBdd.statusCode(
           response: response,

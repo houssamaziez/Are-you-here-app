@@ -1,27 +1,31 @@
-import 'package:app/App/Controller/Auth/authController.dart';
-import 'package:app/App/Model/user.dart';
-import 'package:app/App/Service/Api/api_operations.dart';
+import 'package:app/App/Controller/authController.dart';
+import 'package:app/App/Controller/myappcontroller.dart';
+import 'package:app/App/Service/Api/Bdd/local/auth.dart';
+import '../../../Service/Api/Bdd/inisl/api_operations.dart';
 import 'package:app/App/View/Auth/Forgot%20Password/screen_searshEmai.dart';
 import 'package:app/App/View/Auth/Register%20Account/screenRegister.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
 import 'package:app/App/View/Widgets/textfild.dart';
 import 'package:app/App/util/Const/text_app.dart';
-import 'package:app/App/util/Size/dimensions.dart';
 import 'package:app/App/util/Route/go.dart';
+import 'package:app/App/util/Size/dimensions.dart';
 import 'package:app/App/util/theme/Style/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ScreenSignin extends StatefulWidget {
   const ScreenSignin({super.key});
+
   @override
   State<ScreenSignin> createState() => _ScreenSigninState();
 }
 
 class _ScreenSigninState extends State<ScreenSignin> {
   final TextEditingController emailController = TextEditingController();
-
   final TextEditingController passwordController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+
   @override
   void dispose() {
     emailController.dispose();
@@ -29,11 +33,10 @@ class _ScreenSigninState extends State<ScreenSignin> {
     super.dispose();
   }
 
-  final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     final myData = Provider.of<ApiOperation>(context);
+    final controllerMyAPP = Provider.of<MyAppController>(context);
 
     return Scaffold(
       appBar: AppBar(elevation: 0, leading: Buttons.ButtonBack(context)),
@@ -51,17 +54,15 @@ class _ScreenSigninState extends State<ScreenSignin> {
                   TextApp.helloAgain,
                   style: StyleApp.title,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                SizeApp.sizedboxh10,
+
                 const Text(
                   TextApp.helloAgainsup,
                   style: StyleApp.suptitle,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                SizeApp.sizedboxh10,
+
                 Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -74,17 +75,13 @@ class _ScreenSigninState extends State<ScreenSignin> {
                                 controller: emailController,
                                 hin: 'xyz@gmail.com',
                                 title: TextApp.emailAddress),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            SizeApp.sizedboxh20,
                             Textfildapp.myTextfilde(
                                 controller: passwordController,
                                 hin: '**********',
                                 obscureText: true,
                                 title: TextApp.password),
-                            const SizedBox(
-                              height: 30,
-                            ),
+                            SizeApp.sizedboxh30,
                             Align(
                               alignment: Alignment.bottomCenter,
                               child: Buttons.buttonAll(context,
@@ -103,8 +100,14 @@ class _ScreenSigninState extends State<ScreenSignin> {
                                                     email: emailController.text,
                                                     password:
                                                         passwordController.text)
-                                                .then((value) =>
-                                                    myData.change(false));
+                                                .then((value) {
+                                              ApiOperation.getuserData(
+                                                int.parse(
+                                                    userid.read('iduser')),
+                                              ).then((value) => controllerMyAPP
+                                                  .updateData(value));
+                                              return myData.change(false);
+                                            });
                                           }
                                         }
                                       : () {}),
@@ -131,9 +134,8 @@ class _ScreenSigninState extends State<ScreenSignin> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 40,
-                ),
+                SizeApp.sizedboxh40,
+
                 TextButton(
                   onPressed: () {
                     Go.to(context, ScreenRegister());

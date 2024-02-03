@@ -1,6 +1,6 @@
-import 'package:app/App/Controller/Auth/authController.dart';
+import 'package:app/App/Controller/authController.dart';
 import 'package:app/App/Model/user.dart';
-import 'package:app/App/Service/Api/api_operations.dart';
+import '../../../Service/Api/Bdd/inisl/api_operations.dart';
 import 'package:app/App/View/Auth/Forgot%20Password/forgot_password.dart';
 import 'package:app/App/View/Auth/Register%20Account/screenRegister.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
@@ -53,17 +53,13 @@ class _ScreenSigninState extends State<ScreenChangePassword> {
                   TextApp.securitycode,
                   style: StyleApp.title,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                SizeApp.sizedboxh10,
                 const Text(
                   TextApp.pleasecheckemail,
                   style: StyleApp.suptitle,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                SizeApp.sizedboxh10,
                 Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -77,9 +73,7 @@ class _ScreenSigninState extends State<ScreenChangePassword> {
                                 keyboardType: TextInputType.number,
                                 hin: TextApp.entercode,
                                 title: TextApp.code),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            SizeApp.sizedboxh20,
 
                             Buttons.buttonAll(context,
                                 title: myData.isloadingAuth == false
@@ -103,9 +97,8 @@ class _ScreenSigninState extends State<ScreenChangePassword> {
                                         }
                                       }
                                     : () {}),
-                            const SizedBox(
-                              height: 25,
-                            ),
+                            SizeApp.sizedboxh25,
+
                             // Buttons.buttonAll(context,
                             //     title: TextApp.signInwithGoogle,
                             //     isgoogle: true,

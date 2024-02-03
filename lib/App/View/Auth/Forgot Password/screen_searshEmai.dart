@@ -1,5 +1,4 @@
-import 'package:app/App/Controller/Auth/authController.dart';
-import 'package:app/App/Service/Api/api_operations.dart';
+import 'package:app/App/Controller/authController.dart';
 import 'package:app/App/View/Auth/Register%20Account/screenRegister.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
 import 'package:app/App/View/Widgets/textfild.dart';
@@ -9,6 +8,8 @@ import 'package:app/App/util/Route/go.dart';
 import 'package:app/App/util/theme/Style/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../../Service/Api/Bdd/inisl/api_operations.dart';
 
 class ScreenSendemail extends StatefulWidget {
   const ScreenSendemail({super.key});
@@ -50,17 +51,13 @@ class _ScreenSigninState extends State<ScreenSendemail> {
                   TextApp.findYaccount,
                   style: StyleApp.title,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                SizeApp.sizedboxh10,
                 const Text(
                   TextApp.enteremail,
                   style: StyleApp.suptitle,
                   textAlign: TextAlign.center,
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
+                SizeApp.sizedboxh10,
                 Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -73,9 +70,7 @@ class _ScreenSigninState extends State<ScreenSendemail> {
                                 controller: emailController,
                                 hin: 'xyz@gmail.com',
                                 title: TextApp.emailAddress),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            SizeApp.sizedboxh20,
 
                             Buttons.buttonAll(context,
                                 title: myData.isloadingAuth == false
@@ -96,9 +91,7 @@ class _ScreenSigninState extends State<ScreenSendemail> {
                                         }
                                       }
                                     : () {}),
-                            const SizedBox(
-                              height: 25,
-                            ),
+                            SizeApp.sizedboxh25,
                             // Buttons.buttonAll(context,
                             //     title: TextApp.signInwithGoogle,
                             //     isgoogle: true,
