@@ -6,6 +6,9 @@ import 'package:app/App/util/Image/get_image_user.dart';
 import 'package:app/App/util/Image/icons.dart';
 import 'package:app/App/util/Route/go.dart';
 import 'package:app/App/util/theme/Style/styles.dart';
+import 'package:bottom_bar_matu/bottom_bar/bottom_bar_bubble.dart';
+import 'package:bottom_bar_matu/bottom_bar_double_bullet/bottom_bar_double_bullet.dart';
+import 'package:bottom_bar_matu/bottom_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:loadmore/loadmore.dart';
 import 'package:provider/provider.dart';
@@ -51,10 +54,24 @@ class _ScreenHomeState extends State<ScreenHome> {
     load();
   }
 
+  int _index = 0;
   @override
   Widget build(BuildContext context) {
     myData = Provider.of<MyAppController>(context);
     return Scaffold(
+      bottomNavigationBar: BottomBarDoubleBullet(
+        color: Colors.black,
+        selectedIndex: _index,
+        items: [
+          BottomBarItem(iconData: Icons.home),
+          BottomBarItem(iconData: Icons.search),
+          BottomBarItem(iconData: Icons.favorite),
+          BottomBarItem(iconData: Icons.shopping_bag_rounded),
+        ],
+        onSelect: (index) {
+          // implement your select function here
+        },
+      ),
       key: _scaffoldKey,
       appBar: AppBar(
         leading: MyIcons.menu(() {
