@@ -1,13 +1,15 @@
+import 'package:app/App/Controller/homeController.dart';
+
 import 'import_home.dart';
 
-class ScreenHome extends StatefulWidget {
-  const ScreenHome({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<ScreenHome> createState() => _ScreenHomeState();
+  State<Home> createState() => _HomeState();
 }
 
-class _ScreenHomeState extends State<ScreenHome> {
+class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<void> _refresh() async {
@@ -17,6 +19,7 @@ class _ScreenHomeState extends State<ScreenHome> {
 
   @override
   Widget build(BuildContext context) {
+    HomeController _controller = Provider.of<HomeController>(context);
     return Scaffold(
         bottomNavigationBar: const MyBottomBar(),
         key: _scaffoldKey,
@@ -24,7 +27,7 @@ class _ScreenHomeState extends State<ScreenHome> {
         drawer: myDrawer(context),
         body: RefreshIndicator(
           onRefresh: _refresh,
-          child: Container(),
+          child: _controller.screens[_controller.index],
         ));
   }
 }

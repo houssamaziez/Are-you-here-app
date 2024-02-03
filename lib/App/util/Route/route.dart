@@ -1,4 +1,3 @@
-import 'package:app/App/View/Home/screenHome.dart';
 import 'package:app/App/util/Route/go.dart';
 
 // class RouteApp {

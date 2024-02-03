@@ -8,7 +8,7 @@ import 'package:app/App/Service/Api/Bdd/utilsbdd.dart';
 import 'package:app/App/Model/user.dart';
 import 'package:app/App/View/Auth/Forgot%20Password/screenchange_ps.dart';
 import 'package:app/App/View/Auth/Sign%20in/screensignin.dart';
-import 'package:app/App/View/Home/screenHome.dart';
+import 'package:app/App/View/Home/home.dart';
 import 'package:app/App/util/Const/url.dart';
 import 'package:app/App/util/math.dart';
 import 'package:flutter/foundation.dart';
@@ -38,7 +38,7 @@ class ApiOperation extends ChangeNotifier {
       var response = await UtilsBdd.post(UrlApp.urlregister, data);
 
       UtilsBdd.statusCode(
-          response: response, context: context, screengo: ScreenHome());
+          response: response, context: context, screengo: Home());
       UserData userdata = UserData.fromJson(json.decode(response.body));
       userid
           .write("iduser", userdata.user!.id.toString())
@@ -75,7 +75,7 @@ class ApiOperation extends ChangeNotifier {
       print(response.body);
       UserData userdata = UserData.fromJson(json.decode(response.body));
       UtilsBdd.statusCode(
-          response: response, context: context, screengo: ScreenHome());
+          response: response, context: context, screengo: Home());
 
       userid
           .write("iduser", userdata.user!.id.toString())
