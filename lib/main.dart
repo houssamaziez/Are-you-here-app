@@ -1,3 +1,4 @@
+import 'package:app/App/Controller/homeController.dart';
 import 'package:app/App/Controller/myappcontroller.dart';
 import 'package:app/App/Service/Api/Function/api_operations.dart';
 import 'package:app/App/myapp.dart';
@@ -12,6 +13,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => ApiOperation()),
         ChangeNotifierProvider(create: (_) => MyAppController()),
+        ChangeNotifierProvider(create: (_) => HomeController()),
       ],
       child: MyApp(),
     ),
