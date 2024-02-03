@@ -1,7 +1,7 @@
 import 'package:app/App/Controller/authController.dart';
 import 'package:app/App/Controller/myappcontroller.dart';
 import 'package:app/App/Service/Api/Bdd/local/auth.dart';
-import '../../../Service/Api/api_operations.dart';
+import '../../../Service/Api/Function/api_operations.dart';
 import 'package:app/App/View/Auth/Forgot%20Password/screen_searshEmai.dart';
 import 'package:app/App/View/Auth/Register%20Account/screenRegister.dart';
 import 'package:app/App/View/Widgets/buttons.dart';

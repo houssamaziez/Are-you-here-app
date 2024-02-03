@@ -1,3 +1,3 @@
-import '../Service/Api/api_operations.dart';
+import '../Service/Api/Function/api_operations.dart';
 
 class AuthController extends ApiOperation {}
