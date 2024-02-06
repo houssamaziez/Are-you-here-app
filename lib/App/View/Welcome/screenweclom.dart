@@ -3,9 +3,11 @@ import 'dart:async';
 import 'package:app/App/Controller/myappcontroller.dart';
 import 'package:app/App/Model/user.dart';
 import 'package:app/App/Service/Api/Bdd/local/auth.dart';
+import 'package:app/App/Service/Api/Function/ping.dart';
 import 'package:app/App/View/Home/Home.dart';
 import 'package:app/App/View/Welcome/inistateWelcome.dart';
 import 'package:app/App/util/Route/go.dart';
+import 'package:dart_ping/dart_ping.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +24,8 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
   @override
   void initState() {
     super.initState();
+    MyAppController controller = Provider.of(context, listen: false);
+    controller.getping();
     InistateWelcome.inis().then((value) {
       if (value != null) {
         myData!.updateData(value);

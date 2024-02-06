@@ -1,4 +1,5 @@
 import 'package:app/App/Controller/homeController.dart';
+import 'package:app/App/Service/Api/Function/ping.dart';
 
 import 'import_home.dart';
 
@@ -15,6 +16,12 @@ class _HomeState extends State<Home> {
   Future<void> _refresh() async {
     await Future.delayed(const Duration(seconds: 0, milliseconds: 100));
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // PingApp.getping();
   }
 
   @override
