@@ -1,6 +1,3 @@
-import 'package:app/App/Controller/homeController.dart';
-import 'package:app/App/Service/Api/Function/ping.dart';
-
 import 'import_home.dart';
 
 class Home extends StatefulWidget {

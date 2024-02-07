@@ -11,3 +11,4 @@ export 'package:app/App/util/theme/Style/styles.dart';
 export 'package:flutter/material.dart';
 export 'package:provider/provider.dart';
 export 'package:app/App/View/Widgets/appBar.dart';
+export 'package:app/App/Controller/homeController.dart';

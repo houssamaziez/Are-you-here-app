@@ -6,8 +6,8 @@ import 'package:app/App/Service/Api/Bdd/local/auth.dart';
 import 'package:app/App/Service/Api/Function/ping.dart';
 import 'package:app/App/View/Home/Home.dart';
 import 'package:app/App/View/Welcome/inistateWelcome.dart';
+import 'package:app/App/util/Image/pathimages.dart';
 import 'package:app/App/util/Route/go.dart';
-import 'package:dart_ping/dart_ping.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,8 +29,8 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
     InistateWelcome.inis().then((value) {
       if (value != null) {
         myData!.updateData(value);
-        Timer(Duration(seconds: 1), () {
-          Go.push(Home());
+        Timer(const Duration(seconds: 1), () {
+          Go.push(const Home());
         });
       } else {}
     });
@@ -39,10 +39,10 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
   @override
   Widget build(BuildContext context) {
     myData = Provider.of<MyAppController>(context);
-
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Center(
-        child: Text('Welcome'),
+        child: Image.asset(Images.logo),
       ),
     );
   }

@@ -36,13 +36,9 @@ class MyAppController extends ChangeNotifier {
     notifyListeners();
   }
 
-  static final ping = Ping(
-    'houssamaziez.com',
-    count: 10000000,
-  );
   int pingtime = 999;
   getping() {
-    ping.stream.listen((event) {
+    PingApp.ping.stream.listen((event) {
       try {
         if (event.response!.time!.inMilliseconds > 999) {
           pingtime = 999;
