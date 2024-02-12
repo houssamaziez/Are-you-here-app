@@ -101,23 +101,19 @@ class _ScreenSigninState extends State<ScreenSignin> {
                                                     password:
                                                         passwordController.text)
                                                 .then((value) {
+                                              myData.change(false);
                                               ApiOperation.getuserData(
                                                 int.parse(
                                                     userid.read('iduser')),
                                               ).then((value) => controllerMyAPP
                                                   .updateData(value));
-                                              return myData.change(false);
+                                              myData.change(false);
                                             });
+                                            myData.change(false);
                                           }
                                         }
                                       : () {}),
                             ),
-
-                            // Buttons.buttonAll(context,
-                            //     title: TextApp.signInwithGoogle,
-                            //     isgoogle: true,
-                            //     color: const Color.fromARGB(255, 235, 235, 235),
-                            //     functinn: () {}),
                           ],
                         ),
                       ),

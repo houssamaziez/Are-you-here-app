@@ -1,3 +1,5 @@
+import 'package:app/App/Service/Api/Function/PostFunction/getdata.dart';
+
 import 'import_home.dart';
 
 class Home extends StatefulWidget {
@@ -24,6 +26,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton(onPressed: () {
+          GetDataPost.getall_post_user(id_user: 1.toString());
+        }),
         bottomNavigationBar: const MyBottomBar(),
         key: _scaffoldKey,
         appBar: myAppBar(

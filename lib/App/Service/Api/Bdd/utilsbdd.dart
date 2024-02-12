@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 class UtilsBdd {
   static var client = http.Client();
   static var headers = {"Content-Type": "application/json"};
-  static Future<http.Response> post(Uri url, Map<String, String> map) {
+  static Future<http.Response> post(Uri url, Map<String, dynamic> map) {
     return client.post(url, headers: headers, body: jsonEncode(map));
   }
 

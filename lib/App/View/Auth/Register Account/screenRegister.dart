@@ -26,10 +26,12 @@ class _ScreenRegisterState extends State<ScreenRegister> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController namelController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
   @override
   void dispose() {
     emailController.dispose();
     passwordController.dispose();
+
     super.dispose();
   }
 
@@ -80,7 +82,13 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                             Textfildapp.myTextfilde(
                                 controller: emailController,
                                 hin: 'xyz@gmail.com',
-                                title: TextApp.yourName),
+                                title: TextApp.emailAddress),
+                            SizeApp.sizedboxh20,
+                            Textfildapp.myTextfilde(
+                                keyboardType: TextInputType.phone,
+                                controller: phoneController,
+                                hin: 'phone',
+                                title: TextApp.yourphone),
                             SizeApp.sizedboxh20,
                             Textfildapp.myTextfilde(
                                 controller: passwordController,
@@ -103,18 +111,20 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                                           await AuthController()
                                               .register(
                                                   context: context,
+                                                  phone: int.parse(
+                                                      phoneController.text),
                                                   name: namelController.text,
                                                   email: emailController.text,
                                                   password:
                                                       passwordController.text)
                                               .then((value) {
+                                            _controller.change(false);
                                             ApiOperation.getuserData(
                                               int.parse(userid.read('iduser')),
                                             ).then((value) => controllerMyAPP
                                                 .updateData(value));
-
-                                            return _controller.change(false);
                                           });
+                                          _controller.change(false);
                                         }
                                       }
                                     : () {}),

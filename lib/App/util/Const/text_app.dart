@@ -12,6 +12,7 @@ class TextApp {
   static const String signInwithGoogle = "Sign In with Google";
   static const String newUsCreateaccount = "New User? Create Account";
   static const String yourName = "Your Name";
+  static const String yourphone = "Your phone";
   static const String alreHaAccount = "Already Have Account? Log In";
   static const String signup = "Sign up";
   static const String loading = "Loading ...";

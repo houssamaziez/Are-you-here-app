@@ -34,7 +34,7 @@ class SizeApp {
 
   static double widthmobile(
     context, {
-    int size = 1,
+    double size = 1,
   }) {
     return MediaQuery.of(context).size.width * size;
   }

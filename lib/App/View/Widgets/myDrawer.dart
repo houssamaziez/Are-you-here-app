@@ -9,9 +9,14 @@ Drawer myDrawer(BuildContext context) {
   return Drawer(
     child: ListView(
       children: [
-        InkWell(
-            onTap: () => Go.to(context, const ScreenProfileUser()),
-            child: returndataUserImage()),
+        DrawerHeader(
+          decoration: BoxDecoration(
+            color: Colors.blue,
+          ),
+          child: InkWell(
+              onTap: () => Go.to(context, const ScreenProfileUser()),
+              child: returndataUserImage()),
+        ),
         InkWell(
             onTap: () async {
               await userid

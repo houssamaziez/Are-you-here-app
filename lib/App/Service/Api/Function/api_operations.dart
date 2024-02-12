@@ -25,13 +25,15 @@ class ApiOperation extends ChangeNotifier {
   Future register(
       {required String name,
       required String email,
+      required int phone,
       required String password,
       required BuildContext context}) async {
     isloadingAuth = true;
     notifyListeners();
-    Map<String, String> data = {
+    Map<String, dynamic> data = {
       'name': name,
       'email': email,
+      "phone": phone,
       'password': password,
     };
     try {

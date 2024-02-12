@@ -43,17 +43,13 @@ class MyAppController extends ChangeNotifier {
         if (event.response!.time!.inMilliseconds > 999) {
           pingtime = 999;
           notifyListeners();
-          print(pingtime);
         } else {
           pingtime = event.response!.time!.inMilliseconds;
           notifyListeners();
-          print(" message : ${pingtime}");
         }
       } catch (e) {
         pingtime = 999;
         notifyListeners();
-        print('Error: $pingtime');
-        print('Stack Trace: error');
       }
     });
   }
