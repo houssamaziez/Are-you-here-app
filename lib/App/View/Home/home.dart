@@ -1,4 +1,5 @@
 import 'package:app/App/Service/Api/Function/PostFunction/getdata.dart';
+import 'package:app/App/View/Home/Screens/ScreenHome/screen_home.dart';
 
 import 'import_home.dart';
 
@@ -15,12 +16,12 @@ class _HomeState extends State<Home> {
   Future<void> _refresh() async {
     await Future.delayed(const Duration(seconds: 0, milliseconds: 100));
     setState(() {});
+    Go.push(const Home());
   }
 
   @override
   void initState() {
     super.initState();
-    // PingApp.getping();
   }
 
   @override
