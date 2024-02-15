@@ -1,5 +1,6 @@
 import 'package:app/App/Controller/homeController.dart';
 import 'package:app/App/Controller/myappcontroller.dart';
+import 'package:app/App/Service/Api/Bdd/local/auth.dart';
 import 'package:app/App/Service/Api/Function/show_data.dart';
 import 'package:app/App/View/Home/Profile/ProfileUser/screenProfile_user.dart';
 import 'package:app/App/util/Route/go.dart';
@@ -29,7 +30,7 @@ AppBar myAppBar(
       actions: [
         InkWell(
             onTap: () => Go.to(context, const ScreenProfileUser()),
-            child: returndataUserImage())
+            child: returndataUserImage(userid.read('iduser')))
       ],
       flexibleSpace: Consumer<MyAppController>(
         builder: (context, myNotifier, child) {

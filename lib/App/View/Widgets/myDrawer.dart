@@ -15,7 +15,7 @@ Drawer myDrawer(BuildContext context) {
           ),
           child: InkWell(
               onTap: () => Go.to(context, const ScreenProfileUser()),
-              child: returndataUserImage()),
+              child: returndataUserImage(userid.read('iduser'))),
         ),
         InkWell(
             onTap: () async {

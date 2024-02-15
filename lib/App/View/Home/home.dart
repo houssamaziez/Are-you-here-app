@@ -13,12 +13,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  Future<void> _refresh() async {
-    await Future.delayed(const Duration(seconds: 0, milliseconds: 100));
-    setState(() {});
-    Go.push(const Home());
-  }
-
   @override
   void initState() {
     super.initState();
@@ -27,9 +21,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          GetDataPost.getall_post_user(id_user: 1.toString());
-        }),
         bottomNavigationBar: const MyBottomBar(),
         key: _scaffoldKey,
         appBar: myAppBar(
@@ -37,15 +28,10 @@ class _HomeState extends State<Home> {
           _scaffoldKey,
         ),
         drawer: myDrawer(context),
-        body: RefreshIndicator(
-          onRefresh: _refresh,
-          child: Container(
-            child: Consumer<HomeController>(
-              builder: (context, myNotifier, child) {
-                return myNotifier.screens[myNotifier.index];
-              },
-            ),
-          ),
+        body: Consumer<HomeController>(
+          builder: (context, myNotifier, child) {
+            return myNotifier.screens[myNotifier.index];
+          },
         ));
   }
 }

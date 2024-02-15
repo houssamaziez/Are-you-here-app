@@ -38,4 +38,8 @@ class SizeApp {
   }) {
     return MediaQuery.of(context).size.width * size;
   }
+
+  static BorderRadius raduis(double raduis) {
+    return BorderRadius.all(Radius.circular(raduis));
+  }
 }
