@@ -5,10 +5,8 @@ import 'package:app/App/Model/user.dart';
 import 'package:app/App/Service/Api/Bdd/local/auth.dart';
 import 'package:app/App/Service/Api/Function/ping.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dart_ping/dart_ping.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/utils.dart';
 
 import '../Service/Api/Function/api_operations.dart';
 

@@ -1,8 +1,10 @@
 import 'package:app/App/Controller/authController.dart';
+import 'package:app/App/Controller/locationController.dart';
 import 'package:app/App/Controller/myappcontroller.dart';
 import 'package:app/App/Service/Api/Bdd/local/auth.dart';
 import 'package:app/App/View/Auth/Sign%20in/screensignin.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
+import 'package:app/App/View/Widgets/snackBar.dart';
 import 'package:app/App/View/Widgets/textfild.dart';
 import 'package:app/App/util/Const/text_app.dart';
 import 'package:app/App/util/Size/dimensions.dart';
@@ -41,6 +43,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
   Widget build(BuildContext context) {
     final ApiOperation _controller = Provider.of<ApiOperation>(context);
     final controllerMyAPP = Provider.of<MyAppController>(context);
+    var controllerlocation = Provider.of<ControllerLocation>(context);
 
     return Scaffold(
       appBar: AppBar(elevation: 0, leading: Buttons.ButtonBack(context)),
@@ -98,6 +101,37 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                             const SizedBox(
                               height: 30,
                             ),
+                            Row(
+                              children: [
+                                Text(
+                                  "Welaya :",
+                                  style: StyleApp.style1,
+                                ),
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                Expanded(
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      controllerlocation
+                                          .showWilayaMenu(context);
+                                    },
+                                    child: Consumer<ControllerLocation>(
+                                        builder: (context, a, child) {
+                                      return Container(
+                                          width: double.infinity,
+                                          height: 50,
+                                          child: Center(
+                                              child: Text(
+                                            a.selectedWilaya,
+                                          )));
+                                    }),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizeApp.sizedboxh20,
+
                             Buttons.buttonAll(context,
                                 title: _controller.isloadingAuth == false
                                     ? TextApp.registerAccount
@@ -105,11 +139,14 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                                 color: Theme.of(context).primaryColor,
                                 functinn: _controller.isloadingAuth == false
                                     ? () async {
-                                        if (_formKey.currentState!.validate()) {
+                                        if (_formKey.currentState!.validate() &&
+                                            controllerlocation.selectedWilaya !=
+                                                'Select Wilaya') {
                                           _controller.change(true);
 
                                           await AuthController()
                                               .register(
+                                                  wilaya: "batna",
                                                   context: context,
                                                   phone: int.parse(
                                                       phoneController.text),
@@ -125,6 +162,9 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                                                 .updateData(value));
                                           });
                                           _controller.change(false);
+                                        } else {
+                                          snackBar(context,
+                                              message: "Select your Welaya");
                                         }
                                       }
                                     : () {}),

@@ -2,6 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<!-- location -->
+
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
+	<key>NSLocationAlwaysUsageDescription</key>	
+	<string>I need it </string>	
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>	
+	<string>Always and when in use!</string>	
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>	
+	<string>Because</string>
+	<!-- location -->
+
+	
     <key>com.apple.security.network.server</key>
     <true/>
     <key>com.apple.security.network.client</key>

@@ -23,10 +23,10 @@ class _HomeState extends State<Home> {
     return Scaffold(
         bottomNavigationBar: const MyBottomBar(),
         key: _scaffoldKey,
-        appBar: myAppBar(
-          context,
-          _scaffoldKey,
-        ),
+        // appBar: myAppBar(
+        //   context,
+        //   _scaffoldKey,
+        // ),
         drawer: myDrawer(context),
         body: Consumer<HomeController>(
           builder: (context, myNotifier, child) {

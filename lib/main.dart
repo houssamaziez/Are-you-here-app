@@ -1,6 +1,4 @@
-import 'package:app/App/Controller/homeController.dart';
-import 'package:app/App/Controller/myappcontroller.dart';
-import 'package:app/App/Service/Api/Function/api_operations.dart';
+import 'package:app/App/Controller/listofProvider.dart';
 import 'package:app/App/myapp.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -10,11 +8,7 @@ void main() async {
   await GetStorage.init();
   runApp(
     MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => ApiOperation()),
-        ChangeNotifierProvider(create: (_) => MyAppController()),
-        ChangeNotifierProvider(create: (_) => HomeController()),
-      ],
+      providers: listofprovider,
       child: const MyApp(),
     ),
   );

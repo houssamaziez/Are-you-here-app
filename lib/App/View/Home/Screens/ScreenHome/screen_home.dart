@@ -1,6 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:app/App/Controller/locationController.dart';
+import 'package:app/App/Service/FutureBuild/list_of_catigorys.dart';
+import 'package:app/App/View/Home/Screens/ScreenSearch/screenSearch.dart';
 
-import '../../../../Service/Api/Function/show_data.dart';
+import 'package:app/App/util/Size/dimensions.dart';
+import 'package:buttons_tabbar/buttons_tabbar.dart';
+import 'package:flutter/material.dart';
+import 'package:pie_menu/pie_menu.dart';
+
+import '../../import_home.dart';
 
 class ScreenHome extends StatefulWidget {
   const ScreenHome({super.key});
@@ -10,8 +17,260 @@ class ScreenHome extends StatefulWidget {
 }
 
 class _ScreenHomeState extends State<ScreenHome> {
+  int index = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Container());
+    var controllerlocation = Provider.of<ControllerLocation>(context);
+
+    return PieCanvas(
+      theme: const PieTheme(
+        rightClickShowsMenu: true,
+        tooltipTextStyle: TextStyle(
+          fontSize: 32,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      child: Scaffold(
+          body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizeApp.sizedboxh50,
+            appbarhome(controllerlocation, context),
+            searchwidget(context),
+            publication(context),
+            titlehome(),
+            ListOfCatigorys(),
+            Text(index.toString()),
+          ],
+        ),
+      )),
+    );
+  }
+
+  Padding titlehome() {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Row(
+        children: [
+          Text(
+            "Catigorys",
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+          Spacer(),
+          TextButton(
+              onPressed: () {},
+              child: Text(
+                "See All",
+                style: TextStyle(color: Colors.brown),
+              )),
+        ],
+      ),
+    );
+  }
+
+  Padding publication(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Container(
+        decoration: const BoxDecoration(
+            color: Color.fromARGB(255, 240, 211, 164),
+            borderRadius: BorderRadius.all(Radius.circular(15))),
+        width: double.infinity,
+        height: 155,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Row(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: SizeApp.widthmobile(context, size: 0.5),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'New Collection',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Discouunnt 50% for the first transaction',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Colors.grey),
+                          ),
+                        ),
+                        MaterialButton(
+                          height: 30,
+                          color: Colors.brown,
+                          onPressed: () {},
+                          child: Text(
+                            'Shop Now',
+                            style: TextStyle(color: Colors.white, fontSize: 12),
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(22.0),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Image.network(
+                  "https://freepngimg.com/download/fashion/139515-blue-eyes-shopping-vector-smiling-girl.png",
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Padding searchwidget(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Row(
+        children: [
+          Expanded(
+              child: InkWell(
+            onTap: () => Go.to(
+              context,
+              const ScreenSearch(),
+            ),
+            child: Container(
+              height: 50,
+              decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 209, 209, 209),
+                  borderRadius: BorderRadius.all(Radius.circular(25))),
+              child: Padding(
+                padding: const EdgeInsets.all(1.0),
+                child: Container(
+                  height: 50,
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(25))),
+                  child: const Row(
+                    children: [
+                      SizedBox(
+                        width: 15,
+                      ),
+                      Icon(
+                        Icons.search,
+                        color: Colors.brown,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Search',
+                        style: TextStyle(color: Colors.grey, fontSize: 17),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          )),
+          Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: CircleAvatar(
+              backgroundColor: Colors.brown,
+              radius: 25,
+              child: InkWell(
+                onTap: () => Go.to(
+                  context,
+                  const ScreenSearch(),
+                ),
+                child: const CircleAvatar(
+                  backgroundColor: Colors.brown,
+                  radius: 25,
+                  child: Icon(
+                    Icons.filter_alt_rounded,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Row appbarhome(ControllerLocation controllerlocation, BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Location",
+                style: TextStyle(color: Colors.grey),
+              ),
+              InkWell(
+                onTap: () {
+                  controllerlocation.showWilayaMenu(context);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Row(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(right: 5),
+                        child: Icon(
+                          Icons.location_on_rounded,
+                          color: Colors.brown,
+                        ),
+                      ),
+                      Consumer<ControllerLocation>(
+                          builder: (context, a, child) {
+                        return Container(
+                            child: Center(
+                                child: Text(
+                          a.selectedWilaya,
+                          style: const TextStyle(color: Colors.black),
+                        )));
+                      }),
+                      const Icon(Icons.keyboard_arrow_down_rounded),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const Spacer(),
+        Padding(
+          padding: const EdgeInsets.all(13.0),
+          child: CircleAvatar(
+            radius: 19,
+            backgroundColor: const Color.fromARGB(255, 184, 184, 184),
+            child: Center(
+              child: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.notification_important,
+                    color: Colors.black,
+                    size: 18,
+                  )),
+            ),
+          ),
+        )
+      ],
+    );
   }
 }

@@ -25,6 +25,7 @@ class ApiOperation extends ChangeNotifier {
   Future register(
       {required String name,
       required String email,
+      required String wilaya,
       required int phone,
       required String password,
       required BuildContext context}) async {
@@ -33,7 +34,9 @@ class ApiOperation extends ChangeNotifier {
     Map<String, dynamic> data = {
       'name': name,
       'email': email,
+      "wilaya": wilaya,
       "phone": phone,
+      "role": "client",
       'password': password,
     };
     try {

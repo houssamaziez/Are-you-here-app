@@ -1,8 +1,7 @@
 import 'package:app/App/Service/Api/Function/show_data.dart';
+import 'package:app/App/Service/FutureBuild/list_of_post_user.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pie_menu/pie_menu.dart';
-
 import '../../../../Service/Api/Bdd/local/auth.dart';
 
 class ScreenProfileUser extends StatefulWidget {
@@ -31,6 +30,9 @@ class _ScreenProfileUserState extends State<ScreenProfileUser> {
       child: Scaffold(
         body: Column(children: [
           returndataUserImage(userid.read('iduser')),
+          Text("email:"),
+          Text("phone:"),
+          Text("wilaya:"),
           Expanded(
             child: RefreshIndicator(
               onRefresh: _refresh,

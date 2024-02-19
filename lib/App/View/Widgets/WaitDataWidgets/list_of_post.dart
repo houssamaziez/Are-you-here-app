@@ -4,6 +4,7 @@ import '../../../util/Size/dimensions.dart';
 
 ListView waitdatapost(BuildContext context) {
   return ListView(
+    shrinkWrap: true,
     children: [
       Padding(
         padding: EdgeInsets.all(8.0),
