@@ -27,7 +27,7 @@ class ScreenSearch extends StatelessWidget {
                       decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.all(Radius.circular(25))),
-                      child: Row(
+                      child: const Row(
                         children: [
                           SizedBox(
                             width: 15,

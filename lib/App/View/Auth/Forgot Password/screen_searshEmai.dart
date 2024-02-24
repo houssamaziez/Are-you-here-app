@@ -1,10 +1,8 @@
 import 'package:app/App/Controller/authController.dart';
-import 'package:app/App/View/Auth/Register%20Account/screenRegister.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
 import 'package:app/App/View/Widgets/textfild.dart';
 import 'package:app/App/util/Const/text_app.dart';
 import 'package:app/App/util/Size/dimensions.dart';
-import 'package:app/App/util/Route/go.dart';
 import 'package:app/App/util/theme/Style/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

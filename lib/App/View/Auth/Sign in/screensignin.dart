@@ -122,7 +122,7 @@ class _ScreenSigninState extends State<ScreenSignin> {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
-                      Go.to(context, ScreenSendemail());
+                      Go.to(context, const ScreenSendemail());
                     },
                     child: const Text(
                       TextApp.forgotpassword,
@@ -134,7 +134,7 @@ class _ScreenSigninState extends State<ScreenSignin> {
 
                 TextButton(
                   onPressed: () {
-                    Go.to(context, ScreenRegister());
+                    Go.to(context, const ScreenRegister());
                   },
                   child: const Text(
                     TextApp.newUsCreateaccount,

@@ -10,7 +10,7 @@ Drawer myDrawer(BuildContext context) {
     child: ListView(
       children: [
         DrawerHeader(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.blue,
           ),
           child: InkWell(
@@ -21,9 +21,9 @@ Drawer myDrawer(BuildContext context) {
             onTap: () async {
               await userid
                   .write('iduser', null)
-                  .then((value) => Go.push(ScreenSignin()));
+                  .then((value) => Go.push(const ScreenSignin()));
             },
-            child: ListTile(
+            child: const ListTile(
               title: Text("Logout "),
             ))
       ],

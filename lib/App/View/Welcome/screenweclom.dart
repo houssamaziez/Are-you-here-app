@@ -1,9 +1,6 @@
 import 'dart:async';
 
 import 'package:app/App/Controller/myappcontroller.dart';
-import 'package:app/App/Model/user.dart';
-import 'package:app/App/Service/Api/Bdd/local/auth.dart';
-import 'package:app/App/Service/Api/Function/ping.dart';
 import 'package:app/App/View/Home/Home.dart';
 import 'package:app/App/View/Welcome/inistateWelcome.dart';
 import 'package:app/App/util/Image/pathimages.dart';

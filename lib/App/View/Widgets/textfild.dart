@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../util/theme/Style/styles.dart';
@@ -17,10 +16,10 @@ class Textfildapp {
           title,
           style: StyleApp.style1,
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
-        Container(
+        SizedBox(
           height: 55,
           child: TextFormField(
             controller: controller,
@@ -29,7 +28,7 @@ class Textfildapp {
             scribbleEnabled: false,
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter ${title}';
+                return 'Please enter $title';
               }
               return null;
             },

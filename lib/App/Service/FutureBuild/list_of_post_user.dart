@@ -18,7 +18,7 @@ class _ListOfPostUserState extends State<ListOfPostUser> {
   Widget returndatawidegtPost() {
     return FutureBuilder(
       future: GetDataPost.getall_post_user(id_user: userid.read('iduser')),
-      builder: (BuildContext context, AsyncSnapshot<List<Post>> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<Posts>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return waitdatapost(context);
         } else if (snapshot.hasError) {
@@ -26,7 +26,7 @@ class _ListOfPostUserState extends State<ListOfPostUser> {
           return waitdatapost(context);
         } else {
           // Build your UI based on the fetched data
-          List<Post>? userData = snapshot.data;
+          List<Posts>? userData = snapshot.data;
           return ListView.builder(
             shrinkWrap: true,
             itemCount: userData!.length,
@@ -55,7 +55,7 @@ class _ListOfPostUserState extends State<ListOfPostUser> {
                       children: [
                         Align(
                           alignment: Alignment.topLeft,
-                          child: Container(
+                          child: SizedBox(
                             height: 50,
                             child: returndataUserImage(
                                 userData[index].userId.toString()),
@@ -73,10 +73,10 @@ class _ListOfPostUserState extends State<ListOfPostUser> {
                           child: Container(
                             child: Column(
                               children: [
-                                Spacer(),
+                                const Spacer(),
                                 Text(
                                   userData[index].title.toString(),
-                                  style: TextStyle(color: Colors.white),
+                                  style: const TextStyle(color: Colors.white),
                                 ),
                                 SizeApp.sizedboxh10
                               ],

@@ -34,7 +34,7 @@ class ApiOperation extends ChangeNotifier {
     Map<String, dynamic> data = {
       'name': name,
       'email': email,
-      "wilaya": wilaya,
+      "wilaya": wilaya.toString(),
       "phone": phone,
       "role": "client",
       'password': password,
@@ -43,11 +43,12 @@ class ApiOperation extends ChangeNotifier {
       var response = await UtilsBdd.post(UrlApp.urlregister, data);
 
       UtilsBdd.statusCode(
-          response: response, context: context, screengo: Home());
+          response: response, context: context, screengo: const Home());
       UserData userdata = UserData.fromJson(json.decode(response.body));
       userid
           .write("iduser", userdata.user!.id.toString())
           .then((value) => null);
+      userwilaya.write("wilaya", wilaya.toString()).then((value) => null);
       isloadingAuth = false;
       notifyListeners();
       return response;
@@ -80,10 +81,13 @@ class ApiOperation extends ChangeNotifier {
       print(response.body);
       UserData userdata = UserData.fromJson(json.decode(response.body));
       UtilsBdd.statusCode(
-          response: response, context: context, screengo: Home());
+          response: response, context: context, screengo: const Home());
 
       userid
           .write("iduser", userdata.user!.id.toString())
+          .then((value) => null);
+      userwilaya
+          .write("wilaya", userdata.user!.wilaya.toString())
           .then((value) => null);
       final myData = MyAppController();
 
@@ -105,10 +109,10 @@ class ApiOperation extends ChangeNotifier {
 
   Future sendEmailConferM(
       {required String email, required BuildContext context}) async {
-    final String _code = LogiqueMath.generateRandomNumber().toString();
+    final String code = LogiqueMath.generateRandomNumber().toString();
     Map<String, String> data = {
       'mail': email,
-      'id': _code,
+      'id': code,
     };
     try {
       var response = await UtilsBdd.post(UrlApp.urlsendmail, data);
@@ -117,7 +121,7 @@ class ApiOperation extends ChangeNotifier {
           response: response,
           context: context,
           screengo: ScreenChangePassword(
-            code: _code,
+            code: code,
             email: email,
           ));
 
@@ -140,7 +144,7 @@ class ApiOperation extends ChangeNotifier {
     try {
       var response = await UtilsBdd.post(UrlApp.urleditUserPassword, data);
       UtilsBdd.statusCode(
-          response: response, context: context, screengo: ScreenSignin());
+          response: response, context: context, screengo: const ScreenSignin());
       return response;
     } catch (e) {
       if (kDebugMode) {

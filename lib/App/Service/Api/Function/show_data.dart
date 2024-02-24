@@ -1,16 +1,9 @@
-import 'package:app/App/Model/post.dart';
 import 'package:app/App/Model/user.dart';
 import 'package:app/App/Service/Api/Bdd/local/auth.dart';
-import 'package:app/App/Service/Api/Function/PostFunction/getdata.dart';
 import 'package:app/App/Service/Api/Function/api_operations.dart';
-import 'package:app/App/Service/Api/Function/Delete/delete.dart';
-import 'package:app/App/util/Const/url.dart';
 import 'package:app/App/util/Image/get_image_user.dart';
-import 'package:app/App/util/Size/dimensions.dart';
 import 'package:flutter/material.dart';
-import 'package:pie_menu/pie_menu.dart';
 
-import '../../../View/Widgets/WaitDataWidgets/list_of_post.dart';
 
 Widget returndataUserImage(String id) {
   return FutureBuilder(

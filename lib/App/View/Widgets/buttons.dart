@@ -1,4 +1,3 @@
-import 'package:app/App/util/Const/text_app.dart';
 import 'package:app/App/util/Size/dimensions.dart';
 import 'package:app/App/util/theme/Style/styles.dart';
 import 'package:flutter/material.dart';
@@ -34,14 +33,14 @@ class Buttons {
       },
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(17)),
+          borderRadius: const BorderRadius.all(Radius.circular(17)),
           color: color,
         ),
         width: double.infinity,
         height: 55,
         child: Row(
           children: [
-            Spacer(),
+            const Spacer(),
             if (isgoogle)
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -56,7 +55,7 @@ class Buttons {
                   ? StyleApp.styleTextbuttonblack
                   : StyleApp.styleTextbutton,
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
       ),

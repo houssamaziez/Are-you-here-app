@@ -12,11 +12,11 @@ import '../../util/theme/Style/styles.dart';
 
 AppBar myAppBar(
   BuildContext context,
-  GlobalKey<ScaffoldState> _scaffoldKey,
+  GlobalKey<ScaffoldState> scaffoldKey,
 ) {
   return AppBar(
       leading: MyIcons.menu(() {
-        _scaffoldKey.currentState?.openDrawer();
+        scaffoldKey.currentState?.openDrawer();
       }),
       title: Consumer<HomeController>(
         builder: (context, myNotifier, child) {
@@ -38,7 +38,7 @@ AppBar myAppBar(
               ? Container(
                   color: Colors.red,
                   height: 30,
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       "Error Network",
                       style: TextStyle(color: Colors.white),

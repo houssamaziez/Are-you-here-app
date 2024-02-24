@@ -1,8 +1,5 @@
-import 'package:app/App/Controller/authController.dart';
-import 'package:app/App/Model/user.dart';
 import '../../../Service/Api/Function/api_operations.dart';
 import 'package:app/App/View/Auth/Forgot%20Password/forgot_password.dart';
-import 'package:app/App/View/Auth/Register%20Account/screenRegister.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
 import 'package:app/App/View/Widgets/snackBar.dart';
 import 'package:app/App/View/Widgets/textfild.dart';

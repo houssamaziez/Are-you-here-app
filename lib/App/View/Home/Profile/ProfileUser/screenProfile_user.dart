@@ -30,13 +30,13 @@ class _ScreenProfileUserState extends State<ScreenProfileUser> {
       child: Scaffold(
         body: Column(children: [
           returndataUserImage(userid.read('iduser')),
-          Text("email:"),
-          Text("phone:"),
-          Text("wilaya:"),
+          const Text("email:"),
+          const Text("phone:"),
+          const Text("wilaya:"),
           Expanded(
             child: RefreshIndicator(
               onRefresh: _refresh,
-              child: Container(child: ListOfPostUser()),
+              child: Container(child: const ListOfPostUser()),
             ),
           )
         ]),

@@ -1,6 +1,3 @@
-import 'package:app/App/Service/Api/Function/PostFunction/getdata.dart';
-import 'package:app/App/View/Home/Screens/ScreenHome/screen_home.dart';
-
 import 'import_home.dart';
 
 class Home extends StatefulWidget {

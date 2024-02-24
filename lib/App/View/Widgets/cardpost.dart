@@ -2,7 +2,7 @@ import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/util/Size/dimensions.dart';
 
 class CardPost extends StatelessWidget {
-  CardPost(
+  const CardPost(
       {super.key,
       required this.title,
       required this.image,
@@ -10,7 +10,7 @@ class CardPost extends StatelessWidget {
   final String title, image, idpost;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: SizeApp.heightmobile(context, size: 0.2),
       width: SizeApp.widthmobile(context, size: 0.3),
     );

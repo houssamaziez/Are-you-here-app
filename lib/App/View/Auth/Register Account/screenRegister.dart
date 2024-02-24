@@ -11,14 +11,12 @@ import 'package:app/App/util/Size/dimensions.dart';
 import 'package:app/App/util/Route/go.dart';
 import 'package:app/App/util/theme/Style/styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Service/Api/Function/api_operations.dart';
-import '../../../util/Route/route.dart';
 
 class ScreenRegister extends StatefulWidget {
-  ScreenRegister({super.key});
+  const ScreenRegister({super.key});
 
   @override
   State<ScreenRegister> createState() => _ScreenRegisterState();
@@ -41,7 +39,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
 
   @override
   Widget build(BuildContext context) {
-    final ApiOperation _controller = Provider.of<ApiOperation>(context);
+    final ApiOperation controller = Provider.of<ApiOperation>(context);
     final controllerMyAPP = Provider.of<MyAppController>(context);
     var controllerlocation = Provider.of<ControllerLocation>(context);
 
@@ -103,11 +101,11 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                             ),
                             Row(
                               children: [
-                                Text(
+                                const Text(
                                   "Welaya :",
                                   style: StyleApp.style1,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 30,
                                 ),
                                 Expanded(
@@ -118,7 +116,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                                     },
                                     child: Consumer<ControllerLocation>(
                                         builder: (context, a, child) {
-                                      return Container(
+                                      return SizedBox(
                                           width: double.infinity,
                                           height: 50,
                                           child: Center(
@@ -132,42 +130,50 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                             ),
                             SizeApp.sizedboxh20,
 
-                            Buttons.buttonAll(context,
-                                title: _controller.isloadingAuth == false
-                                    ? TextApp.registerAccount
-                                    : TextApp.loading,
-                                color: Theme.of(context).primaryColor,
-                                functinn: _controller.isloadingAuth == false
-                                    ? () async {
-                                        if (_formKey.currentState!.validate() &&
-                                            controllerlocation.selectedWilaya !=
-                                                'Select Wilaya') {
-                                          _controller.change(true);
+                            Consumer<ControllerLocation>(
+                                builder: (context, a, child) {
+                              return Buttons.buttonAll(context,
+                                  title: controller.isloadingAuth == false
+                                      ? TextApp.registerAccount
+                                      : TextApp.loading,
+                                  color: Theme.of(context).primaryColor,
+                                  functinn: controller.isloadingAuth == false
+                                      ? () async {
+                                          print(a.selectedWilaya.toString());
+                                          if (_formKey.currentState!
+                                                  .validate() &&
+                                              controllerlocation
+                                                      .selectedWilaya !=
+                                                  'Select Wilaya') {
+                                            controller.change(true);
 
-                                          await AuthController()
-                                              .register(
-                                                  wilaya: "batna",
-                                                  context: context,
-                                                  phone: int.parse(
-                                                      phoneController.text),
-                                                  name: namelController.text,
-                                                  email: emailController.text,
-                                                  password:
-                                                      passwordController.text)
-                                              .then((value) {
-                                            _controller.change(false);
-                                            ApiOperation.getuserData(
-                                              int.parse(userid.read('iduser')),
-                                            ).then((value) => controllerMyAPP
-                                                .updateData(value));
-                                          });
-                                          _controller.change(false);
-                                        } else {
-                                          snackBar(context,
-                                              message: "Select your Welaya");
+                                            await AuthController()
+                                                .register(
+                                                    wilaya: a.selectedWilaya
+                                                        .toString(),
+                                                    context: context,
+                                                    phone: int.parse(
+                                                        phoneController.text),
+                                                    name: namelController.text,
+                                                    email: emailController.text,
+                                                    password:
+                                                        passwordController.text)
+                                                .then((value) {
+                                              controller.change(false);
+                                              ApiOperation.getuserData(
+                                                int.parse(
+                                                    userid.read('iduser')),
+                                              ).then((value) => controllerMyAPP
+                                                  .updateData(value));
+                                            });
+                                            controller.change(false);
+                                          } else {
+                                            snackBar(context,
+                                                message: "Select your Welaya");
+                                          }
                                         }
-                                      }
-                                    : () {}),
+                                      : () {});
+                            }),
                             SizeApp.sizedboxh25,
 
                             // Buttons.buttonAll(context,

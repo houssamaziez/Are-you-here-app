@@ -16,15 +16,15 @@ class UtilsBdd {
       {required http.Response response,
       required BuildContext context,
       required screengo}) {
-    MessageDataBase _message;
+    MessageDataBase message;
     if (response.statusCode == 200) {
-      _message = MessageDataBase.fromJson(json.decode(response.body));
+      message = MessageDataBase.fromJson(json.decode(response.body));
       snackBar(context,
-          message: _message.message.toString(), color: Colors.green);
+          message: message.message.toString(), color: Colors.green);
       Go.push(screengo);
     } else {
-      _message = MessageDataBase.fromJson(json.decode(response.body));
-      snackBar(context, message: _message.message.toString());
+      message = MessageDataBase.fromJson(json.decode(response.body));
+      snackBar(context, message: message.message.toString());
     }
   }
 }

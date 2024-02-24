@@ -3,8 +3,6 @@ import 'package:app/App/Service/FutureBuild/list_of_catigorys.dart';
 import 'package:app/App/View/Home/Screens/ScreenSearch/screenSearch.dart';
 
 import 'package:app/App/util/Size/dimensions.dart';
-import 'package:buttons_tabbar/buttons_tabbar.dart';
-import 'package:flutter/material.dart';
 import 'package:pie_menu/pie_menu.dart';
 
 import '../../import_home.dart';
@@ -17,7 +15,6 @@ class ScreenHome extends StatefulWidget {
 }
 
 class _ScreenHomeState extends State<ScreenHome> {
-  int index = 0;
   @override
   Widget build(BuildContext context) {
     var controllerlocation = Provider.of<ControllerLocation>(context);
@@ -41,8 +38,7 @@ class _ScreenHomeState extends State<ScreenHome> {
             searchwidget(context),
             publication(context),
             titlehome(),
-            ListOfCatigorys(),
-            Text(index.toString()),
+            const ListOfCatigorys(),
           ],
         ),
       )),
@@ -51,17 +47,17 @@ class _ScreenHomeState extends State<ScreenHome> {
 
   Padding titlehome() {
     return Padding(
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.only(left: 12, right: 12),
       child: Row(
         children: [
-          Text(
+          const Text(
             "Catigorys",
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
-          Spacer(),
+          const Spacer(),
           TextButton(
               onPressed: () {},
-              child: Text(
+              child: const Text(
                 "See All",
                 style: TextStyle(color: Colors.brown),
               )),
@@ -75,7 +71,7 @@ class _ScreenHomeState extends State<ScreenHome> {
       padding: const EdgeInsets.all(12.0),
       child: Container(
         decoration: const BoxDecoration(
-            color: Color.fromARGB(255, 240, 211, 164),
+            color: Color.fromARGB(255, 230, 253, 165),
             borderRadius: BorderRadius.all(Radius.circular(15))),
         width: double.infinity,
         height: 155,
@@ -86,18 +82,18 @@ class _ScreenHomeState extends State<ScreenHome> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     width: SizeApp.widthmobile(context, size: 0.5),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           'New Collection',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: Text(
                             'Discouunnt 50% for the first transaction',
                             style: TextStyle(
@@ -110,12 +106,12 @@ class _ScreenHomeState extends State<ScreenHome> {
                           height: 30,
                           color: Colors.brown,
                           onPressed: () {},
-                          child: Text(
-                            'Shop Now',
-                            style: TextStyle(color: Colors.white, fontSize: 12),
-                          ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(22.0),
+                          ),
+                          child: const Text(
+                            'Shop Now',
+                            style: TextStyle(color: Colors.white, fontSize: 12),
                           ),
                         )
                       ],
@@ -241,7 +237,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                         return Container(
                             child: Center(
                                 child: Text(
-                          a.selectedWilaya,
+                          userwilaya.read('wilaya') ?? a.selectedWilaya,
                           style: const TextStyle(color: Colors.black),
                         )));
                       }),

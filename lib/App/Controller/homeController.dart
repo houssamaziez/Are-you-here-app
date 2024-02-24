@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 class HomeController extends ChangeNotifier {
   int index = 0;
 
-  int nidofcatigory = 0;
+  String nidofcatigory = "1";
 
   List<Widget> screens = const [
     ScreenHome(),
@@ -23,6 +23,11 @@ class HomeController extends ChangeNotifier {
   ];
   changeIndex(int value) {
     index = value;
+    notifyListeners();
+  }
+
+  changeIndexcatigory(String value) {
+    nidofcatigory = value;
     notifyListeners();
   }
 }

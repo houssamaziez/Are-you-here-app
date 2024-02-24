@@ -2,67 +2,44 @@ import 'package:app/App/View/Home/import_home.dart';
 
 import '../../../util/Size/dimensions.dart';
 
-ListView waitdatapost(BuildContext context) {
-  return ListView(
+GridView waitdatapost(BuildContext context) {
+  return GridView.builder(
+    physics: const NeverScrollableScrollPhysics(), // This line prevents scrolling
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2, childAspectRatio: 0.85),
     shrinkWrap: true,
-    children: [
-      Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Card(
-          child: SizedBox(
-            height: SizeApp.heightmobile(context, size: 0.3),
-            width: SizeApp.widthmobile(context, size: 1),
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                    backgroundColor: Colors.grey,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 1.3,
-                    )),
+    itemCount: 4,
+    itemBuilder: (context, index) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.grey, borderRadius: SizeApp.raduis(11)),
+                width: SizeApp.widthmobile(context, size: 1),
               ),
             ),
           ),
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Card(
-          child: SizedBox(
-            height: SizeApp.heightmobile(context, size: 0.3),
-            width: SizeApp.widthmobile(context, size: 1),
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                    backgroundColor: Colors.grey,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 1.3,
-                    )),
-              ),
+          const Padding(
+            padding: EdgeInsets.only(left: 12, top: 8),
+            child: Column(
+              children: [
+                Text(
+                  "......",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "......",
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ],
             ),
           ),
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Card(
-          child: SizedBox(
-            height: SizeApp.heightmobile(context, size: 0.3),
-            width: SizeApp.widthmobile(context, size: 1),
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                    backgroundColor: Colors.grey,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 1.3,
-                    )),
-              ),
-            ),
-          ),
-        ),
-      ),
-    ],
+        ],
+      );
+    },
   );
 }
