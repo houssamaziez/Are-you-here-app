@@ -5,12 +5,20 @@ import 'package:app/App/util/Route/go.dart';
 
 class InistateWelcome {
   static Future inis() async {
-    if (userid.read('iduser') == null) {
-      return Future(() => Go.push(const ScreenSignin()));
-    } else {
-      return ApiOperation.getuserData(
-        int.parse(userid.read('iduser')),
-      );
+    try {
+      if (userid.read('iduser') == null) {
+        return Future(() => Go.push(const ScreenSignin()));
+      } else {
+        try {
+          return ApiOperation.getuserData(
+            int.parse(userid.read('iduser')),
+          );
+        } catch (e) {
+          print(e);
+        }
+      }
+    } catch (e) {
+      print("error");
     }
   }
 }

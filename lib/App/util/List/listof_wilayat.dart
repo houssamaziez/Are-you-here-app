@@ -1,3 +1,5 @@
+import 'package:app/App/View/Home/import_home.dart';
+
 List<String> wilayasList = [
   'Adrar 01',
   'Chlef 02',
@@ -47,4 +49,51 @@ List<String> wilayasList = [
   'Aïn Témouchent 46',
   'Ghardaïa 47',
   'Relizane 48',
+];
+List<Widget> list = [
+  const Tab(
+    child: Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Text(
+        "..............",
+        style: TextStyle(color: Colors.white),
+      ),
+    ),
+  ),
+  const Tab(
+    child: Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Text(
+        "..............",
+        style: TextStyle(color: Colors.white),
+      ),
+    ),
+  ),
+  const Tab(
+    child: Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Text(
+        "..............",
+        style: TextStyle(color: Colors.white),
+      ),
+    ),
+  ),
+  const Tab(
+    child: Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Text(
+        "..............",
+        style: TextStyle(color: Colors.white),
+      ),
+    ),
+  ),
+  const Tab(
+    child: Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Text(
+        "..............",
+        style: TextStyle(color: Colors.white),
+      ),
+    ),
+  ),
 ];

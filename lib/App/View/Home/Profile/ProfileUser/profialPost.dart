@@ -1,3 +1,4 @@
+import 'package:app/App/Service/ImageCach/imagecach.dart';
 import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
 import 'package:app/App/util/Const/url.dart';
@@ -15,22 +16,69 @@ class ProfilePost extends StatelessWidget {
         children: [
           Column(
             children: [
-              Hero(
-                tag: post.id.toString(),
-                child: Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    height: SizeApp.heightmobile(context, size: 0.5),
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(
-                              UrlApp.site + post.image.toString(),
-                            )),
-                        borderRadius: const BorderRadius.only(
-                          bottomLeft: Radius.circular(30),
-                          bottomRight: Radius.circular(30),
-                        )),
+              Container(
+                height: SizeApp.heightmobile(context, size: 0.5),
+                child: SizedBox(
+                  child: Stack(
+                    children: [
+                      Hero(
+                        tag: post.id.toString(),
+                        child: Container(
+                          width: double.infinity,
+                          height: SizeApp.heightmobile(context, size: 0.5),
+                          child: imageCached(
+                              image: UrlApp.site + post.image.toString()),
+                          decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(30),
+                            bottomRight: Radius.circular(30),
+                          )),
+                        ),
+                      ),
+                      Container(
+                        height: SizeApp.heightmobile(context, size: 0.5),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 40, left: 10, right: 10),
+                              child: Row(
+                                children: [
+                                  Buttons.buttonCircle(context,
+                                      icon: Icons.arrow_back_ios_new_rounded,
+                                      onPressed: () {
+                                    Navigator.pop(context);
+                                  }),
+                                  Spacer(),
+                                  Stack(
+                                    children: [
+                                      Center(
+                                        child: Text(
+                                          post.title.toString(),
+                                          style: TextStyle(fontSize: 21),
+                                        ),
+                                      ),
+                                      Center(
+                                        child: Text(
+                                          post.title.toString(),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  Buttons.buttonCircle(context,
+                                      icon: Icons.favorite_border_rounded,
+                                      onPressed: () {}),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -58,17 +106,6 @@ class ProfilePost extends StatelessWidget {
               ),
             ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 30, left: 10),
-            child: CircleAvatar(
-              backgroundColor: Colors.grey,
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back_ios_new)),
-            ),
-          )
         ],
       ),
     );

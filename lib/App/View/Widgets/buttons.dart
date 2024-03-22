@@ -61,4 +61,31 @@ class Buttons {
       ),
     );
   }
+
+  static Padding buttonCircle(BuildContext context,
+      {required Function() onPressed,
+      required IconData icon,
+      double raduis = 20}) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: CircleAvatar(
+        radius: raduis,
+        backgroundColor: Colors.black,
+        child: Padding(
+          padding: const EdgeInsets.all(0.3),
+          child: CircleAvatar(
+            radius: raduis,
+            backgroundColor: Colors.white,
+            child: IconButton(
+                onPressed: onPressed,
+                icon: Icon(
+                  icon,
+                  size: raduis,
+                  color: Colors.brown,
+                )),
+          ),
+        ),
+      ),
+    );
+  }
 }
