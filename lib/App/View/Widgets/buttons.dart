@@ -28,6 +28,8 @@ class Buttons {
       required Function functinn,
       bool isgoogle = false}) {
     return InkWell(
+      borderRadius: BorderRadius.all(Radius.circular(15)),
+      radius: 15,
       onTap: () {
         functinn();
       },

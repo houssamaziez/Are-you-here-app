@@ -1,5 +1,6 @@
 import 'package:app/App/Controller/locationController.dart';
 import 'package:app/App/Service/FutureBuild/list_of_catigorys.dart';
+import 'package:app/App/View/Home/All%20Catigory/screenAllCatigorys.dart';
 import 'package:app/App/View/Home/Screens/ScreenSearch/screenSearch.dart';
 
 import 'package:app/App/util/Size/dimensions.dart';
@@ -56,7 +57,9 @@ class _ScreenHomeState extends State<ScreenHome> {
           ),
           const Spacer(),
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Go.to(context, ScreenAllCatigorys());
+              },
               child: const Text(
                 "See All",
                 style: TextStyle(color: Colors.brown),

@@ -5,8 +5,8 @@ import 'package:pie_menu/pie_menu.dart';
 import '../../../../Service/Api/Bdd/local/auth.dart';
 
 class ScreenProfileUser extends StatefulWidget {
-  const ScreenProfileUser({super.key});
-
+  const ScreenProfileUser({super.key, this.idusr});
+  final idusr;
   @override
   State<ScreenProfileUser> createState() => _ScreenProfileUserState();
 }
@@ -29,14 +29,17 @@ class _ScreenProfileUserState extends State<ScreenProfileUser> {
       ),
       child: Scaffold(
         body: Column(children: [
-          returndataUserImage(userid.read('iduser')),
+          returndataUserImage(widget.idusr),
           const Text("email:"),
           const Text("phone:"),
           const Text("wilaya:"),
           Expanded(
             child: RefreshIndicator(
               onRefresh: _refresh,
-              child: Container(child: const ListOfPostUser()),
+              child: Container(
+                  child: ListOfPostUser(
+                iduser: widget.idusr,
+              )),
             ),
           )
         ]),

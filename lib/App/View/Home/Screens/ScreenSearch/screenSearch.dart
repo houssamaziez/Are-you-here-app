@@ -16,7 +16,7 @@ class ScreenSearch extends StatelessWidget {
               children: [
                 Expanded(
                     child: Container(
-                  height: 50,
+                  height: 45,
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 209, 209, 209),
                       borderRadius: BorderRadius.all(Radius.circular(25))),
@@ -60,16 +60,17 @@ class ScreenSearch extends StatelessWidget {
                   padding: EdgeInsets.only(left: 10),
                   child: CircleAvatar(
                     backgroundColor: Colors.brown,
-                    radius: 25,
+                    radius: 20,
                     child: Icon(
                       Icons.filter_alt_rounded,
                       color: Colors.white,
+                      size: 18,
                     ),
                   ),
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

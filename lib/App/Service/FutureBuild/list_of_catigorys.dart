@@ -93,7 +93,8 @@ class _ListOfCatigorysState extends State<ListOfCatigorys> {
                           } else {
                             // Build your UI based on the fetched data
                             List<Posts>? userData = snapshot.data;
-                            return listofpost(userData);
+                            return listofpost(
+                                userData, a.nidofcatigory.toString());
                           }
                         },
                       );
@@ -108,7 +109,7 @@ class _ListOfCatigorysState extends State<ListOfCatigorys> {
     );
   }
 
-  GridView listofpost(List<Posts>? userData) {
+  GridView listofpost(List<Posts>? userData, catigoryid) {
     return GridView.builder(
       physics:
           const NeverScrollableScrollPhysics(), // This line prevents scrolling
@@ -117,10 +118,16 @@ class _ListOfCatigorysState extends State<ListOfCatigorys> {
       shrinkWrap: true,
       itemCount: userData!.length,
       itemBuilder: (context, index) {
-        return card_post(context, userData, index, () {
-          ApiDelete.deleteData(userData[index].id.toString())
-              .then((value) => setState(() {}));
-        });
+        return card_post(
+          context,
+          userData,
+          index,
+          () {
+            ApiDelete.deleteData(userData[index].id.toString())
+                .then((value) => setState(() {}));
+          },
+          catigoryid,
+        );
       },
     );
   }

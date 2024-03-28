@@ -8,13 +8,19 @@ import 'package:app/App/util/Const/url.dart';
 import 'package:app/App/util/Size/dimensions.dart';
 import 'package:pie_menu/pie_menu.dart';
 
-SizedBox card_post(
-    BuildContext context, List<Posts> userData, int index, Function delete) {
+SizedBox card_post(BuildContext context, List<Posts> userData, int index,
+    Function delete, catigoryid) {
   return SizedBox(
+    width: 130,
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: PieMenu(
-        onPressed: () => Go.to(context, ProfilePost(post: userData[index])),
+        onPressed: () => Go.to(
+            context,
+            ProfilePost(
+              post: userData[index],
+              catigoryid: catigoryid,
+            )),
         actions: [
           PieAction(
             tooltip: const Text('Delelte'),

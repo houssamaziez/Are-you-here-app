@@ -8,8 +8,8 @@ import 'package:app/App/util/Size/dimensions.dart';
 import 'package:pie_menu/pie_menu.dart';
 
 class ListOfPostUser extends StatefulWidget {
-  const ListOfPostUser({super.key});
-
+  const ListOfPostUser({super.key, required this.iduser});
+  final String iduser;
   @override
   State<ListOfPostUser> createState() => _ListOfPostUserState();
 }
@@ -17,7 +17,7 @@ class ListOfPostUser extends StatefulWidget {
 class _ListOfPostUserState extends State<ListOfPostUser> {
   Widget returndatawidegtPost() {
     return FutureBuilder(
-      future: GetDataPost.getall_post_user(id_user: userid.read('iduser')),
+      future: GetDataPost.getall_post_user(id_user: widget.iduser),
       builder: (BuildContext context, AsyncSnapshot<List<Posts>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return waitdatapost(context);
