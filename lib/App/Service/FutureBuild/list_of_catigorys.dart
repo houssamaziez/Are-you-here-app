@@ -6,6 +6,7 @@ import 'package:app/App/Model/post.dart';
 import 'package:app/App/Service/Api/Function/Delete/delete.dart';
 import 'package:app/App/Service/Api/Function/Get/getdata.dart';
 import 'package:app/App/Service/Api/Function/PostFunction/getdata.dart';
+import 'package:app/App/Service/FutureBuild/list_of_post_user.dart';
 import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/View/Widgets/WaitDataWidgets/list_of_post.dart';
 import 'package:app/App/View/Widgets/cardpost.dart';
@@ -94,7 +95,8 @@ class _ListOfCatigorysState extends State<ListOfCatigorys> {
                             // Build your UI based on the fetched data
                             List<Posts>? userData = snapshot.data;
                             return listofpost(
-                                userData, a.nidofcatigory.toString());
+                              userData,
+                            );
                           }
                         },
                       );
@@ -105,29 +107,6 @@ class _ListOfCatigorysState extends State<ListOfCatigorys> {
             ),
           );
         }
-      },
-    );
-  }
-
-  GridView listofpost(List<Posts>? userData, catigoryid) {
-    return GridView.builder(
-      physics:
-          const NeverScrollableScrollPhysics(), // This line prevents scrolling
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, childAspectRatio: 0.85),
-      shrinkWrap: true,
-      itemCount: userData!.length,
-      itemBuilder: (context, index) {
-        return card_post(
-          context,
-          userData,
-          index,
-          () {
-            ApiDelete.deleteData(userData[index].id.toString())
-                .then((value) => setState(() {}));
-          },
-          catigoryid,
-        );
       },
     );
   }

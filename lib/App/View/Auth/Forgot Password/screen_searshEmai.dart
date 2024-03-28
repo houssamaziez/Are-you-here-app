@@ -30,7 +30,9 @@ class _ScreenSigninState extends State<ScreenSendemail> {
 
   @override
   Widget build(BuildContext context) {
-    final myData = Provider.of<ApiOperation>(context);
+    final myData = Provider.of<ApiOperation>(
+      context,
+    );
 
     return Scaffold(
       appBar: AppBar(elevation: 0, leading: Buttons.ButtonBack(context)),

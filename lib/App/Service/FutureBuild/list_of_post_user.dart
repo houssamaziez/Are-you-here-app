@@ -3,6 +3,7 @@ import 'package:app/App/Service/Api/Function/PostFunction/getdata.dart';
 import 'package:app/App/Service/Api/Function/Delete/delete.dart';
 import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/View/Widgets/WaitDataWidgets/list_of_post.dart';
+import 'package:app/App/View/Widgets/cardpost.dart';
 import 'package:app/App/util/Const/url.dart';
 import 'package:app/App/util/Size/dimensions.dart';
 import 'package:pie_menu/pie_menu.dart';
@@ -99,4 +100,27 @@ class _ListOfPostUserState extends State<ListOfPostUser> {
   Widget build(BuildContext context) {
     return returndatawidegtPost();
   }
+}
+
+GridView listofpost(List<Posts>? userData) {
+  return GridView.builder(
+    physics:
+        const NeverScrollableScrollPhysics(), // This line prevents scrolling
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2, childAspectRatio: 0.85),
+    shrinkWrap: true,
+    itemCount: userData!.length,
+    itemBuilder: (context, index) {
+      return card_post(
+        context,
+        userData,
+        index,
+        () {
+          // ApiDelete.deleteData(userData[index].id.toString())
+          //     .then((value) => setState(() {}));
+        },
+        userData[index].catigoryId.toString(),
+      );
+    },
+  );
 }

@@ -146,32 +146,33 @@ class _ScreenHomeState extends State<ScreenHome> {
               const ScreenSearch(),
             ),
             child: Container(
-              height: 50,
+              width: double.infinity,
+              height: 45,
               decoration: const BoxDecoration(
                   color: Color.fromARGB(255, 209, 209, 209),
-                  borderRadius: BorderRadius.all(Radius.circular(25))),
+                  borderRadius: BorderRadius.all(Radius.circular(15))),
               child: Padding(
                 padding: const EdgeInsets.all(1.0),
                 child: Container(
                   height: 50,
                   decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(25))),
-                  child: const Row(
+                      color: Color.fromARGB(255, 237, 237, 237),
+                      borderRadius: BorderRadius.all(Radius.circular(14))),
+                  child: Row(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         width: 15,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.search,
                         color: Colors.brown,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
                         'Search',
-                        style: TextStyle(color: Colors.grey, fontSize: 17),
+                        style: TextStyle(color: Colors.grey, fontSize: 16),
                       )
                     ],
                   ),
@@ -183,19 +184,16 @@ class _ScreenHomeState extends State<ScreenHome> {
             padding: const EdgeInsets.only(left: 10),
             child: CircleAvatar(
               backgroundColor: Colors.brown,
-              radius: 25,
+              radius: 20,
               child: InkWell(
                 onTap: () => Go.to(
                   context,
                   const ScreenSearch(),
                 ),
-                child: const CircleAvatar(
-                  backgroundColor: Colors.brown,
-                  radius: 25,
-                  child: Icon(
-                    Icons.filter_alt_rounded,
-                    color: Colors.white,
-                  ),
+                child: Icon(
+                  Icons.filter_alt_rounded,
+                  color: Colors.white,
+                  size: 16,
                 ),
               ),
             ),

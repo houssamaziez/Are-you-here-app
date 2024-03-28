@@ -1,16 +1,17 @@
 import 'package:app/App/Model/catigory.dart';
 import 'package:app/App/Service/Api/Function/Get/getdata.dart';
+import 'package:app/App/Service/Api/Function/Search/searchCatigory.dart';
 import 'package:app/App/util/Size/dimensions.dart';
 import 'package:flutter/material.dart';
 
-FutureBuilder<List<Catigorys>> allcatigorys() {
+FutureBuilder<List<Catigorys>> allcatigorys(cotext, String query) {
   return FutureBuilder(
-    future: GetData.getallCatigorys(),
+    future: search(cotext, query),
     builder: (BuildContext context, AsyncSnapshot<List<Catigorys>> snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return CircularProgressIndicator();
+        return Container();
       } else if (snapshot.hasError) {
-        return CircularProgressIndicator();
+        return Container();
       } else {
         List<Catigorys>? userData = snapshot.data;
         return Padding(

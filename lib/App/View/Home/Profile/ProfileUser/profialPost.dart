@@ -1,5 +1,6 @@
 import 'package:app/App/Service/Api/Function/PostFunction/getdata.dart';
 import 'package:app/App/Service/ImageCach/imagecach.dart';
+import 'package:app/App/Service/Text%20Service/detectlang.dart';
 import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/View/Widgets/BottomBar/bottombar_profile.dart';
 import 'package:app/App/View/Widgets/WaitDataWidgets/list_of_post.dart';
@@ -99,50 +100,61 @@ class ProfilePost extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizeApp.sizedboxh10,
-                  Text(
-                    post.title.toString(),
-                    style: const TextStyle(
-                        fontSize: 30,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  SizeApp.sizedboxh20,
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      post.details.toString(),
-                      textAlign: TextAlign.left,
-                      style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.black54,
-                          fontWeight: FontWeight.bold),
+                    child: Column(
+                      children: [
+                        SizeApp.sizedboxh10,
+                        Text(
+                          post.title.toString(),
+                          style: const TextStyle(
+                              fontSize: 30,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        SizeApp.sizedboxh20,
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            post.details.toString(),
+                            textAlign: isArabic(post.details.toString())
+                                ? TextAlign.right
+                                : TextAlign.left,
+                            style: const TextStyle(
+                                fontSize: 20,
+                                color: Colors.black54,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Container(
+                            height: 160,
+                            width: double.infinity,
+                            child: FutureBuilder(
+                              future: GetDataPost.getall_post_Catigory_profile(
+                                  id_catigory: catigoryid.toString(),
+                                  wilaya: userwilaya.read('wilaya'),
+                                  idpost: post.id.toString()),
+                              // initialData: InitialData,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot snapshot) {
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return waitdatapost(context);
+                                } else if (snapshot.hasError) {
+                                  // Show an error message if the data fetching fails
+                                  return waitdatapost(context);
+                                } else {
+                                  // Build your UI based on the fetched data
+                                  List<Posts>? userData = snapshot.data;
+                                  return listofpost(
+                                      userData: userData,
+                                      catigoryid: catigoryid);
+                                }
+                              },
+                            )),
+                      ],
                     ),
                   ),
-                  Container(
-                      height: 160,
-                      width: double.infinity,
-                      child: FutureBuilder(
-                        future: GetDataPost.getall_post_Catigory(
-                            id_catigory: catigoryid.toString(),
-                            wilaya: userwilaya.read('wilaya')),
-                        // initialData: InitialData,
-                        builder:
-                            (BuildContext context, AsyncSnapshot snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return waitdatapost(context);
-                          } else if (snapshot.hasError) {
-                            // Show an error message if the data fetching fails
-                            return waitdatapost(context);
-                          } else {
-                            // Build your UI based on the fetched data
-                            List<Posts>? userData = snapshot.data;
-                            return listofpost(
-                                userData: userData, catigoryid: catigoryid);
-                          }
-                        },
-                      )),
                 ],
               ),
             ],

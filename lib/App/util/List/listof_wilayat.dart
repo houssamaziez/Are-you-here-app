@@ -1,6 +1,7 @@
 import 'package:app/App/View/Home/import_home.dart';
 
 List<String> wilayasList = [
+  'All',
   'Adrar 01',
   'Chlef 02',
   'Laghouat 03',

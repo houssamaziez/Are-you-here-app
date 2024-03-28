@@ -38,4 +38,20 @@ class GetDataPost {
       throw Exception('Failed to load data');
     }
   }
+
+  static Future<List<Posts>> getall_post_Catigory_profile({
+    required String id_catigory,
+    required String wilaya,
+    required String idpost,
+  }) async {
+    final response = await http.get(Uri.parse(
+        '${UrlApp.host}post/catigory/idcatigory=$id_catigory/$wilaya/postid=$idpost'));
+    if (response.statusCode == 200) {
+      List<dynamic> data = json.decode(response.body);
+      List<Posts> postList = data.map((json) => Posts.fromJson(json)).toList();
+      return postList;
+    } else {
+      throw Exception('Failed to load data');
+    }
+  }
 }

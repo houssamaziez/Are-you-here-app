@@ -1,5 +1,4 @@
-import 'package:app/App/Model/catigory.dart';
-import 'package:app/App/Service/Api/Function/Get/getdata.dart';
+import 'package:app/App/Controller/catigoryController.dart';
 import 'package:app/App/View/Home/All%20Catigory/Widgets/listview.dart';
 import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/util/Size/dimensions.dart';
@@ -9,8 +8,10 @@ class ScreenAllCatigorys extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controllerlocation = Provider.of<CatigorysController>(context);
+
     return Scaffold(
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -19,12 +20,12 @@ class ScreenAllCatigorys extends StatelessWidget {
           padding: const EdgeInsets.only(left: 16, right: 16),
           child: ListView(
             children: [
-              Text(
+              const Text(
                 'Categorys',
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               SizeApp.sizedboxh5,
-              Text(
+              const Text(
                 'Select the option that you think fits best ',
                 style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
@@ -42,23 +43,27 @@ class ScreenAllCatigorys extends StatelessWidget {
                     decoration: const BoxDecoration(
                         color: Color.fromARGB(255, 237, 237, 237),
                         borderRadius: BorderRadius.all(Radius.circular(14))),
-                    child: const Row(
+                    child: Row(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           width: 15,
                         ),
-                        Icon(
+                        const Icon(
                           Icons.search,
                           color: Colors.brown,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Expanded(
                             child: TextField(
-                          decoration: InputDecoration(
+                          onChanged: (value) {
+                            controllerlocation.onChanged(value);
+                          },
+                          decoration: const InputDecoration(
                             hintText: 'Search',
                             // Remove underline by setting border to InputBorder.none
+
                             border: InputBorder.none,
                           ),
                         ))
@@ -71,7 +76,10 @@ class ScreenAllCatigorys extends StatelessWidget {
                   ),
                 ),
               ),
-              allcatigorys()
+              Consumer<CatigorysController>(
+                  builder: (context, myNotifier, child) {
+                return allcatigorys(context, myNotifier.query);
+              })
             ],
           ),
         ));
