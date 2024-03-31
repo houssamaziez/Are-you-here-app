@@ -93,7 +93,7 @@ class _ListOfCatigorysState extends State<ListOfCatigorys> {
                             return waitdatapost(context);
                           } else {
                             // Build your UI based on the fetched data
-                            List<Posts>? userData = snapshot.data;
+                            List<Post>? userData = snapshot.data;
                             return listofpost(
                               userData,
                             );

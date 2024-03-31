@@ -67,6 +67,7 @@ class Buttons {
   static Padding buttonCircle(BuildContext context,
       {required Function() onPressed,
       required IconData icon,
+      Color color = Colors.brown,
       double raduis = 20}) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -83,7 +84,7 @@ class Buttons {
                 icon: Icon(
                   icon,
                   size: raduis,
-                  color: Colors.brown,
+                  color: color,
                 )),
           ),
         ),

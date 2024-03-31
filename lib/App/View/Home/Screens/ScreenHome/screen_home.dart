@@ -58,7 +58,7 @@ class _ScreenHomeState extends State<ScreenHome> {
           const Spacer(),
           TextButton(
               onPressed: () {
-                Go.to(context, ScreenAllCatigorys());
+                Go.to(context, const ScreenAllCatigorys());
               },
               child: const Text(
                 "See All",
@@ -158,16 +158,16 @@ class _ScreenHomeState extends State<ScreenHome> {
                   decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 237, 237, 237),
                       borderRadius: BorderRadius.all(Radius.circular(14))),
-                  child: Row(
+                  child: const Row(
                     children: [
-                      const SizedBox(
+                      SizedBox(
                         width: 15,
                       ),
-                      const Icon(
+                      Icon(
                         Icons.search,
                         color: Colors.brown,
                       ),
-                      const SizedBox(
+                      SizedBox(
                         width: 10,
                       ),
                       Text(
@@ -190,7 +190,7 @@ class _ScreenHomeState extends State<ScreenHome> {
                   context,
                   const ScreenSearch(),
                 ),
-                child: Icon(
+                child: const Icon(
                   Icons.filter_alt_rounded,
                   color: Colors.white,
                   size: 16,

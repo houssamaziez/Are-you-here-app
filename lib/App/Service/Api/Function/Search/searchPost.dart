@@ -6,7 +6,7 @@ import 'package:app/App/util/Const/url.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-Future<List<Posts>> searchpost(
+Future<List<Post>> searchpost(
   BuildContext context,
   String query,
 ) async {
@@ -24,8 +24,8 @@ Future<List<Posts>> searchpost(
 
     if (response.statusCode == 200) {
       List<dynamic> list = json.decode(response.body);
-      List<Posts> listcatigorys =
-          list.map((json) => Posts.fromJson(json)).toList();
+      List<Post> listcatigorys =
+          list.map((json) => Post.fromJson(json)).toList();
       return listcatigorys;
     } else {
       throw Exception('Failed to load search results');

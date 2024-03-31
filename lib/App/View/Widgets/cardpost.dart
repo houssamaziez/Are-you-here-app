@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app/App/Model/post.dart';
 import 'package:app/App/Service/Api/Function/Delete/delete.dart';
 import 'package:app/App/Service/ImageCach/imagecach.dart';
@@ -5,13 +7,18 @@ import 'package:app/App/View/Home/Profile/ProfileUser/profialPost.dart';
 import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
 import 'package:app/App/util/Const/url.dart';
+import 'package:app/App/util/Convert/time.dart';
 import 'package:app/App/util/Size/dimensions.dart';
 import 'package:pie_menu/pie_menu.dart';
 
-SizedBox card_post(BuildContext context, List<Posts> userData, int index,
+import '../../util/Convert/Stringtolist.dart';
+
+SizedBox card_post(BuildContext context, List<Post> userData, int index,
     Function delete, catigoryid) {
+  int likelength =
+      (json.decode(userData[index].likes!).cast<String>().toList()).length;
   return SizedBox(
-    width: 130,
+    width: 160,
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: PieMenu(
@@ -37,47 +44,78 @@ SizedBox card_post(BuildContext context, List<Posts> userData, int index,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: Hero(
-                tag: userData[index].id.toString(),
-                child: Container(
-                  // ignore: sort_child_properties_last
-                  child: Stack(
-                    children: [
-                      imageCached(
-                          image:
-                              UrlApp.site + userData[index].image.toString()),
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              Spacer(),
-                              Buttons.buttonCircle(context,
-                                  icon: Icons.favorite_outline_rounded,
-                                  raduis: 15,
-                                  onPressed: () {}),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  decoration: BoxDecoration(borderRadius: SizeApp.raduis(11)),
-                  width: SizeApp.widthmobile(context, size: 1),
+              child: Container(
+                // ignore: sort_child_properties_last
+                child: Stack(
+                  children: [
+                    imageCached(
+                        image: UrlApp.site +
+                            'images/' +
+                            parseImageList(userData[index].image.toString())
+                                .toList()[0]
+                                .toString()),
+                  ],
                 ),
+                decoration: BoxDecoration(borderRadius: SizeApp.raduis(11)),
+                width: SizeApp.widthmobile(context, size: 1),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 8, left: 8),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+              child: Row(
                 children: [
-                  Text(
-                    userData[index].title.toString(),
-                    style: const TextStyle(fontSize: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            'DA',
+                            style: const TextStyle(
+                                fontSize: 12,
+                                height: 1.2,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red),
+                          ),
+                          Text(
+                            '${userData[index].price}',
+                            style: const TextStyle(
+                                height: 0.8,
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red),
+                          ),
+                        ],
+                      ),
+                      Text(
+                        userData[index].title.toString(),
+                        style:
+                            const TextStyle(fontSize: 16, color: Colors.grey),
+                      ),
+                    ],
                   ),
-                  Text(
-                    '\$${userData[index].price}',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  Spacer(),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        convertToDateString(
+                            userData[index].createdAt.toString()),
+                        style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                      ),
+                      Text(
+                        'Likes: ${likelength}',
+                        style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.green),
+                      ),
+                    ],
                   ),
                 ],
               ),

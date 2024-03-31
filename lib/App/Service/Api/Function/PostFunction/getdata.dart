@@ -9,12 +9,12 @@ import '../../../../util/Const/url.dart';
 class GetDataPost {
   static getpost(id) {}
 
-  static Future<List<Posts>> getall_post_user({required String id_user}) async {
+  static Future<List<Post>> getall_post_user({required String id_user}) async {
     final response =
         await http.get(Uri.parse('${UrlApp.host}post/postsuser/$id_user'));
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
-      List<Posts> postList = data.map((json) => Posts.fromJson(json)).toList();
+      List<Post> postList = data.map((json) => Post.fromJson(json)).toList();
       for (var element in postList) {
         print(element.title);
       }
@@ -24,7 +24,7 @@ class GetDataPost {
     }
   }
 
-  static Future<List<Posts>> getall_post_Catigory({
+  static Future<List<Post>> getall_post_Catigory({
     required String id_catigory,
     required String wilaya,
   }) async {
@@ -32,14 +32,14 @@ class GetDataPost {
         '${UrlApp.host}post/catigory/idcatigory=$id_catigory/$wilaya'));
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
-      List<Posts> postList = data.map((json) => Posts.fromJson(json)).toList();
+      List<Post> postList = data.map((json) => Post.fromJson(json)).toList();
       return postList;
     } else {
       throw Exception('Failed to load data');
     }
   }
 
-  static Future<List<Posts>> getall_post_Catigory_profile({
+  static Future<List<Post>> getall_post_Catigory_profile({
     required String id_catigory,
     required String wilaya,
     required String idpost,
@@ -48,7 +48,7 @@ class GetDataPost {
         '${UrlApp.host}post/catigory/idcatigory=$id_catigory/$wilaya/postid=$idpost'));
     if (response.statusCode == 200) {
       List<dynamic> data = json.decode(response.body);
-      List<Posts> postList = data.map((json) => Posts.fromJson(json)).toList();
+      List<Post> postList = data.map((json) => Post.fromJson(json)).toList();
       return postList;
     } else {
       throw Exception('Failed to load data');

@@ -1,4 +1,4 @@
-class Posts {
+class Post {
   int? id;
   int? userId;
   int? catigoryId;
@@ -12,7 +12,7 @@ class Posts {
   String? createdAt;
   String? updatedAt;
 
-  Posts(
+  Post(
       {this.id,
       this.userId,
       this.catigoryId,
@@ -26,7 +26,7 @@ class Posts {
       this.createdAt,
       this.updatedAt});
 
-  Posts.fromJson(Map<String, dynamic> json) {
+  Post.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId = json['user_id'];
     catigoryId = json['catigory_id'];

@@ -15,10 +15,10 @@ class GetData {
     return listcatigorys;
   }
 
-  static Future<Posts> getpost(ifdpost) async {
+  static Future<Post> getpost(ifdpost) async {
     final response =
-        await http.get(Uri.parse('${UrlApp.host}post/data/ifdpost'));
-    Posts list = Posts.fromJson(json.decode(response.body)["post"]);
+        await http.get(Uri.parse('${UrlApp.host}post/data/$ifdpost'));
+    Post list = Post.fromJson(json.decode(response.body)["post"]);
 
     return list;
   }
