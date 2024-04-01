@@ -1,5 +1,4 @@
 import 'package:app/App/Model/catigory.dart';
-import 'package:app/App/Service/Api/Function/Get/getdata.dart';
 import 'package:app/App/Service/Api/Function/Search/searchCatigory.dart';
 import 'package:app/App/util/Size/dimensions.dart';
 import 'package:flutter/material.dart';
@@ -35,12 +34,12 @@ FutureBuilder<List<Catigorys>> allcatigorys(cotext, String query) {
                               children: [
                                 Text(
                                   userData[index].name.toString(),
-                                  style: TextStyle(fontSize: 18),
+                                  style: const TextStyle(fontSize: 18),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 IconButton(
                                     onPressed: () {},
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.arrow_forward_ios_rounded,
                                       size: 17,
                                       color: Colors.grey,

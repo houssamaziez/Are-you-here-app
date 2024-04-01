@@ -1,9 +1,6 @@
 import 'package:app/App/Controller/PostController.dart';
-import 'package:app/App/Controller/catigoryController.dart';
-import 'package:app/App/View/Home/All%20Catigory/Widgets/listview.dart';
 import 'package:app/App/View/Home/Screens/ScreenSearch/widgets/listview.dart';
 import 'package:app/App/View/Home/import_home.dart';
-import 'package:app/App/util/Size/dimensions.dart';
 import 'package:pie_menu/pie_menu.dart';
 
 class ScreenSearch extends StatelessWidget {

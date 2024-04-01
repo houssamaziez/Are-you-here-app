@@ -4,29 +4,23 @@ import 'package:app/App/Controller/PostController.dart';
 import 'package:app/App/Service/Api/Function/Get/getdata.dart';
 import 'package:app/App/Service/Api/Function/PostFunction/getdata.dart';
 import 'package:app/App/Service/Api/Function/Put/likes.dart';
-import 'package:app/App/Service/ImageCach/imagecach.dart';
 import 'package:app/App/Service/Text%20Service/detectlang.dart';
 import 'package:app/App/View/Home/Profile/ProfileUser/widgets/listofpost.dart';
 import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/View/Widgets/BottomBar/bottombar_profile.dart';
 import 'package:app/App/View/Widgets/WaitDataWidgets/list_of_post.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
-import 'package:app/App/View/Widgets/cardpost.dart';
 import 'package:app/App/util/Const/url.dart';
 import 'package:app/App/util/Convert/time.dart';
 import 'package:app/App/util/Size/dimensions.dart';
 import 'package:bottom_bar_matu/utils/app_utils.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pie_menu/pie_menu.dart';
 import 'dart:convert';
 import '../../../../Model/post.dart';
-import '../../../../Service/FutureBuild/list_of_post_user.dart';
 import '../../../../util/Convert/Stringtolist.dart';
 
 class ProfilePost extends StatefulWidget {
-  ProfilePost({super.key, required this.post, required this.catigoryid});
+  const ProfilePost({super.key, required this.post, required this.catigoryid});
   final Post post;
   final String catigoryid;
 
@@ -138,7 +132,7 @@ class _ProfilePostState extends State<ProfilePost> {
                                         fontWeight: FontWeight.bold,
                                         color: Colors.red),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 5),
                                     child: Row(
@@ -153,7 +147,7 @@ class _ProfilePostState extends State<ProfilePost> {
                                             (context, myNotifier, child) {
                                           return Text(
                                             "${myNotifier.pricex}",
-                                            style: TextStyle(fontSize: 17),
+                                            style: const TextStyle(fontSize: 17),
                                           );
                                         }),
                                         Buttons.buttonCircle(context,
@@ -258,7 +252,7 @@ class _ProfilePostState extends State<ProfilePost> {
             ),
           ),
           SizeApp.sizedboxh10,
-          Container(
+          SizedBox(
               height: 200,
               width: double.infinity,
               child: FutureBuilder(
@@ -327,7 +321,7 @@ class _ProfilePostState extends State<ProfilePost> {
   ) {
     PostController controllerPost = Provider.of<PostController>(context);
 
-    PageController _pageController =
+    PageController pageController =
         PageController(); // PageController for PageView
     List Images = parseImageList(widget.post.image.toString()).toList();
     return SizedBox(
@@ -346,7 +340,7 @@ class _ProfilePostState extends State<ProfilePost> {
               // child: imageCached(
               //     image: UrlApp.site + widget.post.image.toString()),
               child: PageView.builder(
-                controller: _pageController,
+                controller: pageController,
                 allowImplicitScrolling: true,
                 onPageChanged: (value) {
                   controllerPost.onChangedimage(value);
@@ -354,7 +348,7 @@ class _ProfilePostState extends State<ProfilePost> {
                 itemCount: Images.length,
                 itemBuilder: (context, index) {
                   return Image.network(
-                    UrlApp.site + 'images/' + Images[index],
+                    '${UrlApp.site}images/' + Images[index],
                     fit: BoxFit.cover,
                   );
                 },
@@ -402,7 +396,7 @@ class _ProfilePostState extends State<ProfilePost> {
                           size: 20,
                         ),
                         Text(
-                          "${lengthoflike}",
+                          "$lengthoflike",
                           style: const TextStyle(fontSize: 12),
                         )
                       ],

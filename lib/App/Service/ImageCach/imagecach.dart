@@ -1,11 +1,10 @@
 import 'package:app/App/View/Home/import_home.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
-import '../../util/Convert/Stringtolist.dart';
 
 imageCached({required String image}) {
   return ClipRRect(
-    borderRadius: BorderRadius.all(Radius.circular(9)),
+    borderRadius: const BorderRadius.all(Radius.circular(9)),
     child: CachedNetworkImage(
       imageUrl: image,
       imageBuilder: (context, imageProvider) => Container(
@@ -16,11 +15,11 @@ imageCached({required String image}) {
           ),
         ),
       ),
-      placeholder: (context, url) => Center(
+      placeholder: (context, url) => const Center(
           child: CircularProgressIndicator(
         backgroundColor: Colors.brown,
       )),
-      errorWidget: (context, url, error) => Icon(Icons.error),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
     ),
   );
 }

@@ -1,6 +1,5 @@
 import 'package:app/App/View/Home/import_home.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class Screenchat extends StatelessWidget {
   const Screenchat({super.key, this.user});
@@ -10,7 +9,7 @@ class Screenchat extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("chat Screen"),
+        title: const Text("chat Screen"),
       ),
       body: Column(
         children: [
@@ -19,15 +18,15 @@ class Screenchat extends StatelessWidget {
             width: double.infinity,
             color: Colors.grey,
           )),
-          Container(
+          SizedBox(
             width: double.infinity,
             height: 60,
             child: Row(
               children: [
-                Expanded(
+                const Expanded(
                   child: TextField(),
                 ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.send))
+                IconButton(onPressed: () {}, icon: const Icon(Icons.send))
               ],
             ),
           ),

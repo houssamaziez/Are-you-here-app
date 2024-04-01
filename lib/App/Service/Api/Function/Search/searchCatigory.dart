@@ -9,7 +9,7 @@ Future<List<Catigorys>> search(
   BuildContext context,
   String query,
 ) async {
-  final response;
+  final http.Response response;
   try {
     if (query.isEmpty || query == "") {
       response = await http.get(
@@ -32,7 +32,7 @@ Future<List<Catigorys>> search(
   } catch (e) {
     print('Error: $e');
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Failed to load search results. Please try again.'),
         backgroundColor: Colors.red,
       ),

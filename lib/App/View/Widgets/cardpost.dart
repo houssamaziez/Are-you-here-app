@@ -5,7 +5,6 @@ import 'package:app/App/Service/Api/Function/Delete/delete.dart';
 import 'package:app/App/Service/ImageCach/imagecach.dart';
 import 'package:app/App/View/Home/Profile/ProfileUser/profialPost.dart';
 import 'package:app/App/View/Home/import_home.dart';
-import 'package:app/App/View/Widgets/buttons.dart';
 import 'package:app/App/util/Const/url.dart';
 import 'package:app/App/util/Convert/time.dart';
 import 'package:app/App/util/Size/dimensions.dart';
@@ -49,11 +48,8 @@ SizedBox card_post(BuildContext context, List<Post> userData, int index,
                 child: Stack(
                   children: [
                     imageCached(
-                        image: UrlApp.site +
-                            'images/' +
-                            parseImageList(userData[index].image.toString())
-                                .toList()[0]
-                                .toString()),
+                        image: '${UrlApp.site}images/${parseImageList(userData[index].image.toString())
+                                .toList()[0]}'),
                   ],
                 ),
                 decoration: BoxDecoration(borderRadius: SizeApp.raduis(11)),
@@ -70,9 +66,9 @@ SizedBox card_post(BuildContext context, List<Post> userData, int index,
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text(
+                          const Text(
                             'DA',
-                            style: const TextStyle(
+                            style: TextStyle(
                                 fontSize: 12,
                                 height: 1.2,
                                 fontWeight: FontWeight.bold,
@@ -95,7 +91,7 @@ SizedBox card_post(BuildContext context, List<Post> userData, int index,
                       ),
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -109,7 +105,7 @@ SizedBox card_post(BuildContext context, List<Post> userData, int index,
                             color: Colors.grey),
                       ),
                       Text(
-                        'Likes: ${likelength}',
+                        'Likes: $likelength',
                         style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,

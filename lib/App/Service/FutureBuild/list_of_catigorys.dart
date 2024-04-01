@@ -3,13 +3,11 @@
 import 'package:app/App/Controller/locationController.dart';
 import 'package:app/App/Model/catigory.dart';
 import 'package:app/App/Model/post.dart';
-import 'package:app/App/Service/Api/Function/Delete/delete.dart';
 import 'package:app/App/Service/Api/Function/Get/getdata.dart';
 import 'package:app/App/Service/Api/Function/PostFunction/getdata.dart';
 import 'package:app/App/Service/FutureBuild/list_of_post_user.dart';
 import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/View/Widgets/WaitDataWidgets/list_of_post.dart';
-import 'package:app/App/View/Widgets/cardpost.dart';
 import 'package:app/App/View/Widgets/WaitDataWidgets/wait_data.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 

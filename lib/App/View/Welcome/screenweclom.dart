@@ -1,13 +1,10 @@
 import 'dart:async';
 
-import 'package:app/App/Controller/myappcontroller.dart';
 import 'package:app/App/View/Home/Home.dart';
 import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/View/Welcome/inistateWelcome.dart';
 import 'package:app/App/util/Image/pathimages.dart';
-import 'package:app/App/util/Route/go.dart';
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class ScreenWelcome extends StatefulWidget {
   const ScreenWelcome({Key? key}) : super(key: key);
@@ -22,6 +19,7 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
 
   @override
   void initState() {
+    FirebaseMessaging.instance.getToken().then((value) => print(value));
     super.initState();
     instail();
   }
@@ -38,7 +36,7 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
         });
       }
     });
-    Timer(Duration(seconds: 4), () {
+    Timer(const Duration(seconds: 4), () {
       setState(() {
         iscomplet = true;
       });
@@ -81,13 +79,13 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
                   setState(() {
                     iscomplet = false;
                   });
-                  Timer(Duration(seconds: 4), () {
+                  Timer(const Duration(seconds: 4), () {
                     setState(() {
                       iscomplet = true;
                     });
                   });
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.refresh,
                   color: Colors.white,
                 ),

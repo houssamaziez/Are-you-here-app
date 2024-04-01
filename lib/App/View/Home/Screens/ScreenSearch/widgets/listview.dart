@@ -1,10 +1,6 @@
-import 'package:app/App/Model/catigory.dart';
 import 'package:app/App/Model/post.dart';
-import 'package:app/App/Service/Api/Function/Get/getdata.dart';
-import 'package:app/App/Service/Api/Function/Search/searchCatigory.dart';
 import 'package:app/App/Service/Api/Function/Search/searchPost.dart';
 import 'package:app/App/Service/FutureBuild/list_of_post_user.dart';
-import 'package:app/App/util/Size/dimensions.dart';
 import 'package:flutter/material.dart';
 
 FutureBuilder<List<Post>> allPostsearch(cotext, String query) {

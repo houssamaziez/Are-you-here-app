@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:app/App/Model/catigory.dart';
 import 'package:app/App/Model/post.dart';
 import 'package:app/App/util/Const/url.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,7 @@ Future<List<Post>> searchpost(
   BuildContext context,
   String query,
 ) async {
-  final response;
+  final http.Response response;
   try {
     if (query.isEmpty || query == "") {
       response = await http.get(
@@ -33,7 +32,7 @@ Future<List<Post>> searchpost(
   } catch (e) {
     print('Error: $e');
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Failed to load search results. Please try again.'),
         backgroundColor: Colors.red,
       ),

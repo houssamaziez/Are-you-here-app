@@ -8,7 +8,7 @@ class ScreenShoping extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('shoping profile '),
+        title: const Text('shoping profile '),
         centerTitle: true,
       ),
       body: Column(

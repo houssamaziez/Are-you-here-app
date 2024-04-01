@@ -4,7 +4,7 @@ import 'package:app/App/View/Widgets/buttons.dart';
 
 Card buttonbarProfile(context, {required post}) {
   return Card(
-    child: Container(
+    child: SizedBox(
       width: double.infinity,
       height: 60,
       child: Padding(
@@ -26,14 +26,14 @@ Card buttonbarProfile(context, {required post}) {
                   fit: BoxFit.cover,
                   height: 25,
                 ),
-                Text('the seller',
+                const Text('the seller',
                     style: TextStyle(color: Colors.grey, fontSize: 8)),
               ],
             ),
           ),
           IconButton(
             onPressed: () {
-              Go.to(context, Screenchat());
+              Go.to(context, const Screenchat());
             },
             icon: Column(
               children: [
@@ -42,16 +42,16 @@ Card buttonbarProfile(context, {required post}) {
                   fit: BoxFit.cover,
                   height: 25,
                 ),
-                Text('Message',
+                const Text('Message',
                     style: TextStyle(color: Colors.grey, fontSize: 8)),
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 5,
           ),
           Expanded(
-              child: Container(
+              child: SizedBox(
             width: double.infinity,
             child: Buttons.buttonAll(context,
                 title: "Add to card", color: Colors.brown, functinn: () {}),
