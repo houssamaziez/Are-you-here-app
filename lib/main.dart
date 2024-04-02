@@ -14,6 +14,7 @@ void main() async {
   );
 
   await GetStorage.init();
+
   runApp(
     MultiProvider(
       providers: listofprovider,

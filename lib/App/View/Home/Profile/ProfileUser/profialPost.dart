@@ -17,6 +17,7 @@ import 'package:bottom_bar_matu/utils/app_utils.dart';
 import 'package:pie_menu/pie_menu.dart';
 import 'dart:convert';
 import '../../../../Model/post.dart';
+import '../../../../Service/Api/Function/Notification/push.dart';
 import '../../../../util/Convert/Stringtolist.dart';
 
 class ProfilePost extends StatefulWidget {
@@ -47,7 +48,7 @@ class _ProfilePostState extends State<ProfilePost> {
   }
 
   void likesfunction() {
-    isUserLikedPost(widget.post.id.toString(), widget.post.userId.toString())
+    isUserLikedPost(widget.post.id.toString(), userid.read('iduser').toString())
         .then((value) => setState(() {
               islike = value;
               print(islike);
@@ -147,7 +148,8 @@ class _ProfilePostState extends State<ProfilePost> {
                                             (context, myNotifier, child) {
                                           return Text(
                                             "${myNotifier.pricex}",
-                                            style: const TextStyle(fontSize: 17),
+                                            style:
+                                                const TextStyle(fontSize: 17),
                                           );
                                         }),
                                         Buttons.buttonCircle(context,
@@ -359,13 +361,22 @@ class _ProfilePostState extends State<ProfilePost> {
               right: 20,
               child: InkWell(
                 onTap: () {
-                  addLikeToPost(
-                          widget.post.id!.toInt(), widget.post.userId!.toInt())
+                  addLikeToPost(widget.post.id!.toString(),
+                          userid.read('iduser'.toString()))
                       .then((value) => isUserLikedPost(
                               widget.post.id.toString(),
-                              widget.post.userId.toString())
+                              userid.read('iduser').toString())
                           .then((value) => setState(() {
                                 islike = value;
+                                value == true
+                                    ? pushNotification(
+                                            id: widget.post.userId!.toString(),
+                                            title: 'Your post',
+                                            description: lengthoflike! >= 2
+                                                ? 'and $lengthoflike others liked your post'
+                                                : 'liked your post')
+                                        .then((value) => print('complet send'))
+                                    : () {};
                                 GetData.getpost(widget.post.id)
                                     .then((value) => setState(() {
                                           lengthoflike = (json

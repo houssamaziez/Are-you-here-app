@@ -1,7 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-Future<void> addLikeToPost(int postId, int userId) async {
+Future<void> addLikeToPost(String postId, String userId) async {
   final String apiUrl =
       'https://houssamaziez.com/api/post/likse/$postId/$userId';
 

@@ -19,13 +19,11 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
 
   @override
   void initState() {
-    FirebaseMessaging.instance.getToken().then((value) => print(value));
     super.initState();
     instail();
   }
 
   instail() {
-    print("object");
     myData = Provider.of<MyAppController>(context, listen: false);
     myData!.getping();
     InistateWelcome.inis().then((value) {

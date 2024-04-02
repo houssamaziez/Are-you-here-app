@@ -6,6 +6,7 @@ import 'package:app/App/Controller/myappcontroller.dart';
 import 'package:app/App/Service/Api/Bdd/local/auth.dart';
 import 'package:app/App/Service/Api/Bdd/utilsbdd.dart';
 import 'package:app/App/Model/user.dart';
+import 'package:app/App/Service/Api/Function/Put/user.dart';
 import 'package:app/App/View/Auth/Forgot%20Password/screenchange_ps.dart';
 import 'package:app/App/View/Auth/Sign%20in/screensignin.dart';
 import 'package:app/App/View/Home/home.dart';
@@ -38,6 +39,7 @@ class ApiOperation extends ChangeNotifier {
       "phone": phone,
       "role": "client",
       'password': password,
+      'tokennotification': "null",
     };
     try {
       var response = await UtilsBdd.post(UrlApp.urlregister, data);
@@ -45,6 +47,7 @@ class ApiOperation extends ChangeNotifier {
       UtilsBdd.statusCode(
           response: response, context: context, screengo: const Home());
       UserData userdata = UserData.fromJson(json.decode(response.body));
+      await ApiPut.updatatoken(userdata.user!.id.toString());
       userid
           .write("iduser", userdata.user!.id.toString())
           .then((value) => null);
@@ -82,7 +85,7 @@ class ApiOperation extends ChangeNotifier {
       UserData userdata = UserData.fromJson(json.decode(response.body));
       UtilsBdd.statusCode(
           response: response, context: context, screengo: const Home());
-
+      await ApiPut.updatatoken(userdata.user!.id.toString());
       userid
           .write("iduser", userdata.user!.id.toString())
           .then((value) => null);
