@@ -28,7 +28,9 @@ class _ListOfCatigorysState extends State<ListOfCatigorys> {
 
   @override
   void dispose() {
-    controllerHome.changeIndexcatigory(1.toString());
+    Future.microtask(() {
+      controllerHome.changeIndexcatigory(1.toString());
+    });
     super.dispose();
   }
 
@@ -38,9 +40,9 @@ class _ListOfCatigorysState extends State<ListOfCatigorys> {
       future: GetData.getallCatigorys(),
       builder: (BuildContext context, AsyncSnapshot<List<Catigorys>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Waitata.waitdata();
+          return Waitata.waitdata(context);
         } else if (snapshot.hasError) {
-          return Waitata.waitdata();
+          return Waitata.waitdata(context);
         } else {
           List<Catigorys>? userData = snapshot.data;
           return Padding(

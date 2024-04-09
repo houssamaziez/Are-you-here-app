@@ -11,12 +11,14 @@ Future pushNotification({
   required String id,
   required String title,
   required String description,
+  required String post_id,
 }) async {
   final String apiUrl =
       '${UrlApp.host}Notisfication/iduser=$id/idusersend=${userid.read('iduser')}';
   Map<String, dynamic> data = {
     'title': title,
     'description': description,
+    'post_id': post_id,
   };
   try {
     var response = await http.post(

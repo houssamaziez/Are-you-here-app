@@ -15,10 +15,17 @@ class GetData {
     return listcatigorys;
   }
 
-  static Future<Post> getpost(ifdpost) async {
+  static Future<Post> getpost(iduser) async {
     final response =
-        await http.get(Uri.parse('${UrlApp.host}post/data/$ifdpost'));
+        await http.get(Uri.parse('${UrlApp.host}post/data/$iduser'));
     Post list = Post.fromJson(json.decode(response.body)["post"]);
+
+    return list;
+  }
+
+  static Future<Post> getpostbyid(id) async {
+    final response = await http.get(Uri.parse('${UrlApp.host}post/show/22'));
+    Post list = Post.fromJson(json.decode(response.body));
 
     return list;
   }

@@ -1,12 +1,13 @@
 import 'package:app/App/Controller/locationController.dart';
 import 'package:app/App/Service/FutureBuild/list_of_catigorys.dart';
 import 'package:app/App/View/Home/All%20Catigory/screenAllCatigorys.dart';
+import 'package:app/App/View/Home/Screens/Notification/screenNotification.dart';
 import 'package:app/App/View/Home/Screens/ScreenSearch/screenSearch.dart';
 
 import 'package:app/App/util/Size/dimensions.dart';
+import 'package:flutter/material.dart';
 import 'package:pie_menu/pie_menu.dart';
 
-import '../../../../Service/Api/Function/Notification/push.dart';
 import '../../import_home.dart';
 
 class ScreenHome extends StatefulWidget {
@@ -17,6 +18,12 @@ class ScreenHome extends StatefulWidget {
 }
 
 class _ScreenHomeState extends State<ScreenHome> {
+  @override
+  void initState() {
+    Provider.of<HomeController>(context, listen: false).updatelegth();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var controllerlocation = Provider.of<ControllerLocation>(context);
@@ -144,7 +151,7 @@ class _ScreenHomeState extends State<ScreenHome> {
               child: InkWell(
             onTap: () => Go.to(
               context,
-              const ScreenSearch(),
+              ScreenSearch(),
             ),
             child: Container(
               width: double.infinity,
@@ -189,7 +196,7 @@ class _ScreenHomeState extends State<ScreenHome> {
               child: InkWell(
                 onTap: () => Go.to(
                   context,
-                  const ScreenSearch(),
+                  ScreenSearch(),
                 ),
                 child: const Icon(
                   Icons.filter_alt_rounded,
@@ -254,19 +261,42 @@ class _ScreenHomeState extends State<ScreenHome> {
         const Spacer(),
         Padding(
           padding: const EdgeInsets.all(13.0),
-          child: CircleAvatar(
-            radius: 19,
-            backgroundColor: const Color.fromARGB(255, 184, 184, 184),
-            child: Center(
-              child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.notification_important,
-                    color: Colors.black,
-                    size: 18,
-                  )),
-            ),
-          ),
+          child:
+              Consumer<HomeController>(builder: (context, myNotifier, child) {
+            return Stack(
+              children: [
+                CircleAvatar(
+                  radius: 19,
+                  backgroundColor: const Color.fromARGB(255, 184, 184, 184),
+                  child: Center(
+                    child: IconButton(
+                        onPressed: () {
+                          myNotifier.removelegth();
+                          Go.to(context, ScreenNotification());
+                        },
+                        icon: const Icon(
+                          Icons.notification_important,
+                          color: Colors.black,
+                          size: 18,
+                        )),
+                  ),
+                ),
+                myNotifier.langthnotification == '0'
+                    ? Container()
+                    : Positioned(
+                        right: 0,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.red,
+                          radius: 8,
+                          child: Text(
+                            myNotifier.langthnotification,
+                            style: TextStyle(color: Colors.white, fontSize: 11),
+                          ),
+                        ),
+                      )
+              ],
+            );
+          }),
         )
       ],
     );

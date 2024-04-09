@@ -4,7 +4,8 @@ import '../../../util/Size/dimensions.dart';
 
 GridView waitdatapost(BuildContext context) {
   return GridView.builder(
-    physics: const NeverScrollableScrollPhysics(), // This line prevents scrolling
+    physics:
+        const NeverScrollableScrollPhysics(), // This line prevents scrolling
     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2, childAspectRatio: 0.85),
     shrinkWrap: true,

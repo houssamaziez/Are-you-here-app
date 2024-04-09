@@ -4,10 +4,27 @@ import 'package:app/App/View/Home/Screens/ScreenSearch/screenSearch.dart';
 import 'package:app/App/View/Home/Screens/ScreenShopping/screen.shopping.dart';
 import 'package:flutter/material.dart';
 
+import '../Service/Api/Function/Notification/getlengthNotification.dart';
+
 class HomeController extends ChangeNotifier {
   int index = 0;
 
   String nidofcatigory = "1";
+
+  String langthnotification = '0';
+  updatelegth() async {
+    getlengthNotification().then((value) {
+      langthnotification = value;
+      notifyListeners();
+    });
+  }
+
+  removelegth() async {
+    removelangth().then((value) {
+      langthnotification = value;
+      notifyListeners();
+    });
+  }
 
   List<Widget> screens = const [
     ScreenHome(),

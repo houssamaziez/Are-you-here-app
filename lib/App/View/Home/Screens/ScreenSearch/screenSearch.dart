@@ -5,11 +5,8 @@ import 'package:pie_menu/pie_menu.dart';
 
 class ScreenSearch extends StatelessWidget {
   const ScreenSearch({super.key});
-
   @override
   Widget build(BuildContext context) {
-    var controllerlocation = Provider.of<PostController>(context);
-
     return PieCanvas(
       theme: const PieTheme(
         rightClickShowsMenu: true,
@@ -52,7 +49,7 @@ class ScreenSearch extends StatelessWidget {
                       Expanded(
                           child: TextField(
                         onChanged: (value) {
-                          controllerlocation.onChanged(value);
+                          Provider.of<PostController>(context).onChanged(value);
                         },
                         decoration: const InputDecoration(
                           hintText: 'Search',

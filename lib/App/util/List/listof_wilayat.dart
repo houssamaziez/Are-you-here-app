@@ -56,7 +56,7 @@ List<Widget> list = [
     child: Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        "..............",
+        "                   ",
         style: TextStyle(color: Colors.white),
       ),
     ),
@@ -65,7 +65,7 @@ List<Widget> list = [
     child: Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        "..............",
+        "                ",
         style: TextStyle(color: Colors.white),
       ),
     ),
@@ -74,7 +74,7 @@ List<Widget> list = [
     child: Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        "..............",
+        "              ",
         style: TextStyle(color: Colors.white),
       ),
     ),
@@ -83,7 +83,7 @@ List<Widget> list = [
     child: Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        "..............",
+        "              ",
         style: TextStyle(color: Colors.white),
       ),
     ),
@@ -92,7 +92,7 @@ List<Widget> list = [
     child: Padding(
       padding: EdgeInsets.all(8.0),
       child: Text(
-        "..............",
+        "              ",
         style: TextStyle(color: Colors.white),
       ),
     ),
