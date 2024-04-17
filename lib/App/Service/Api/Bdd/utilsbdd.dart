@@ -21,7 +21,6 @@ class UtilsBdd {
       message = MessageDataBase.fromJson(json.decode(response.body));
       snackBar(context,
           message: message.message.toString(), color: Colors.green);
-      Go.push(screengo);
     } else {
       message = MessageDataBase.fromJson(json.decode(response.body));
       snackBar(context, message: message.message.toString());

@@ -3,9 +3,9 @@ import 'package:app/App/Service/Api/Function/PostFunction/getdata.dart';
 import 'package:app/App/Service/Api/Function/Delete/delete.dart';
 import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/View/Widgets/WaitDataWidgets/list_of_post.dart';
-import 'package:app/App/View/Widgets/cardpost.dart';
 import 'package:app/App/util/Const/url.dart';
 import 'package:app/App/util/Size/dimensions.dart';
+import 'package:app/main.dart';
 import 'package:pie_menu/pie_menu.dart';
 
 class ListOfPostUser extends StatefulWidget {
@@ -19,15 +19,15 @@ class _ListOfPostUserState extends State<ListOfPostUser> {
   Widget returndatawidegtPost() {
     return FutureBuilder(
       future: GetDataPost.getall_post_user(id_user: widget.iduser),
-      builder: (BuildContext context, AsyncSnapshot<List<Post>> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<Student>> snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return waitdatapost(context);
+          return waitdatapost();
         } else if (snapshot.hasError) {
           // Show an error message if the data fetching fails
-          return waitdatapost(context);
+          return waitdatapost();
         } else {
           // Build your UI based on the fetched data
-          List<Post>? userData = snapshot.data;
+          List<Student>? userData = snapshot.data;
           return ListView.builder(
             shrinkWrap: true,
             itemCount: userData!.length,
@@ -76,7 +76,7 @@ class _ListOfPostUserState extends State<ListOfPostUser> {
                               children: [
                                 const Spacer(),
                                 Text(
-                                  userData[index].title.toString(),
+                                  userData[index].name.toString(),
                                   style: const TextStyle(color: Colors.white),
                                 ),
                                 SizeApp.sizedboxh10
@@ -100,27 +100,4 @@ class _ListOfPostUserState extends State<ListOfPostUser> {
   Widget build(BuildContext context) {
     return returndatawidegtPost();
   }
-}
-
-GridView listofpost(List<Post>? userData) {
-  return GridView.builder(
-    physics:
-        const NeverScrollableScrollPhysics(), // This line prevents scrolling
-    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2, childAspectRatio: 0.85),
-    shrinkWrap: true,
-    itemCount: userData!.length,
-    itemBuilder: (context, index) {
-      return card_post(
-        context,
-        userData,
-        index,
-        () {
-          // ApiDelete.deleteData(userData[index].id.toString())
-          //     .then((value) => setState(() {}));
-        },
-        userData[index].catigoryId.toString(),
-      );
-    },
-  );
 }

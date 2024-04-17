@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:app/App/View/Auth/Sign%20in/screensignin.dart';
 import 'package:app/App/View/Home/Home.dart';
 import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/View/Welcome/inistateWelcome.dart';
 import 'package:app/App/util/Image/pathimages.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
 class ScreenWelcome extends StatefulWidget {
   const ScreenWelcome({Key? key}) : super(key: key);
@@ -26,15 +26,18 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
   instail() {
     myData = Provider.of<MyAppController>(context, listen: false);
     myData!.getping();
-    InistateWelcome.inis().then((value) {
-      if (value != null) {
-        myData!.updateData(value);
-        Timer(const Duration(seconds: 1), () {
-          Go.push(const Home());
-        });
-      }
+    Timer(const Duration(seconds: 3), () {
+      InistateWelcome.inis().then((value) {
+        if (value != null) {
+          myData!.updateData(value);
+          Timer(const Duration(seconds: 1), () {
+            Go.push(Home());
+          });
+        }
+      });
     });
-    Timer(const Duration(seconds: 4), () {
+
+    Timer(const Duration(seconds: 5), () {
       setState(() {
         iscomplet = true;
       });
@@ -52,7 +55,7 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromARGB(255, 167, 220, 255),
       body: Stack(
         children: [
           Center(

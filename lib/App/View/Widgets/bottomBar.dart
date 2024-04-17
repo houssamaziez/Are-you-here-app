@@ -13,13 +13,13 @@ class MyBottomBar extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeController controller = Provider.of<HomeController>(context);
     return BottomBarDoubleBullet(
-      color: Colors.brown,
+      color: Colors.blueAccent,
       selectedIndex: controller.index,
       items: [
-        BottomBarItem(iconData: Icons.home),
-        BottomBarItem(iconData: Icons.search),
-        BottomBarItem(iconData: Icons.favorite),
-        BottomBarItem(iconData: Icons.shopping_bag_rounded),
+        BottomBarItem(iconData: Icons.dashboard_customize),
+        BottomBarItem(iconData: Icons.people_sharp),
+        BottomBarItem(iconData: Icons.notification_important),
+        BottomBarItem(iconData: Icons.person),
       ],
       onSelect: (index) {
         controller.changeIndex(index);

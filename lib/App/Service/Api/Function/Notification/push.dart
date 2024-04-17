@@ -19,14 +19,36 @@ Future pushNotification({
     'title': title,
     'description': description,
     'post_id': post_id,
+    'issee': "true",
   };
   try {
     var response = await http.post(
       Uri.parse(apiUrl),
-      // headers: <String, String>{
-      //   'Content-Type': 'application/json; charset=UTF-8',
-      //   // Add any additional headers here
-      // },
+      body: data,
+    );
+
+    return response;
+  } catch (e) {
+    if (kDebugMode) {
+      print(e);
+    }
+  }
+}
+
+Future pushNote({
+  required String notificationid,
+  required String title,
+  required String description,
+}) async {
+  final String apiUrl =
+      '${UrlApp.host}note/create/user_id=${userid.read('iduser')}/notification_id=${notificationid}';
+  Map<String, dynamic> data = {
+    'title': title,
+    'details': description,
+  };
+  try {
+    var response = await http.post(
+      Uri.parse(apiUrl),
       body: data,
     );
 

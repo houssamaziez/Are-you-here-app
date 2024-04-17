@@ -11,6 +11,7 @@ import 'package:app/App/View/Auth/Forgot%20Password/screenchange_ps.dart';
 import 'package:app/App/View/Auth/Sign%20in/screensignin.dart';
 import 'package:app/App/View/Home/home.dart';
 import 'package:app/App/util/Const/url.dart';
+import 'package:app/App/util/Route/go.dart';
 import 'package:app/App/util/math.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -35,9 +36,8 @@ class ApiOperation extends ChangeNotifier {
     Map<String, dynamic> data = {
       'name': name,
       'email': email,
-      "wilaya": wilaya.toString(),
-      "phone": phone,
-      "role": "client",
+      "address": wilaya.toString(),
+      "phone": phone.toInt(),
       'password': password,
       'tokennotification': "null",
     };
@@ -48,10 +48,7 @@ class ApiOperation extends ChangeNotifier {
           response: response, context: context, screengo: const Home());
       UserData userdata = UserData.fromJson(json.decode(response.body));
       await ApiPut.updatatoken(userdata.user!.id.toString());
-      userid
-          .write("iduser", userdata.user!.id.toString())
-          .then((value) => null);
-      userwilaya.write("wilaya", wilaya.toString()).then((value) => null);
+
       isloadingAuth = false;
       notifyListeners();
       return response;
@@ -98,6 +95,7 @@ class ApiOperation extends ChangeNotifier {
         int.parse(userid.read('iduser')),
       );
       myData.updateData(user);
+      Go.push(Home());
       print(myData.userdata!.user!.name);
       return response;
     } catch (e) {}

@@ -11,16 +11,17 @@ class Waitata {
         length: list.length,
         child: Column(
           children: <Widget>[
-            ButtonsTabBar(
-                buttonMargin: const EdgeInsets.all(6),
-                backgroundColor: Colors.brown,
-                unselectedBackgroundColor:
-                    const Color.fromARGB(255, 197, 197, 197),
-                unselectedLabelStyle: const TextStyle(color: Colors.black),
-                labelStyle: const TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.bold),
-                tabs: list.toList()),
-            waitdatapost(context),
+            // ButtonsTabBar(
+            //     buttonMargin: const EdgeInsets.all(6),
+            //     backgroundColor: Colors.brown,
+            //     unselectedBackgroundColor:
+            //         const Color.fromARGB(255, 197, 197, 197),
+            //     unselectedLabelStyle: const TextStyle(color: Colors.black),
+            //     labelStyle: const TextStyle(
+            //         color: Colors.white, fontWeight: FontWeight.bold),
+            //     tabs: list.toList()),
+
+            waitdatapost(),
           ],
         ),
       ),

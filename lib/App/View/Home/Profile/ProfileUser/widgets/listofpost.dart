@@ -3,7 +3,7 @@ import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/View/Widgets/cardpost.dart';
 
 ListView listofpostprofile(
-    {required List<Post>? userData, required catigoryid}) {
+    {required List<Student>? userData, required catigoryid}) {
   return ListView.builder(
     scrollDirection: Axis.horizontal,
     itemCount: userData!.length,

@@ -1,58 +1,48 @@
-class Post {
+class Student {
   int? id;
+  String? name;
+  String? classs;
+  String? isPresent;
   int? userId;
-  int? catigoryId;
-  String? title;
-  String? wilaya;
-  String? price;
-  String? details;
+  int? lavelId;
   String? image;
-  String? likes;
-  String? comment;
   String? createdAt;
   String? updatedAt;
 
-  Post(
+  Student(
       {this.id,
+      this.name,
+      this.classs,
+      this.isPresent,
       this.userId,
-      this.catigoryId,
-      this.title,
-      this.wilaya,
-      this.price,
-      this.details,
+      this.lavelId,
       this.image,
-      this.likes,
-      this.comment,
       this.createdAt,
       this.updatedAt});
 
-  Post.fromJson(Map<String, dynamic> json) {
+  Student.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    name = json['name'];
+    classs = json['class'];
+    isPresent = json['isPresent'];
     userId = json['user_id'];
-    catigoryId = json['catigory_id'];
-    title = json['title'];
-    wilaya = json['wilaya'];
-    price = json['price'];
-    details = json['details'];
+    lavelId = json['lavel_id'];
     image = json['image'];
-    likes = json['likes'];
-    comment = json['comment'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['user_id'] = userId;
-    data['catigory_id'] = catigoryId;
-    data['title'] = title;
-    data['details'] = details;
-    data['image'] = image;
-    data['likes'] = likes;
-    data['comment'] = comment;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name'] = this.name;
+    data['class'] = this.classs;
+    data['isPresent'] = this.isPresent;
+    data['user_id'] = this.userId;
+    data['lavel_id'] = this.lavelId;
+    data['image'] = this.image;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
     return data;
   }
 }

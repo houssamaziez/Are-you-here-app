@@ -15,14 +15,14 @@ import 'package:provider/provider.dart';
 
 import '../../../Service/Api/Function/api_operations.dart';
 
-class ScreenRegister extends StatefulWidget {
-  const ScreenRegister({super.key});
+class AddParent extends StatefulWidget {
+  const AddParent({super.key});
 
   @override
-  State<ScreenRegister> createState() => _ScreenRegisterState();
+  State<AddParent> createState() => _AddParentState();
 }
 
-class _ScreenRegisterState extends State<ScreenRegister> {
+class _AddParentState extends State<AddParent> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController namelController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -76,10 +76,9 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                           children: [
                             Textfildapp.myTextfilde(
                                 controller: namelController,
-                                hin: 'name',
+                                hin: 'Name',
                                 title: TextApp.yourName),
                             SizeApp.sizedboxh20,
-
                             Textfildapp.myTextfilde(
                                 controller: emailController,
                                 hin: 'xyz@gmail.com',
@@ -102,11 +101,11 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                             Row(
                               children: [
                                 const Text(
-                                  "Welaya :",
+                                  "City :",
                                   style: StyleApp.style1,
                                 ),
                                 const SizedBox(
-                                  width: 30,
+                                  width: 40,
                                 ),
                                 Expanded(
                                   child: ElevatedButton(
@@ -128,8 +127,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                                 ),
                               ],
                             ),
-                            SizeApp.sizedboxh20,
-
+                            SizeApp.sizedboxh30,
                             Consumer<ControllerLocation>(
                                 builder: (context, a, child) {
                               return Buttons.buttonAll(context,
@@ -160,11 +158,7 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                                                         passwordController.text)
                                                 .then((value) {
                                               controller.change(false);
-                                              ApiOperation.getuserData(
-                                                int.parse(
-                                                    userid.read('iduser')),
-                                              ).then((value) => controllerMyAPP
-                                                  .updateData(value));
+                                              Navigator.pop(context);
                                             });
                                             controller.change(false);
                                           } else {
@@ -175,26 +169,10 @@ class _ScreenRegisterState extends State<ScreenRegister> {
                                       : () {});
                             }),
                             SizeApp.sizedboxh25,
-
-                            // Buttons.buttonAll(context,
-                            //     title: TextApp.signInwithGoogle,
-                            //     isgoogle: true,
-                            //     color: const Color.fromARGB(255, 235, 235, 235),
-                            //     functinn: () {}),
                           ],
                         ),
                       ),
                     )),
-                TextButton(
-                  onPressed: () {
-                    Go.push(const ScreenSignin());
-                  },
-                  child: const Text(
-                    TextApp.alreHaAccount,
-                    style: TextStyle(),
-                    textAlign: TextAlign.center,
-                  ),
-                )
               ],
             ),
           ),

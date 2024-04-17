@@ -7,7 +7,7 @@ import '../../../../../util/Const/url.dart';
 import '../../../../../util/Convert/Stringtolist.dart';
 import '../../../../../util/Size/dimensions.dart';
 
-SizedBox imageprofile(BuildContext context, Post post) {
+SizedBox imageprofile(BuildContext context, Student post) {
   PageController pageController =
       PageController(); // PageController for PageView
   List Images = parseImageList(post.image.toString()).toList();

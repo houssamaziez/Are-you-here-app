@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
+import 'View/Admine/Lavel/screenAllLavel.dart';
+import 'View/Admine/Parents/screenParents.dart';
+import 'View/Welcome/Start/ScreennStart.dart';
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -13,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: light,
       // home: userid.read('iduser') == null ? ScreenSignin() : ScreenHome(),
-      home: const ScreenWelcome(),
+      home: ScreenWelcome(),
     );
   }
 }

@@ -5,27 +5,44 @@ import 'package:app/App/Model/post.dart';
 import 'package:app/App/util/Const/url.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../../Model/classa.dart';
+
 class GetData {
-  static Future<List<Catigorys>> getallCatigorys() async {
-    final response = await http.get(Uri.parse('${UrlApp.host}catigory'));
-    List<dynamic> list = json.decode(response.body)["Catigory"];
-    List<Catigorys> listcatigorys =
-        list.map((json) => Catigorys.fromJson(json)).toList();
+  static Future<List<Lavle>> getallLevel() async {
+    final response = await http.get(Uri.parse('${UrlApp.host}lavel/all'));
+    List<dynamic> list = json.decode(response.body)["lavels"];
+    List<Lavle> listcatigorys =
+        list.map((json) => Lavle.fromJson(json)).toList();
 
     return listcatigorys;
   }
 
-  static Future<Post> getpost(iduser) async {
+  static Future<void> updateiseeNotification(id) async {
+    final response =
+        await http.get(Uri.parse('${UrlApp.host}Notisfication/editsee/$id'));
+  }
+
+  static Future<List<Classa>> getallclassa(id) async {
+    final response = await http.get(Uri.parse('${UrlApp.host}classa/all/$id'));
+    List<dynamic> list = json.decode(response.body)["lavels"];
+    print(list);
+
+    List<Classa> listcatigorys =
+        list.map((json) => Classa.fromJson(json)).toList();
+    return listcatigorys;
+  }
+
+  static Future<Student> getpost(iduser) async {
     final response =
         await http.get(Uri.parse('${UrlApp.host}post/data/$iduser'));
-    Post list = Post.fromJson(json.decode(response.body)["post"]);
+    Student list = Student.fromJson(json.decode(response.body)["post"]);
 
     return list;
   }
 
-  static Future<Post> getpostbyid(id) async {
+  static Future<Student> getpostbyid(id) async {
     final response = await http.get(Uri.parse('${UrlApp.host}post/show/22'));
-    Post list = Post.fromJson(json.decode(response.body));
+    Student list = Student.fromJson(json.decode(response.body));
 
     return list;
   }

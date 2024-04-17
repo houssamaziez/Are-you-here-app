@@ -3,6 +3,7 @@ import 'package:app/App/Service/Api/Function/Put/user.dart';
 import 'package:app/App/Service/Api/Function/api_operations.dart';
 import 'package:app/App/View/Auth/Sign%20in/screensignin.dart';
 import 'package:app/App/View/Home/import_home.dart';
+import 'package:app/App/View/Welcome/Start/ScreennStart.dart';
 import 'package:app/App/util/Route/go.dart';
 
 class InistateWelcome {
@@ -11,7 +12,7 @@ class InistateWelcome {
 
     try {
       if (userid.read('iduser') == null) {
-        return Future(() => Go.push(const ScreenSignin()));
+        return Future(() => Go.push(const ScreenStart()));
       } else {
         try {
           ApiPut.updatatoken(userid.read('iduser'))

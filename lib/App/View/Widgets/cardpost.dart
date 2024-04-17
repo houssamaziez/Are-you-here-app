@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:app/App/Model/post.dart';
 import 'package:app/App/Service/Api/Function/Delete/delete.dart';
 import 'package:app/App/Service/ImageCach/imagecach.dart';
-import 'package:app/App/View/Home/Profile/ProfileUser/profialPost.dart';
 import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/util/Const/url.dart';
 import 'package:app/App/util/Convert/time.dart';
@@ -12,21 +11,15 @@ import 'package:pie_menu/pie_menu.dart';
 
 import '../../util/Convert/Stringtolist.dart';
 
-SizedBox card_post(BuildContext context, List<Post> userData, int index,
+SizedBox card_post(BuildContext context, List<Student> userData, int index,
     Function delete, catigoryid) {
-  int likelength =
-      (json.decode(userData[index].likes!).cast<String>().toList()).length;
+  // int likelength =
+  //     (json.decode(userData[index].n).cast<String>().toList()).length;
   return SizedBox(
     width: 160,
     child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: PieMenu(
-        onPressed: () => Go.to(
-            context,
-            ProfilePost(
-              post: userData[index],
-              catigoryid: catigoryid,
-            )),
         actions: [
           PieAction(
             tooltip: const Text('Delelte'),
@@ -48,8 +41,8 @@ SizedBox card_post(BuildContext context, List<Post> userData, int index,
                 child: Stack(
                   children: [
                     imageCached(
-                        image: '${UrlApp.site}images/${parseImageList(userData[index].image.toString())
-                                .toList()[0]}'),
+                        image:
+                            '${UrlApp.site}images/${userData[index].image.toString()}'),
                   ],
                 ),
                 decoration: BoxDecoration(borderRadius: SizeApp.raduis(11)),
@@ -75,7 +68,7 @@ SizedBox card_post(BuildContext context, List<Post> userData, int index,
                                 color: Colors.red),
                           ),
                           Text(
-                            '${userData[index].price}',
+                            '${userData[index].name}',
                             style: const TextStyle(
                                 height: 0.8,
                                 fontSize: 22,
@@ -85,7 +78,7 @@ SizedBox card_post(BuildContext context, List<Post> userData, int index,
                         ],
                       ),
                       Text(
-                        userData[index].title.toString(),
+                        userData[index].name.toString(),
                         style:
                             const TextStyle(fontSize: 16, color: Colors.grey),
                       ),
@@ -105,7 +98,7 @@ SizedBox card_post(BuildContext context, List<Post> userData, int index,
                             color: Colors.grey),
                       ),
                       Text(
-                        'Likes: $likelength',
+                        'Likes: ',
                         style: const TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,

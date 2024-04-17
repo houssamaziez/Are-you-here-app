@@ -3,7 +3,6 @@ import 'package:app/App/Controller/myappcontroller.dart';
 import 'package:app/App/Service/Api/Bdd/local/auth.dart';
 import '../../../Service/Api/Function/api_operations.dart';
 import 'package:app/App/View/Auth/Forgot%20Password/screen_searshEmai.dart';
-import 'package:app/App/View/Auth/Register%20Account/screenRegister.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
 import 'package:app/App/View/Widgets/textfild.dart';
 import 'package:app/App/util/Const/text_app.dart';
@@ -44,6 +43,7 @@ class _ScreenSigninState extends State<ScreenSignin> {
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: SizedBox(
+            height: SizeApp.heightmobile(context, size: 0.8),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -55,14 +55,13 @@ class _ScreenSigninState extends State<ScreenSignin> {
                   style: StyleApp.title,
                 ),
                 SizeApp.sizedboxh10,
-
                 const Text(
                   TextApp.helloAgainsup,
                   style: StyleApp.suptitle,
                   textAlign: TextAlign.center,
                 ),
                 SizeApp.sizedboxh10,
-
+                Spacer(),
                 Align(
                     alignment: Alignment.centerLeft,
                     child: Padding(
@@ -130,23 +129,19 @@ class _ScreenSigninState extends State<ScreenSignin> {
                     ),
                   ),
                 ),
-                SizeApp.sizedboxh40,
-
-                TextButton(
-                  onPressed: () {
-                    Go.to(context, const ScreenRegister());
-                  },
-                  child: const Text(
-                    TextApp.newUsCreateaccount,
-                    style: TextStyle(),
-                    textAlign: TextAlign.center,
-                  ),
+                Spacer(
+                  flex: 3,
                 ),
-                // Buttons.buttonAll(context,
-                //     title: TextApp.signInwithGoogle,
-                //     isgoogle: true,
-                //     color: const Color.fromARGB(255, 235, 235, 235),
-                //     functinn: () {}),
+                // TextButton(
+                //   onPressed: () {
+                //     Go.to(context, const ScreenRegister());
+                //   },
+                //   child: const Text(
+                //     TextApp.newUsCreateaccount,
+                //     style: TextStyle(),
+                //     textAlign: TextAlign.center,
+                //   ),
+                // ),
               ],
             ),
           ),

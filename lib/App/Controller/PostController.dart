@@ -28,7 +28,7 @@ class PostController extends ChangeNotifier {
     isUserLikedPost(idpost, userid.read('iduser').toString()).then((value) {
       islike = value;
       notifyListeners();
-      GetData.getpost(idpost).then((value) => updatlist(value.likes!));
+      // GetData.getpost(idpost).then((value) => updatlist(value.likes!));
     });
   }
 
@@ -48,7 +48,7 @@ class PostController extends ChangeNotifier {
                           : 'liked your post')
                   .then((value) => print('complet send'))
               : () {};
-          GetData.getpost(postid).then((value) => updatlist(value.likes!));
+          // GetData.getpost(postid).then((value) => updatlist());
         }));
   }
 

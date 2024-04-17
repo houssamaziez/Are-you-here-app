@@ -5,7 +5,7 @@ import 'package:app/App/util/Const/url.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-Future<List<Catigorys>> search(
+Future<List<Lavle>> search(
   BuildContext context,
   String query,
 ) async {
@@ -23,8 +23,8 @@ Future<List<Catigorys>> search(
 
     if (response.statusCode == 200) {
       List<dynamic> list = json.decode(response.body);
-      List<Catigorys> listcatigorys =
-          list.map((json) => Catigorys.fromJson(json)).toList();
+      List<Lavle> listcatigorys =
+          list.map((json) => Lavle.fromJson(json)).toList();
       return listcatigorys;
     } else {
       throw Exception('Failed to load search results');

@@ -5,6 +5,8 @@ class Notificationapp {
   String? userId;
   String? postId;
   String? createdAt;
+  String? issee;
+
   String? updatedAt;
 
   Notificationapp(
@@ -13,6 +15,7 @@ class Notificationapp {
       this.details,
       this.userId,
       this.postId,
+      this.issee,
       this.createdAt,
       this.updatedAt});
 
@@ -22,6 +25,8 @@ class Notificationapp {
     details = json['details'];
     userId = json['user_id'];
     postId = json['post_id'];
+    issee = json['issee'];
+
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
@@ -33,6 +38,7 @@ class Notificationapp {
     data['details'] = this.details;
     data['user_id'] = this.userId;
     data['post_id'] = this.postId;
+    data['issee'] = this.issee;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     return data;

@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 class ApiDelete {
   static Future<void> deleteData(String id) async {
     final String apiUrl = '${UrlApp.host}post/delete/$id';
-
     try {
       final response = await http.delete(
         Uri.parse(apiUrl),
@@ -13,7 +12,6 @@ class ApiDelete {
           // Add any other headers as needed
         },
       );
-
       if (response.statusCode == 200) {
         print('DELETE request successful');
       } else {

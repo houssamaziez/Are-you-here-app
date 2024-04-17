@@ -10,6 +10,19 @@
 	</array>
 	<key>NSLocationAlwaysUsageDescription</key>	
 	<string>I need it </string>	
+
+    <key>NSPhotoLibraryUsageDescription</key>	
+	<string>I need it </string>	
+	<key>NSCameraUsageDescription</key>	
+	<string>I need it </string>	
+	
+	<key>LSApplicationQueriesSchemes</key>
+    <array>
+    <string>sms</string>
+    <string>tel</string>
+    </array>
+
+
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>	
 	<string>Always and when in use!</string>	
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>	
