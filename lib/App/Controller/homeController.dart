@@ -72,7 +72,7 @@ class HomeController extends ChangeNotifier {
   }
 
   Widget Mywideget = waitdatapost();
-  sutodent(id_classa) {
+  suctodent(id_classa) {
     Mywideget = FutureBuilder(
       future:
           GetDataPost.getall_post_Catigory(wilaya: "", id_classa: id_classa),
@@ -86,7 +86,7 @@ class HomeController extends ChangeNotifier {
         } else {
           // Build your UI based on the fetched data
           List<Student>? userData = snapshot.data;
-          return StudentsToggleButtons(
+          return StudentsToggleBu(
             students: userData!,
           );
         }

@@ -3,6 +3,7 @@ import 'package:app/App/Service/FutureBuild/list_of_catigorys.dart';
 
 import 'package:app/App/util/Size/dimensions.dart';
 import 'package:pie_menu/pie_menu.dart';
+import '../../../../main.dart';
 import '../../Home/import_home.dart';
 
 class ScreenStudentList extends StatefulWidget {
@@ -32,17 +33,17 @@ class _ScreenStudentListState extends State<ScreenStudentList> {
         ),
       ),
       child: Scaffold(
-          body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizeApp.sizedboxh50,
-            titlehome(),
-            SizeApp.sizedboxh20,
-            ListOfCatigorys(),
-          ],
-        ),
+          body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizeApp.sizedboxh50,
+          titlehome(),
+          SizeApp.sizedboxh20,
+          StudentsToggleBu(
+            students: [],
+          ),
+        ],
       )),
     );
   }

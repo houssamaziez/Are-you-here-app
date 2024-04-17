@@ -67,30 +67,17 @@ class _ScreenAllStudentState extends State<ScreenAllStudent> {
           )
         ],
       ),
-      body: RefreshIndicator(
-        onRefresh: refreshList,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              FutureBuilder(
-                future: GetData.getallclassa(widget.id_classa),
-                builder: (BuildContext context,
-                    AsyncSnapshot<List<Classa>> snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return Waitata.waitdata(context);
-                  } else if (snapshot.hasError) {
-                    return Waitata.waitdata(context);
-                  } else {
-                    return sutodent(widget.id_classa);
-                  }
-                },
-              ),
-              SizedBox(
-                height: SizeApp.heightmobile(context),
-              )
-            ],
-          ),
-        ),
+      body: FutureBuilder(
+        future: GetData.getallclassa(widget.id_classa),
+        builder: (BuildContext context, AsyncSnapshot<List<Classa>> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Waitata.waitdata(context);
+          } else if (snapshot.hasError) {
+            return Waitata.waitdata(context);
+          } else {
+            return sutodent(widget.id_classa);
+          }
+        },
       ),
     );
   }
@@ -108,9 +95,9 @@ class _ScreenAllStudentState extends State<ScreenAllStudent> {
           return waitdatapost();
         } else {
           // Build your UI based on the fetched data
-          List<Student>? userData = snapshot.data;
-          return StudentsToggleButtons(
-            students: userData!,
+          List<Student>? students = snapshot.data;
+          return StudentsToggleBu(
+            students: students!,
           );
         }
       },
