@@ -16,3 +16,11 @@ Future<void> makePhoneCall(String phoneNumber) async {
     }
   }
 }
+
+Future<void> launchURL(String urlString) async {
+  if (await canLaunch(urlString)) {
+    await launch(urlString);
+  } else {
+    throw 'Could not launch $urlString';
+  }
+}

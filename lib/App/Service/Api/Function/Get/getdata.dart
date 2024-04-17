@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app/App/Model/Parent.dart';
 import 'package:app/App/Model/catigory.dart';
 import 'package:app/App/Model/post.dart';
 import 'package:app/App/util/Const/url.dart';

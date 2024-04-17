@@ -1,11 +1,14 @@
 import 'dart:async';
 
 import 'package:app/App/Controller/listofProvider.dart';
+import 'package:app/App/Model/classa.dart';
 import 'package:app/App/Model/post.dart';
 import 'package:app/App/Service/Api/Function/Notification/push.dart';
 import 'package:app/App/Service/Api/Function/Put/presont.dart';
 import 'package:app/App/Service/ImageCach/imagecach.dart';
+import 'package:app/App/View/Admine/Student/studentscreen.dart';
 import 'package:app/App/View/Home/import_home.dart';
+import 'package:app/App/View/Widgets/dialogs.dart';
 import 'package:app/App/View/Widgets/snackBar.dart';
 import 'package:app/App/myapp.dart';
 import 'package:app/App/util/Const/url.dart';
@@ -13,6 +16,7 @@ import 'package:app/App/util/Size/dimensions.dart';
 import 'package:app/firebase_options.dart';
 import 'package:bottom_bar_matu/utils/app_utils.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 
 void main() async {
@@ -21,18 +25,27 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await GetStorage.init();
+
+  SystemChrome.setPreferredOrientations([
+    // تقييد التوجهات المفضلة
+    DeviceOrientation.portraitUp, // العمودي فقط
+    DeviceOrientation.portraitDown,
+  ]).then((_) {
+    runApp(
+      MultiProvider(
+        providers: listofprovider,
+        child: const MyApp(),
+      ),
+    );
+  });
+
   // userid.write('iduser', null);
-  runApp(
-    MultiProvider(
-      providers: listofprovider,
-      child: const MyApp(),
-    ),
-  );
 }
 
 class StudentsToggleBu extends StatefulWidget {
   final List<Student> students;
-  StudentsToggleBu({super.key, required this.students});
+  final Classa classa;
+  StudentsToggleBu({super.key, required this.students, required this.classa});
   @override
   _StudentsToggleBuState createState() => _StudentsToggleBuState();
 }
@@ -61,34 +74,45 @@ class _StudentsToggleBuState extends State<StudentsToggleBu> {
             children: List<Widget>.generate(widget.students.length, (index) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  child: FilterChip(
-                    label: SizedBox(
-                        child: Row(
-                      children: [
-                        imageCached(
-                            image:
-                                '${UrlApp.site}images/${widget.students[index].image.toString()}'),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(widget.students[index].name.toString()),
-                        Spacer(),
-                        Text(
-                          widget.students[index].classs.toString(),
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    )),
-                    selected: isSelected[index],
-                    selectedColor: Color.fromARGB(
-                        255, 187, 255, 189), // Set selected color to green
+                child: InkWell(
+                  onLongPress: () async {
+                    await showDeleteConfirmationDialog(context,
+                        'student/delete/${widget.students[index].id.toString()}',
+                        title: "حذف ${widget.students[index].name}");
+                    Go.back(ScreenAllStudent(
+                        id_classa: widget.classa.id.toString(),
+                        lavelId: widget.students[index].lavelId.toString(),
+                        classa: widget.classa));
+                  },
+                  child: SizedBox(
+                    child: FilterChip(
+                      label: SizedBox(
+                          child: Row(
+                        children: [
+                          imageCached(
+                              image:
+                                  '${UrlApp.site}images/${widget.students[index].image.toString()}'),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Text(widget.students[index].name.toString()),
+                          Spacer(),
+                          Text(
+                            widget.students[index].classs.toString(),
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ],
+                      )),
+                      selected: isSelected[index],
+                      selectedColor: Color.fromARGB(
+                          255, 187, 255, 189), // Set selected color to green
 
-                    onSelected: (bool selected) {
-                      setState(() {
-                        isSelected[index] = selected;
-                      });
-                    },
+                      onSelected: (bool selected) {
+                        setState(() {
+                          isSelected[index] = selected;
+                        });
+                      },
+                    ),
                   ),
                 ),
               );

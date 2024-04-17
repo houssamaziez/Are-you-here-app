@@ -89,8 +89,8 @@ class _CreateStudentScreenState extends State<CreateStudentScreen> {
     });
   }
 
-  User? selectedParent;
-  List<User> parents = [];
+  Parent? selectedParent;
+  List<Parent> parents = [];
 
   @override
   void initState() {
@@ -100,7 +100,7 @@ class _CreateStudentScreenState extends State<CreateStudentScreen> {
 
   fetchParents() async {
     // Simulate fetching data
-    List<User> fetchedParents = await fetchUsers();
+    List<Parent> fetchedParents = await fetchUsers();
     setState(() {
       parents = fetchedParents;
     });
@@ -143,16 +143,17 @@ class _CreateStudentScreenState extends State<CreateStudentScreen> {
                     boxShadow: [],
                   ),
                   child: DropdownButtonHideUnderline(
-                    child: DropdownButtonFormField<User>(
+                    child: DropdownButtonFormField<Parent>(
                       value: selectedParent,
                       isExpanded: true,
-                      onChanged: (User? newValue) {
+                      onChanged: (Parent? newValue) {
                         setState(() {
                           selectedParent = newValue;
                         });
                       },
-                      items: parents.map<DropdownMenuItem<User>>((User parent) {
-                        return DropdownMenuItem<User>(
+                      items: parents
+                          .map<DropdownMenuItem<Parent>>((Parent parent) {
+                        return DropdownMenuItem<Parent>(
                           value: parent,
                           child: Column(
                             children: [

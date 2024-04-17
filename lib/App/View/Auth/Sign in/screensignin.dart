@@ -1,6 +1,7 @@
 import 'package:app/App/Controller/authController.dart';
 import 'package:app/App/Controller/myappcontroller.dart';
 import 'package:app/App/Service/Api/Bdd/local/auth.dart';
+import '../../../Service/Api/Function/Put/user.dart';
 import '../../../Service/Api/Function/api_operations.dart';
 import 'package:app/App/View/Auth/Forgot%20Password/screen_searshEmai.dart';
 import 'package:app/App/View/Widgets/buttons.dart';
@@ -11,6 +12,8 @@ import 'package:app/App/util/Size/dimensions.dart';
 import 'package:app/App/util/theme/Style/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../Welcome/inistateWelcome.dart';
 
 class ScreenSignin extends StatefulWidget {
   const ScreenSignin({super.key});
@@ -106,6 +109,7 @@ class _ScreenSigninState extends State<ScreenSignin> {
                                                     userid.read('iduser')),
                                               ).then((value) => controllerMyAPP
                                                   .updateData(value));
+
                                               myData.change(false);
                                             });
                                             myData.change(false);

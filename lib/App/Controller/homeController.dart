@@ -7,8 +7,11 @@ import 'package:flutter/material.dart';
 import '../../main.dart';
 import '../Service/Api/Function/Notification/getlengthNotification.dart';
 import '../Service/Api/Function/PostFunction/getdata.dart';
+import '../View/Admine/Parents/profile.dart';
+import '../View/Home/HelpScreen/HelpScreen.dart';
 import '../View/Home/Screens/Notification/screenNotification.dart';
 import '../View/Home/Screens/ScreenSearch/screenSearch.dart';
+import '../View/Welcome/inistateWelcome.dart';
 import '../View/Widgets/WaitDataWidgets/list_of_post.dart';
 
 class HomeController extends ChangeNotifier {
@@ -32,11 +35,23 @@ class HomeController extends ChangeNotifier {
     });
   }
 
-  List<Widget> screens = [
+  List<Widget> screens1 = [
     ScreenAllLavel(),
     ScreenSearch(),
     const ScreenNotification(),
-    const Scaffold(),
+    // UserProfilePage(
+    //   user: userDataapp!,
+    // ),
+  ];
+  List<Widget> screens2 = [
+    // ScreenAllLavel(),
+    // ScreenSearch(),
+    UserProfilePage(
+      user: userDataapp!,
+    ),
+    const ScreenNotification(),
+
+    ScreenMinu(),
   ];
   List<String> titlescreens = const [
     'Screen Home',
@@ -68,30 +83,6 @@ class HomeController extends ChangeNotifier {
 
   changeisSelected(bool selected, ind) {
     isSelected[ind] = selected;
-    notifyListeners();
-  }
-
-  Widget Mywideget = waitdatapost();
-  suctodent(id_classa) {
-    Mywideget = FutureBuilder(
-      future:
-          GetDataPost.getall_post_Catigory(wilaya: "", id_classa: id_classa),
-      // initialData: InitialData,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return waitdatapost();
-        } else if (snapshot.hasError) {
-          // Show an error message if the data fetching fails
-          return waitdatapost();
-        } else {
-          // Build your UI based on the fetched data
-          List<Student>? userData = snapshot.data;
-          return StudentsToggleBu(
-            students: userData!,
-          );
-        }
-      },
-    );
     notifyListeners();
   }
 }

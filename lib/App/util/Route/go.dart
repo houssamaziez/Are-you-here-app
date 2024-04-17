@@ -38,4 +38,8 @@ class Go {
   static void push(Widget SecondScreen) {
     Get.offAll(() => SecondScreen);
   }
+
+  static void back(Widget SecondScreen) {
+    Get.off(() => SecondScreen);
+  }
 }

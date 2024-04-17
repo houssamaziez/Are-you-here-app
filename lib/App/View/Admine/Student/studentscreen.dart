@@ -75,14 +75,14 @@ class _ScreenAllStudentState extends State<ScreenAllStudent> {
           } else if (snapshot.hasError) {
             return Waitata.waitdata(context);
           } else {
-            return sutodent(widget.id_classa);
+            return sutodent(widget.id_classa, widget.classa);
           }
         },
       ),
     );
   }
 
-  sutodent(id_classa) {
+  sutodent(id_classa, classa) {
     return FutureBuilder(
       future:
           GetDataPost.getall_post_Catigory(wilaya: "", id_classa: id_classa),
@@ -98,6 +98,7 @@ class _ScreenAllStudentState extends State<ScreenAllStudent> {
           List<Student>? students = snapshot.data;
           return StudentsToggleBu(
             students: students!,
+            classa: classa,
           );
         }
       },

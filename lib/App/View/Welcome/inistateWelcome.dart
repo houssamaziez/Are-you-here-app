@@ -6,6 +6,10 @@ import 'package:app/App/View/Home/import_home.dart';
 import 'package:app/App/View/Welcome/Start/ScreennStart.dart';
 import 'package:app/App/util/Route/go.dart';
 
+import '../../Model/Parent.dart';
+
+Parent? userDataapp;
+
 class InistateWelcome {
   static Future inis() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +21,8 @@ class InistateWelcome {
         try {
           ApiPut.updatatoken(userid.read('iduser'))
               .then((value) => print('gettocent'));
+          ApiPut.getuserData(userid.read('iduser'))
+              .then((value) => userDataapp = value);
           return ApiOperation.getuserData(
             int.parse(userid.read('iduser')),
           );

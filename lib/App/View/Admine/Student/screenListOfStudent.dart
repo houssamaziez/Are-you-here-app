@@ -40,9 +40,9 @@ class _ScreenStudentListState extends State<ScreenStudentList> {
           SizeApp.sizedboxh50,
           titlehome(),
           SizeApp.sizedboxh20,
-          StudentsToggleBu(
-            students: [],
-          ),
+          // StudentsToggleBu(
+          //   students: [],
+          // ),
         ],
       )),
     );

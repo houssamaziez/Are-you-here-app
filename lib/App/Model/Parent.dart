@@ -1,4 +1,4 @@
-class User {
+class Parent {
   final int id;
   final String name;
   final String image;
@@ -11,7 +11,7 @@ class User {
   final String createdAt;
   final String updatedAt;
 
-  User({
+  Parent({
     required this.id,
     required this.name,
     required this.image,
@@ -25,8 +25,8 @@ class User {
     required this.updatedAt,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
+  factory Parent.fromJson(Map<String, dynamic> json) {
+    return Parent(
       id: json['id'],
       name: json['name'],
       image: json['image'],

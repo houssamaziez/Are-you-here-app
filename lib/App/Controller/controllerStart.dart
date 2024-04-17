@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:app/App/View/Auth/Sign%20in/screensignin.dart';
 import 'package:app/App/View/Home/import_home.dart';
+import 'package:app/App/util/Const/url.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../App/View/Home/home.dart';
+import '../Model/Parent.dart';
 
 class ControllerStart extends GetxController {
   var controllerpage = PageController(initialPage: 0);

@@ -4,6 +4,7 @@ import 'package:app/App/Service/FutureBuild/list_of_catigorys.dart';
 import 'package:app/App/Service/ImageCach/imagecach.dart';
 import 'package:app/App/View/Admine/Classa/addclassa.dart';
 import 'package:app/App/View/Admine/Student/studentscreen.dart';
+import 'package:app/App/View/Widgets/dialogs.dart';
 import 'package:app/App/util/Const/url.dart';
 
 import 'package:app/App/util/Size/dimensions.dart';
@@ -36,6 +37,12 @@ class _ScreenAllclassaState extends State<ScreenAllclassa> {
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(
+              onLongPress: () async {
+                await showDeleteConfirmationDialog(
+                    context, 'classa/delete/${userData[index].id.toString()}',
+                    title: "حذف ${userData[index].name}");
+                setState(() {});
+              },
               onTap: () {
                 Go.to(
                     context,

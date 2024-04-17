@@ -1,19 +1,50 @@
 import 'dart:convert';
+import 'package:app/App/View/Welcome/inistateWelcome.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 import '../../../Model/Parent.dart';
 import '../../../Model/post.dart';
+import '../../../Service/Api/Bdd/local/auth.dart';
+import '../../../Service/Api/Function/Put/user.dart';
 import '../../../Service/ImageCach/imagecach.dart';
 import '../../../Service/call/functioncall.dart';
 import '../../../util/Const/url.dart';
 import '../../../util/Route/go.dart';
+import '../../Auth/Sign in/screensignin.dart';
 import '../../Home/Screens/Notification/Send Notification/screenSendNotification.dart';
 
-class UserProfilePage extends StatelessWidget {
-  final User user;
+class UserProfilePage extends StatefulWidget {
+  final Parent user;
 
   const UserProfilePage({Key? key, required this.user}) : super(key: key);
+
+  @override
+  State<UserProfilePage> createState() => _UserProfilePageState();
+}
+
+class _UserProfilePageState extends State<UserProfilePage> {
+  @override
+  void initState() {
+    ApiPut.getuserData(userid.read('iduser'))
+        .then((value) => userDataapp = value);
+    print(userDataapp!.id);
+    super.initState();
+  }
+
+  void _logout() async {
+    await userid
+        .write('iduser', null)
+        .then((value) => Go.push(const ScreenSignin()));
+  }
+
+  void _selectedItem(BuildContext context, int item) {
+    switch (item) {
+      case 0:
+        _logout();
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +55,25 @@ class UserProfilePage extends StatelessWidget {
             expandedHeight: 250.0,
             floating: false,
             actions: [
-              IconButton(
-                  onPressed: () {
-                    Go.to(
-                        context,
-                        SendNotification(
-                          id_user: user.id,
-                        ));
-                  },
-                  icon: Icon(Icons.add_alert)),
+              widget.user.id == int.parse(userid.read('iduser'))
+                  ? PopupMenuButton<int>(
+                      onSelected: (item) => _selectedItem(context, item),
+                      itemBuilder: (context) => [
+                        PopupMenuItem<int>(
+                          value: 0,
+                          child: Text('Logout'),
+                        ),
+                      ],
+                    )
+                  : IconButton(
+                      onPressed: () {
+                        Go.to(
+                            context,
+                            SendNotification(
+                              id_user: widget.user.id,
+                            ));
+                      },
+                      icon: Icon(Icons.add_alert)),
               SizedBox(
                 width: 10,
               )
@@ -40,22 +81,22 @@ class UserProfilePage extends StatelessWidget {
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
-              title: Text(user.name,
+              title: Text(widget.user.name,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16.0,
                   )),
               background: Image.network(
-                UrlApp.site + user.image,
+                UrlApp.site + widget.user.image,
                 fit: BoxFit.cover,
               ),
             ),
           ),
           SliverList(
             delegate: SliverChildListDelegate([
-              UserInfoSection(user: user),
+              UserInfoSection(user: widget.user),
               Divider(),
-              UserActivitiesSection(user: user),
+              UserActivitiesSection(user: widget.user),
             ]),
           ),
         ],
@@ -65,7 +106,7 @@ class UserProfilePage extends StatelessWidget {
 }
 
 class UserInfoSection extends StatelessWidget {
-  final User user;
+  final Parent user;
 
   const UserInfoSection({Key? key, required this.user}) : super(key: key);
 
@@ -111,7 +152,7 @@ class UserInfoSection extends StatelessWidget {
 }
 
 class UserActivitiesSection extends StatefulWidget {
-  final User user;
+  final Parent user;
 
   UserActivitiesSection({Key? key, required this.user}) : super(key: key);
 

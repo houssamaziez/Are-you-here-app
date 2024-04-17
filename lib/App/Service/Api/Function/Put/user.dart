@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:app/App/util/Const/url.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:http/http.dart' as http;
+
+import '../../../../Model/Parent.dart';
 
 class ApiPut {
   static Future<void> updatatoken(String id) async {
@@ -32,5 +36,13 @@ class ApiPut {
         print('Error updating token: $error');
       }
     });
+  }
+
+  static Future<Parent> getuserData(
+    String userId,
+  ) async {
+    final response =
+        await http.get(Uri.parse('${UrlApp.host}users/userdata/$userId'));
+    return Parent.fromJson(json.decode(response.body)["user"]);
   }
 }

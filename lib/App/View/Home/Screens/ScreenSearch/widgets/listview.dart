@@ -7,11 +7,13 @@ import '../../../../../Service/call/functioncall.dart';
 import '../../../../../util/Const/url.dart';
 import '../../../../../util/Route/go.dart';
 import '../../../../Admine/Parents/profile.dart';
+import '../../../../Widgets/dialogs.dart';
+import '../../../home.dart';
 
-FutureBuilder<List<User>> allPostsearch(cotext, String query) {
+FutureBuilder<List<Parent>> allPostsearch(cotext, String query) {
   return FutureBuilder(
     future: searchpost(cotext, query),
-    builder: (BuildContext context, AsyncSnapshot<List<User>> snapshot) {
+    builder: (BuildContext context, AsyncSnapshot<List<Parent>> snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
         return Container();
       } else if (snapshot.hasError) {
@@ -22,10 +24,16 @@ FutureBuilder<List<User>> allPostsearch(cotext, String query) {
           physics: NeverScrollableScrollPhysics(),
           itemCount: snapshot.data!.length,
           itemBuilder: (context, index) {
-            User user = snapshot.data![index];
+            Parent user = snapshot.data![index];
             return Padding(
               padding: const EdgeInsets.all(4.0),
               child: InkWell(
+                onLongPress: () async {
+                  await showDeleteConfirmationDialog(
+                          context, 'users/delete/${user.id.toString()}',
+                          title: "حذف ${snapshot.data![index].name}")
+                      .then((value) => Go.push(Home()));
+                },
                 onTap: () {
                   Go.to(context, UserProfilePage(user: user));
                 },

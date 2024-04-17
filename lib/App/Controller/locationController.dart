@@ -5,7 +5,7 @@ import 'package:app/App/util/Size/dimensions.dart';
 import 'package:flutter/material.dart';
 
 class ControllerLocation extends ChangeNotifier {
-  String selectedWilaya = 'Select Wilaya';
+  String selectedWilaya = 'Select City';
 
   void showWilayaMenu(context) {
     showModalBottomSheet(

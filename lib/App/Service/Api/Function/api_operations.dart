@@ -17,6 +17,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../View/Welcome/inistateWelcome.dart';
+
 class ApiOperation extends ChangeNotifier {
   bool isloadingAuth = false;
   change(bool vule) {
@@ -95,7 +97,10 @@ class ApiOperation extends ChangeNotifier {
         int.parse(userid.read('iduser')),
       );
       myData.updateData(user);
-      Go.push(Home());
+      ApiPut.getuserData(userid.read('iduser')).then((value) {
+        userDataapp = value;
+        Go.push(Home());
+      });
       print(myData.userdata!.user!.name);
       return response;
     } catch (e) {}
@@ -117,7 +122,10 @@ class ApiOperation extends ChangeNotifier {
     };
     try {
       var response = await UtilsBdd.post(UrlApp.urlsendmail, data);
-
+      Go.push(ScreenChangePassword(
+        code: code,
+        email: email,
+      ));
       await UtilsBdd.statusCode(
           response: response,
           context: context,
