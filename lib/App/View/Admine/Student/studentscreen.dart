@@ -1,7 +1,6 @@
 import 'package:app/App/Controller/locationController.dart';
 import 'package:app/App/Model/catigory.dart';
 import 'package:app/App/Model/post.dart';
-import 'package:app/App/Service/FutureBuild/list_of_catigorys.dart';
 import 'package:app/App/Service/ImageCach/imagecach.dart';
 import 'package:app/App/View/Admine/Student/screenAdd.dart';
 import 'package:app/App/View/Widgets/WaitDataWidgets/list_of_post.dart';
@@ -15,7 +14,6 @@ import '../../../../main.dart';
 import '../../../Model/classa.dart';
 import '../../../Service/Api/Function/Get/getdata.dart';
 import '../../../Service/Api/Function/PostFunction/getdata.dart';
-import '../../../Service/FutureBuild/list_of_post_user.dart';
 import '../../Home/import_home.dart';
 import '../../Widgets/WaitDataWidgets/wait_data.dart';
 

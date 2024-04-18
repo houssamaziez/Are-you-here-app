@@ -1,6 +1,5 @@
 import 'package:app/App/Controller/locationController.dart';
 import 'package:app/App/Model/catigory.dart';
-import 'package:app/App/Service/FutureBuild/list_of_catigorys.dart';
 import 'package:app/App/Service/ImageCach/imagecach.dart';
 import 'package:app/App/View/Admine/Classa/addclassa.dart';
 import 'package:app/App/View/Admine/Student/studentscreen.dart';

@@ -1,7 +1,5 @@
 import 'package:app/App/View/Welcome/inistateWelcome.dart';
 
-import '../../Controller/PresentController.dart';
-import '../../Service/Api/Function/Put/user.dart';
 import 'import_home.dart';
 
 class Home extends StatefulWidget {
@@ -23,14 +21,6 @@ class _HomeState extends State<Home> {
     return Scaffold(
         bottomNavigationBar: MyBottomBar(),
         key: _scaffoldKey,
-        // appBar: AppBar(
-        //   title: Text(userDataapp!.role.toString()),
-        // ),
-        // appBar: myAppBar(
-        //   context,
-        //   _scaffoldKey,
-        // ),
-        // drawer: myDrawer(context),
         body: Consumer<HomeController>(
           builder: (context, myNotifier, child) {
             return userDataapp!.role.toString() == "admine"

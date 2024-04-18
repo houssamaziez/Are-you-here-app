@@ -3,7 +3,6 @@ import 'dart:developer' as developer;
 
 import 'package:app/App/Model/user.dart';
 import 'package:app/App/Service/Api/Bdd/local/auth.dart';
-import 'package:app/App/Service/Api/Function/ping.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,22 +34,6 @@ class MyAppController extends ChangeNotifier {
   }
 
   int pingtime = 999;
-  getping() {
-    PingApp.ping.stream.listen((event) {
-      try {
-        if (event.response!.time!.inMilliseconds > 999) {
-          pingtime = 999;
-          notifyListeners();
-        } else {
-          pingtime = event.response!.time!.inMilliseconds;
-          notifyListeners();
-        }
-      } catch (e) {
-        pingtime = 999;
-        notifyListeners();
-      }
-    });
-  }
 
   UserData? userdata;
   String iscreate = 'iscreate';

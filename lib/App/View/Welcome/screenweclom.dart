@@ -24,8 +24,6 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
   }
 
   instail() {
-    myData = Provider.of<MyAppController>(context, listen: false);
-    myData!.getping();
     Timer(const Duration(seconds: 3), () {
       InistateWelcome.inis().then((value) {
         if (value != null) {

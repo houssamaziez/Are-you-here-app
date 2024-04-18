@@ -1,14 +1,10 @@
 export 'package:app/App/Service/Api/Bdd/local/auth.dart';
-export 'package:app/App/Service/Api/Function/show_data.dart';
 export 'package:app/App/Controller/myappcontroller.dart';
 export 'package:app/App/Model/user.dart';
-export 'package:app/App/View/Home/Profile/ProfileUser/screenProfile_user.dart';
 export 'package:app/App/View/Widgets/bottomBar.dart';
-export 'package:app/App/View/Widgets/myDrawer.dart';
 export 'package:app/App/util/Image/icons.dart';
 export 'package:app/App/util/Route/go.dart';
 export 'package:app/App/util/theme/Style/styles.dart';
 export 'package:flutter/material.dart';
 export 'package:provider/provider.dart';
-export 'package:app/App/View/Widgets/appBar.dart';
 export 'package:app/App/Controller/homeController.dart';

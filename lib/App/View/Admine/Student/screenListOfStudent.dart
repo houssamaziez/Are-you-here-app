@@ -1,5 +1,4 @@
 import 'package:app/App/Controller/locationController.dart';
-import 'package:app/App/Service/FutureBuild/list_of_catigorys.dart';
 
 import 'package:app/App/util/Size/dimensions.dart';
 import 'package:pie_menu/pie_menu.dart';
