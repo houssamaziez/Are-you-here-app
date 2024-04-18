@@ -2,6 +2,7 @@ import 'package:app/App/Controller/locationController.dart';
 import 'package:app/App/Model/catigory.dart';
 import 'package:app/App/Service/ImageCach/imagecach.dart';
 import 'package:app/App/View/Admine/Classa/screenclassa.dart';
+import 'package:app/App/View/Auth/Sign%20in/screensignin.dart';
 import 'package:app/App/util/Const/url.dart';
 
 import 'package:app/App/util/Size/dimensions.dart';
@@ -115,6 +116,20 @@ class ScreenAllLavel extends StatelessWidget {
     );
   }
 
+  void _logout() async {
+    await userid
+        .write('iduser', null)
+        .then((value) => Go.push(const ScreenSignin()));
+  }
+
+  void _selectedItem(BuildContext context, int item) {
+    switch (item) {
+      case 0:
+        _logout();
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,6 +139,15 @@ class ScreenAllLavel extends StatelessWidget {
         title: Text("المراحلة الدراسية"),
         centerTitle: true,
         actions: [
+          PopupMenuButton<int>(
+            onSelected: (item) => _selectedItem(context, item),
+            itemBuilder: (context) => [
+              PopupMenuItem<int>(
+                value: 0,
+                child: Text('Logout'),
+              ),
+            ],
+          ),
           SizedBox(
             width: 15,
           )

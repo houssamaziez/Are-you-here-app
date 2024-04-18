@@ -130,7 +130,7 @@ class _StudentsToggleBuState extends State<StudentsToggleBu> {
                   if (isSelected[i] == true &&
                       widget.students[i].isPresent != "true") {
                     pushNotification(
-                            id: "1",
+                            id: widget.students[i].userId.toString(),
                             title: "اشعار حضور",
                             description:
                                 "     لقد حضر ابنك  ${widget.students[i].name} ",
@@ -165,7 +165,7 @@ class _StudentsToggleBuState extends State<StudentsToggleBu> {
                   selectedStudents.add(widget.students[i].id.toString());
                   if (widget.students[i].isPresent == "true") {
                     pushNotification(
-                            id: "1",
+                            id: widget.students[i].userId.toString(),
                             title: "اشعار خرج",
                             description:
                                 " ${widget.students[i].name} لقد خرج ابنك",

@@ -11,6 +11,18 @@ import 'dart:convert';
 import '../../../Model/Parent.dart';
 import '../Parents/screenParents.dart';
 
+Future<List<Parent>> fetchUsers() async {
+  final response = await http
+      .get(Uri.parse('https://areyouhere-app.com/public/api/users/all'));
+
+  if (response.statusCode == 200) {
+    List<dynamic> userJson = json.decode(response.body)['Parents'];
+    return userJson.map((json) => Parent.fromJson(json)).toList();
+  } else {
+    throw Exception('Failed to load users');
+  }
+}
+
 class CreateStudentScreen extends StatefulWidget {
   final int userId;
   final int lavelId;
@@ -59,7 +71,7 @@ class _CreateStudentScreenState extends State<CreateStudentScreen> {
     print(selectedParent!.id.toString());
     print(selectedParent!.id.toString());
     var uri = Uri.parse(
-        '${UrlApp.host}student/create/id_user=1/lavel_id=${widget.lavelId}/classa_id=${widget.classaId}'); // Set your API URL here
+        '${UrlApp.host}student/create/id_user=${selectedParent!.id}/lavel_id=${widget.lavelId}/classa_id=${widget.classaId}'); // Set your API URL here
     var request = http.MultipartRequest('POST', uri)
       ..fields['user_id'] = selectedParent!.id.toString()
       ..fields['lavel_id'] = widget.lavelId.toString()
@@ -140,7 +152,6 @@ class _CreateStudentScreenState extends State<CreateStudentScreen> {
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 229, 242, 254),
                     borderRadius: BorderRadius.circular(10),
-                    boxShadow: [],
                   ),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButtonFormField<Parent>(
@@ -160,11 +171,16 @@ class _CreateStudentScreenState extends State<CreateStudentScreen> {
                               Center(
                                   child: Row(
                                 children: [
-                                  Text(parent.name.toString()),
+                                  Text(
+                                    parent.name.toString(),
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 15),
+                                  ),
                                   Spacer(),
                                   Text(
                                     parent.address.toString(),
-                                    style: TextStyle(color: Colors.grey),
+                                    style: TextStyle(
+                                        color: Colors.grey, fontSize: 10),
                                   ),
                                 ],
                               )),

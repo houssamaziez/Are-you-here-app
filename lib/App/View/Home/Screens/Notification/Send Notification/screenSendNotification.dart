@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import '../../../../../Service/Api/Bdd/local/auth.dart';
+import '../../../../Welcome/inistateWelcome.dart';
 
 class SendNotification extends StatefulWidget {
   final int id_user;
@@ -34,7 +35,7 @@ class _SendNotificationState extends State<SendNotification> {
     try {
       await pushNotification(
               id: widget.id_user.toString(),
-              title: _name.toString(),
+              title: userDataapp!.name.toString(),
               description: _ditails.toString(),
               post_id: userid.read('iduser'))
           .then((value) => Navigator.pop(context));
@@ -60,7 +61,6 @@ class _SendNotificationState extends State<SendNotification> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              textfield(),
               SizedBox(height: 20),
               textfieldditails(),
               SizedBox(height: 20),

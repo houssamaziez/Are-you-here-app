@@ -27,7 +27,6 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
     Timer(const Duration(seconds: 3), () {
       InistateWelcome.inis().then((value) {
         if (value != null) {
-          myData!.updateData(value);
           Timer(const Duration(seconds: 1), () {
             Go.push(Home());
           });
@@ -35,7 +34,7 @@ class _ScreenWelcomeState extends State<ScreenWelcome> {
       });
     });
 
-    Timer(const Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 15), () {
       setState(() {
         iscomplet = true;
       });

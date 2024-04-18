@@ -1,14 +1,8 @@
-import 'package:app/App/Controller/locationController.dart';
-import 'package:app/App/Model/catigory.dart';
 import 'package:app/App/Model/post.dart';
-import 'package:app/App/Service/ImageCach/imagecach.dart';
 import 'package:app/App/View/Admine/Student/screenAdd.dart';
 import 'package:app/App/View/Widgets/WaitDataWidgets/list_of_post.dart';
-import 'package:app/App/util/Const/url.dart';
 
-import 'package:app/App/util/Size/dimensions.dart';
 import 'package:bottom_bar_matu/utils/app_utils.dart';
-import 'package:pie_menu/pie_menu.dart';
 
 import '../../../../main.dart';
 import '../../../Model/classa.dart';
